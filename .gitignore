@@ -1,0 +1,6 @@
+svg-inkscape/*
+*.aux
+*.bbl
+*.blg
+*.log
+*.gz

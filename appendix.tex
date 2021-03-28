@@ -1,0 +1,250 @@
+\newpage
+\section{Appendix}
+
+\subsection{Auxiliary - Probability and Analysis}
+This section contains definitions and results in Probability and
+Analysis that are used throughout the text. These results are listed
+here mostly without proofs.
+
+\begin{definition}
+	Let $d:X\times X \to \mathbb R_+$. We say that $d$ is a metric on the set $X$ if
+	for all $x,y,z \in X$, the following three assertions are true:
+	\begin{enumerate}[i)]
+		\item $d(x,y) = 0 \iff x = y$
+		\item $d(x,y) = d(y,x)$
+		\item $d(x,z) \leq d(x,y) + d(y,z)$ (triangle inequality)
+	\end{enumerate}
+	\label{def:metric}
+\end{definition}
+
+\begin{definition}(Weak convergence)
+	We say that $\mu_n \rightharpoonup \mu$ if and only if
+	$\forall f$ continuous and bounded, we have
+	$\int f \ d\mu_n \to \int f \ d\mu$.
+	\label{def:weakconv}
+\end{definition}
+Note that this is equivalent to the notion of convergence in distribution,
+which is more commonly known in probability.
+
+\begin{theorem}(Portmanteau)
+	\label{Portmanteau}
+	Given $\mu \in \mathcal{P}(X)$, where $X$ is a metric space.
+	Then, the following statements are equivalent:
+	\begin{enumerate}[i)]
+		\item $\mu_n \rightharpoonup \mu$;
+
+		\item $\forall f$ bounded and uniformly continuous,
+		      we have $\int f \ d\mu_n \to \int f \ d\mu$;
+
+		\item $\forall F \subset X$ closed,
+		      $\mu(F) \geq \limsup_n \mu_n(F)$;
+
+		\item $\forall F \subset X$ open,
+		      $\mu(A) \leq \liminf_n \mu_n(A)$;
+
+		\item $\forall B$ such that $\mu(\partial B)= 0$, then
+		      $\mu_n(B) \to \mu(B)$.
+
+		      Note that every set $B$ with
+		      $\mu(\partial B)=0$is called
+		      a continuity set. And $\partial B$ is the boundary set of
+		      B, hence $\partial B := \hat B \setminus \mathring B$.
+	\end{enumerate}
+
+\end{theorem}
+
+\begin{theorem}
+	Let $X,Y$ be metric spaces and $\mu_n \rightharpoonup \mu$.
+	Given a continuous map $h:X\to Y$, then
+	$h_\# \mu_n = \mu_n \circ h^{-1} \rightharpoonup h_\# \mu$.
+\end{theorem}
+
+\begin{corollary}
+	If $\mu_n \rightharpoonup \mu$ with $h:X\to Y$ such that
+	$\mu(D_h) = 0$ where $D_h$ is the set of points of discontinuity.
+	Then, $\mu_n \circ h^{-1}\rightharpoonup \mu \circ h^{-1}$.
+\end{corollary}
+
+\begin{proposition}
+	If $X$ is Polish, and $d$ is a lower semi-continuous metric on $X$. For $p \in [1,+\infty)$ and $x_0 \in X$,
+	$\mu_n \rightharpoonup \mu$ and $\int_X d(x,x_0)^p d\mu_n \to \int_X d(x,x_0)^p d \mu$, if, and only if,
+	$\mu_n \rightharpoonup \mu$ and $\lim_{R \to \infty} \int_{d(x,x_0)\geq R} d(x,x_0) d\mu_n \to 0$ (uniformly integrable).
+\end{proposition}
+
+\begin{definition} (Tight)
+	A family of probability measures $\mathcal{A}$ is tight if for
+	$\epsilon > 0$, $\exists K \subset X$ compact, such that for
+	any $\mu_\alpha \in \mathcal{A}$,
+	$\mu_\alpha (X \setminus K)<\epsilon$
+	\label{def:tight}
+\end{definition}
+
+\begin{theorem}(Prokhorov) This theorem
+	consists in two separate results.
+	\label{Prokhorov}
+	\begin{enumerate}[i)]
+		\item If the family $\mathcal{G} =
+			      \{\mu_\alpha\}_{\alpha \in \Lambda}$ is tight, then
+		      $\mathcal{G}$ is sequentially pre-compact, i.e. for any
+		      $(\mu_n) \subset \mathcal{G}$,
+		      $\exists \mu_{n_k}\rightharpoonup \mu$, where
+		      $\mu \in \overline{\mathcal{G}}$;
+
+		\item If X is Polish and $\mathcal{G}=
+			      \{\mu_\alpha\}_{\alpha \in \Lambda}\subset \mathcal{P}(X)$
+		      is pre-compact. Then $\mathcal{G}$ is tight.
+		      In other words, for $X$ polish, and $\mu_n \in \mathcal{P}(X)$
+		      with $\mu_n \rightharpoonup \mu$, then the sequence
+		      $(\mu_n)$ is tight.
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}(Disintegration)
+
+	For a Borel measurable space $X$ with a measure $\mu$.
+	Given a function $f:X \to Y$. We say that the family
+	$(\mu_y)_{y\in Y}$ is a Disintegration of $\mu$ according
+	to $f$ if every measure $\mu_y$ is concentrated on $f^{-1}(\{y\})$, and
+	for every $\phi \in C(X)$, the map $\phi \mapsto \int_X \phi d \mu_y$ is
+	Borel measurable with
+	\begin{equation}
+		\int_X \phi \ d\mu = \int_Y \int_X \phi \ d\mu_y (x) \ d\nu(y), \quad
+		\text{ where } \nu = f_\# \mu
+	\end{equation}
+	Note that the existence and uniqueness of disintegration families depend on the
+	spaces where the probabilities are defined, to which we introduce the next theorem.
+	\label{def:disintegration}
+\end{definition}
+
+\begin{theorem}(\citet{garling2018analysis} 16.10.1)
+	Suppose that $X$ and $Y$ are Polish spaces, that $\mu \in \mathcal P(X)$ and that
+	$f$ is a Borel measurable map from $X$ to $Y$. Then, the $f$-disintegration
+	of $\mu$ exists, and is essentially unique (i.e.
+	$\mu(f^{-1}(B))=0$, with
+	$B := \{y \in f(X) : \mu_y \neq \mu_y'\}$ where $\mu_y$ and $\mu_y'$ are two disintegrations).
+	\label{thm:disintegrationunique}
+\end{theorem}
+
+\begin{theorem}
+	$f:X \to \mathbb R$ is uniformly continuous $\iff$
+	$\exists \ \omega : \mathbb R_+ \to \mathbb R_+$ , such that
+	$\omega$ is increasing and $\lim_{x \to 0} w(x) = 0$ with
+	$|f(x) - f(y)| \leq \omega(d(x,y)), \ \forall x,y \in X$.
+	We call $\omega$ the modulus of continuity.
+	\label{thm:mod_continuity}
+\end{theorem}
+
+\begin{definition}(Equicontinuous)
+	For a metric space $X$, the sequence of functions
+	$f_n:X\to \mathbb R$ is equicontinuous if
+	$\forall \epsilon >0,\ \exists \delta >0: \ d(x,y) < \delta
+		\implies d(f_n(x),f_n(y))<\epsilon$ for every $n \in \mathbb N$.
+	\label{def:equicontinuous}
+\end{definition}
+
+\begin{definition}(Equibounded) We say that a sequence (or family)
+	of functions $(f_n)$ is equibounded,
+	if $\exists M > 0 \ : \ |f_n(x)|< M < +\infty \ \forall n \in
+		\mathbb N$. In words, there is a value $M$ that bounds all functions
+	in the sequence.
+	\label{def:equibounded}
+\end{definition}
+
+\begin{theorem}(Arzelà-Ascoli)
+	If $X$ is a compact metric space with $f_n$ equicontinuous and
+	equibounded, then $\exists f_{n_k}\to_{\text{unif.}}f$, where
+	$f$ is continuous.
+	\label{thm:arzela-ascoli}
+\end{theorem}
+
+\begin{theorem}
+	Let $(X,d)$ be metric space. Thus, if $X$ is compact, then $\mathrm{Lip}(X)$ is dense in $C(X)$.
+	\label{thm:lipdense}
+\end{theorem}
+\begin{prf} (Proof from \citet{stackoverflow1})
+	Let $g:X\to \mathbb R$ be a continuous function, then
+	since $X$ is compact, $g$ is uniformly continuous.
+	Therefore, for any $\varepsilon>0$, one can take a
+	$\delta >0$ such that $d(x,y) < \delta$ implies
+	$|g(x)-g(y)|<\varepsilon$. Now, let $M = \sup_{x}|g(x)|$
+	and define
+	\begin{equation*}
+		f(x) :=
+		\sup_y g(y) - \frac{2Md(x,y)}{\delta}
+	\end{equation*}
+	Now, note that $f$ is Lipschitz, since
+	\begin{align*}
+		f(x_1) - f(x_2) &= 
+		\sup_y \left(g(y) - \frac{2Md(x_1,y)}{\delta}\right) -
+		\sup_y \left(g(y) - \frac{2Md(x_2,y)}{\delta} \right)\\
+		&\leq
+		\sup_y \frac{2M(d(x_1,y)-d(x_2,y))}{\delta})
+	\end{align*}
+	By the triangle inequality, $d(x_1,y) - d(x_2,y) \leq d(x_1,x_2)$, then
+	\begin{equation*}
+		\sup_y \frac{2M(d(x_1,y)-d(x_2,y))}{\delta} \leq 
+		\sup_y \frac{2Md(x_1,x_2)}{\delta} = 
+		\frac{2Md(x_1,x_2)}{\delta}
+	\end{equation*}
+	The same argument is valid by exchanging $x_1$ and $x_2$, so $f$ has Lipschitz constant
+	$\frac{2M}{\delta}$. Next, let's prove that $\sup_x |g(x) - f(x)| < \varepsilon$.
+
+	A first point to notice is that $f(x)\geq g(x)$, since for $y=x$, we have $f(x) = g(x)$.
+	For $d(x,y) \geq \delta$,
+	\begin{equation*}
+		f(x) = \sup_y g(y) - \frac{2M d(x,y)}{\delta}\leq \sup_y - 2M \leq -M \leq g(x)
+	\end{equation*}
+	Hence $f(x)\geq g(x) \geq f(x)$, so we obtain an equality.
+
+	For $d(x,y) < \delta$,
+	\begin{equation*}
+		f(x) - g(x) = \sup_y g(y) - g(x) - \frac{2M d(x,y)}{\delta}
+		\leq \varepsilon -\frac{2M d(x,y)}{\delta} < \varepsilon
+	\end{equation*}
+	We conclude that $0< f(x) - g(x) < \varepsilon$, so $\sup_x|f(x)-g(x)|< \varepsilon$.
+
+\end{prf}
+
+
+\subsection{Auxiliary - Inequalities}
+
+\begin{lemma}(Inf-Sup Inequality)
+	\begin{equation}
+		|\inf_{x \in A} f(x) - \inf_{x \in A} g(x)| \leq
+		\sup_{x \in A}|f(x)- g(x)|
+	\end{equation}
+	\label{lem:infsup_ineq}
+\end{lemma}
+\begin{prf}
+	Let's write $\sup_{x \in A}f(x)$ as $\sup_A f$ for simplicity.
+	Note that $f = f - g + g$, hence,
+	\begin{align*}
+		\sup_A f = \sup_A f - g + g & \leq
+		\sup_A (f-g) + \sup_A g \implies   \\
+		\sup_A f - \sup_A g         & \leq
+		\sup_A f-g \leq \sup_A |f-g|       \\
+	\end{align*}
+	Using the same argument for $g$, we obtain that
+	\begin{equation}
+		|\sup_A f - \sup_A g| \leq \sup_A |f-g|
+	\end{equation}
+
+	Finally, note that
+	\begin{align*}
+		|\sup_A f - \sup_A g| =
+		|\inf_A (-f) - \inf_A (-g)| & =
+		|-\inf_A f + \inf_A g| =                                                \\
+		                            & =|\inf_A f - \inf_A g | \leq \sup_A |f-g|
+	\end{align*}
+\end{prf}
+
+\begin{lemma} (Minkowski's Inequality)
+	Let $X$ be a measurable space, for $p \in [1,+\infty)$ and $f,g \in L^p(X)$. Therefore,
+	\begin{equation}
+		||f + g||_{L^p(X)} \leq
+		||f||_{L^p(X)} + 
+		||g||_{L^p(X)}
+	\end{equation}
+	Where $||f||_{L^p(X)}^p = \int_X |f|^p d\mu$.
+	\label{lem:minkowski}
+\end{lemma}
