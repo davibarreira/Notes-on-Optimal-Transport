@@ -1,124 +1,5 @@
 \newpage
-\section{Optimal Transport Theory}
-
-The field of Optimal Transport has grown quite substantially in recent years
-\footnote{\citet{villani2008optimal} is roughly a thousand pages of theoretical results on OT.},
-and going through the theory in order understand how it applies to Machine Learning can be a challenging task for
-ML researchers not acquainted with the field.
-Hence, we have filtered the main theoretical
-results necessary for understanding the applications of Optimal Transport to Machine Learning
-presented in this dissertation.
-
-This section is mainly based on the book
-``Optimal Transport for Applied Mathematicians'' by
-\citet{santambrogio2015optimal}. We do not focus
-on proving the measurability of the sets, functions and maps, although it can be indeed shown
-that the ones presented here are indeed measurable.
-
-\subsection{A Brief Introduction to Optimal Transport}
-
-Before delving into formal definitions, theorems and proofs, let's give an informal overview of what is
-Optimal Transport, what are the main results we are interested in and how they relate to Machine Learning applications.
-
-Optimal Transport theory main subject of study is the problem of optimally transporting
-quantities from one configuration to another given a cost function. Although it may seem like a very narrow subject,
-this seemly simple problem has a plethora of variations and can be significantly hard not only to solve,
-but to even prove that a solution exists.
-
-The origin of the field of Optimal Transport is usually
-attributed to Gaspard Monge (1746-1818), a French mathematician, who was interested in the problem
-of ``what is the optimal way to transport soil extracted from one location and move to another where it will be used,
-for example, on a construction?''
-\footnote{This is not a quote from Monge.}\citep{villani2008optimal}.
-Monge studied this problem restricting the transportation assignment to deterministic maps, i.e. the soil
-extracted from location $x$ should be moved entirely to an specific location $y$ (see Figure \ref{fig:mongeproblem}),
-a condition that is known as ``non-mass splitting". Monge also considered that the cost of transportation
-was proportional to the distance traveled (e.i. $c(x,y) = |x-y|$), but different cost functions can be used.
-
-Although it has been considered the founding problem of Optimal Transport, the Monge Problem is not actually the most
-common formulation when it comes to applications in Machine Learning. The formulation most used when referring
-to the Optimal Transport problem is actually due to Leonid Kantorovich (1912-1986), a Russian mathematician.
-Kantorovich proposed a relaxation of the non-mass splitting condition, such that the optimal transportation
-solution could now transport the mass ``excavated'' from $x$ to many locations
-(see Figure \ref{fig:kantorovichproblem}).
-
-\begin{figure}[H]
-  \centering
-  \def\svgscale{0.7}
-  \includesvg[inkscapelatex=false]{Figures/mongeproblem.svg}
-  \caption{The figure illustrates the original Monge Problem, where all the mass is excavated from location
-  $x$ is transported to a deterministic location $y$. The transport assignment map is represented by the arrow in green.}
-  \label{fig:mongeproblem}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \def\svgscale{0.7}
-  \includesvg[inkscapelatex=false]{Figures/kantorovichproblem.svg}
-  \caption{The figure illustrates the Optimal Transport Problem with the Kantorovich relaxation.
-  The transportation assignment now can split the mass in blue, transporting it to many positions.}
-  \label{fig:kantorovichproblem}
-\end{figure}
-
-The transportation assignment that solves the Monge Problem is called the Optimal Transport \textbf{map},
-while the solution to the Kantorovich Problem is called the Optimal Transport \textbf{plan}. As we will show
-in the following sections, if the Monge Problem has a solution so does the Kantorovich Problem,
-but the contrary is not always true. From here
-on out, every time we refer to the OT problem, we'll be implicitly referring to the Kantorovich formulation, unless
-stated otherwise.
-
-Although the original OT problem is about soil excavation, we can apply it to abstract mathematical objects
-such as probability distributions. Consider two 1-dimensional probability distributions
-$\mu$ and $\nu$, and define an Optimal Transport problem where the objective is to transport
-distribution $\mu$ to $\nu$ with $c(x,y) = |x-y|^p$ for $p \in [1,+\infty)$.
-Note that, if the OT problem has a solution, then there exists a minimum total cost. This minimum
-cost of transporting $\mu$ to $\nu$ is known as the Wasserstein distance ($W_p(\mu,\nu)$).
-The use of the Wasserstein distance to measure the discrepancy between probability distributions
-is one of the main applications of OT on Machine Learning.
-
-If we want to use the Wasserstein, then many questions have to be answered:
-\begin{itemize}
-  \item Does the transport plan exists?
-  \item If the transport plan exists, how does one obtains it and then calculates the Wasserstein distance?
-  \item If the Wasserstein distance between two probability distributions goes to zero,
-  does this imply convergence in probability?
-\end{itemize}
-
-The field of Optimal Transport has addressed these types of questions, thus the importance of understanding
-the theory before using it on real applications.
-
-We end this brief introduction to OT with a description of
-the contents addressed in each of the following sections:
-\begin{enumerate}[(i)]
-  \item \textbf{Monge Problem} - We formally define the Monge Problem;
-
-  \item \textbf{Kantorovich Problem} - We formally define the Kantorovich Problem
-  the notion of \textit{relaxation}. Then, we prove that for compact spaces with continuous cost functions,
-  the Kantorovich Problem is a relaxation of the Monge Problem if the starting distribution $\mu$ is atomless;
-
-  \item \textbf{On the Existence of Transport Plans} - This section focuses on
-  proving the existence of solutions to the Optimal Transport problem.
-  We first prove the existence for compact
-  metric spaces with continuous cost functions, which helps us prove the more general
-  existence theorem for Polish spaces with lower semi-continuous cost functions;
-  
-  \item \textbf{Duality Results} - The Kantorovich Problem
-  admits a dual formulation, which, under some conditions, yields the same
-  optimal cost as the primal formulation (i.e. strong duality). 
-  This section focuses on formally introducing the dual problem and proving
-  the strong duality. We start from more restricted conditions which helps us prove
-  the more general cases. We finish the section with the celebrated Kantorovich-Rubinstein Duality
-  Theorem, which is used in Machine Learning applications such as WGANs;
-
-  \item \textbf{Wasserstein Distance} - We define the Wasserstein
-  and show that it is formally a metric (\ref{def:metric}). Next, we prove that the convergence
-  of probability measures under the Wasserstein distance is equivalent to convergence in distribution.
-  We end the section with some comments on the properties of the Wasserstein distance and why
-  it is useful to fields like Machine Learning.
-\end{enumerate}
-
-
-\subsection{Monge Problem}
+\chapter{Monge \& Kantorovich}
 
 Let's start by providing some definitions that will be used throughout this section.
 \begin{definition}
@@ -230,8 +111,6 @@ is called a \textbf{Transport Map}.
     plan, while on the right there is no possible solution.}
   \label{fig:monge_map_example}
 \end{figure}
-
-\subsection{Kantorovich Problem}
 
 The Monge Problem is hard to solve, and, as we stated, it might not have
 a solution. Hence, this problem can be relaxed, becoming the so called
@@ -456,8 +335,8 @@ We can now prove the following:
 
 \end{prf}
 
-
-\subsection{On the Existence of Transport Plans}
+\newpage
+\chapter{On the Existence of Transport Plans}
 As stated before, it is not trivial to know when the Monge Problem
 indeed has a solution. It is easier to work with the Kantorovich
 Problem. In this section we present some results that relate
@@ -625,9 +504,10 @@ Before going into the next theorem, let's prove a small result.
 
 \end{prf}
 
-\subsection{Duality of the Kantorovich Problem}
+\newpage
+\chapter{Duality of the Kantorovich Problem}
 
-In this section we deal with Duality Theorems regarding the Kantorovich Problem.
+In this chapter we deal with Duality Theorems regarding the Kantorovich Problem.
 Under some conditions, the original Kantorovich Problem (Primal) is equivalent to a Dual
 formulation, where instead of minimizing transport plans, one seeks to maximize potentials.
 Hence, we'll begin this section by introducing the notion of the Dual Problem, and then we'll prove the
@@ -1302,9 +1182,10 @@ Kantorovich-Rubinstein Duality:
   \label{thm:Kantorovich-Rubinstein}
 \end{theorem}
 
-\subsection{Wasserstein Distance}
+\newpage
+\chapter{Wasserstein Distance}
 
-In this section we focus on how the minimal transport cost can be used as a distance metric
+In this chapter we focus on how the minimal transport cost can be used as a distance metric
 in the space of probability measures. Let's assume that $(X,d)$ is a Polish metric space,
 $d$ is a lower semi-continuous metric on this space and $ p \in [1,+\infty)$.
 

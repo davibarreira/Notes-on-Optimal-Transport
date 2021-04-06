@@ -1,5 +1,8 @@
-\documentclass[12pt]{book}
-
+\documentclass[12pt, oneside]{book}
+\pagestyle{plain}
+\usepackage{tocloft}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\usepackage{pdfpages}
 \usepackage{titlesec}
 
 \setcounter{secnumdepth}{4}
@@ -64,10 +67,31 @@
 \newtheorem{summary}{Summary}
 \newenvironment{prf}[1][Proof]{\textbf{#1.} }{\qed}
 
+
+%%%%%%%%%% BOOK INFORMATION %%%%%%%%%%
+\newcommand{\authorname}{Davi Barreira, João Miguel Machado}
+\newcommand{\booktitle}{Notes on Optimal Transport}
+\newcommand{\subtitle}{}
+\newcommand{\publisher}{TBD}
+\newcommand{\editionyear}{2021}
+\newcommand{\isbn}{XYZ}   % replace this with your own ISBN
+\title{\booktitle}
+\author{\authorname}
+
+
 \begin{document}
+\includepdf{capa.pdf}
+\frontmatter
+\input{frontmatter/titlepage}
+\input{frontmatter/copyright}
+\include{preface}
 
+\newpage
+\tableofcontents
+\include{notation}
+\mainmatter
+\newpage
 \include{optimal-transport-theory}
-
 \bibliography{ref}
 
 \bibliographystyle{plainnat}
