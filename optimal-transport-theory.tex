@@ -1780,4 +1780,142 @@ to the closest position $y_j$, until capacity $v_j$ is filled.
   \label{fig:ot-1d-discrete}
 \end{figure}
 
+\section{Transport Between Discrete Measures}
+
+Let $\mu$ be a finite discrete probability measure, hence
+\begin{equation}
+  \mu := \sum^n_{i=1} u_i \delta_{x_i}
+\end{equation}
+Where $\mathbf x = (x_1,...,x_n) \in \mathbb R^{n\times d}$
+represent the location of each mass particle $i \in \{1,...,n\}$. Vector
+$\mathbf u \in \mathbb R^{n\times 1}$, with components $u_i \in (0,1]$,
+is the vector of weights, representing the amount of ``mass'' of each particle. Hence,
+discrete measures might be represented by a vector $\mathbf x$ of positions, and
+$\mathbf u$ of weights.
+
+Now, suppose that both $\mu$ and $\nu$ are discrete measures. Let $\mathbf u \in \mathbb R^{n\times 1}$
+and $\mathbf v \in \mathbb R^{m \times 1}$ represent the vector of weights, and
+$\mathbf x \in \mathbb R^{n\times d}, \mathbf y\in \mathbb R^{m\times d}$ represent the positions of each particle
+of $\mu$ and $\nu$, respectively.
+In this scenario, the Optimal Transport Problem might be reformulated as the following.
+The cost function $c(x,y)$ can be substituted by a cost matrix $\mathbf C \in \mathbb R^{n \times m}$, where
+\begin{equation}
+  \mathbf C_{i,j} := c(x_i,y_j), \quad i \in \{1,...,n\}, \ j \in \{1,...,m\}
+\end{equation}
+Any transport plan $\gamma$ can be written as a matrix $\mathbf P \in \mathbb R_+^{n\times m}$, such that
+$\mathbf P_{i,j}$ represents the amount of mass flowing from particle $i$ to particle $j$. Since
+$\gamma \in \Pi(\mu,\nu)$, the set of possible transport plans can be written as:
+\begin{equation}
+  \mathbf U(\mathbf u, \mathbf v)
+  := \left\{
+  \mathbf P \in \mathbb R_+^{n\times m} \ : \ \mathbf P \mathbf 1_m = \mathbf u , \
+  \mathbf P^\mathrm T \mathbf 1_n = \mathbf v
+  \right\}
+\end{equation}
+
+Where $\bm 1_n$ is a vector with $n$ components, each equal to 1. In words, the sum
+of each row of $\mathbf P$ must be equal to $\mathbf u$ and the sum of each column must
+be equal to $\mathbf v$.
+
+The Kantorovich Problem can be written as:
+\begin{flalign}
+  \text{(KP-Disc.)}&&
+  \mathrm{L}_{\mathbf C}(\mathbf{u,v}) :=
+  \min_{\mathbf P \in
+    \mathbf U(\mathbf u, \mathbf v)
+  } \langle \mathbf C, \mathbf P \rangle =
+  \min_{\mathbf P \in
+    \mathbf U(\mathbf u, \mathbf v)}
+  \sum_{i=1}^n \sum_{j=1}^m \mathbf C_{i,j} \mathbf P_{i,j} &&
+  \label{eq:kpdisc}
+\end{flalign}
+
+The Dual Problem becomes:
+\begin{flalign}
+  \text{(DP-Disc.)}&&
+  \mathrm{L}_{\mathbf C}(\mathbf{u,v}) :=
+  \max_{\mathbf (\mathbf f,\mathbf g) \in
+    \mathbf R(\mathbf C)
+  }
+  \langle \mathbf f, \mathbf u \rangle
+  +
+  \langle \mathbf g, \mathbf v \rangle
+  &&
+\end{flalign}
+
+Where
+\begin{equation}
+  \mathbf R(\mathbf C) :=
+  \left\{
+  (\mathbf f, \mathbf g) \in \mathbb R^n \times \mathbf R^m \ : \
+  \forall (i,j) \in \{1,...,n\} \times \{1,...,m\}, \
+  \mathbf f \oplus \mathbf g \leq \mathbf C
+  \right\}
+\end{equation}
+
+The Discrete Optimal Transport Problem is actually a Linear Programming (LP) problem. Hence,
+one can rearrange Equation \eqref{eq:kpdisc} to the standard form of LP.
+\begin{definition}
+  (Optimal Transport as standard LP)
+  \begin{mini*}
+    {}{\mathbf c^\mathrm T \mathbf p}{}{}
+    \addConstraint{
+      \mathbf{Ap} =
+      \begin{bmatrix}
+        \mathbf u \\
+        \mathbf v
+      \end{bmatrix}
+    } {}{}{}
+    \addConstraint{}{\mathbf p \geq 0}{}{}
+  \end{mini*}
+  Where
+  \begin{align*}
+    \mathbf p :=
+    \begin{bmatrix}
+      \mathbf P_{1,1} \\
+      \mathbf P_{2,1} \\
+      \vdots          \\
+      \mathbf P_{n,1} \\
+      \mathbf P_{2,1} \\
+      \vdots          \\
+      \mathbf P_{n,m}
+    \end{bmatrix}
+    , \quad
+    \mathbf c :=
+    \begin{bmatrix}
+      \mathbf C_{1,1} \\
+      \mathbf C_{2,1} \\
+      \vdots          \\
+      \mathbf C_{n,1} \\
+      \mathbf C_{2,1} \\
+      \vdots          \\
+      \mathbf C_{n,m}
+    \end{bmatrix}
+    , \quad
+    \mathbf A := \begin{bmatrix}
+      \mathbf 1_n^\mathrm T \otimes \mathbf I_m \\
+      \mathbf I_n               \otimes \mathbf 1_m^\mathrm T
+    \end{bmatrix}, \\
+  \end{align*}
+  Note that $\mathbf I_n$ stands for the identity matrix, and $\otimes$ is the tensor product.
+  \label{def:lpformat}
+\end{definition}
+
+\begin{definition}
+  (Optimal Transport Dual Problem as LP)
+  \begin{mini*}
+    {}{
+      \begin{bmatrix}
+        \mathbf u \\
+        \mathbf v
+      \end{bmatrix}^\mathrm T \mathbf h}{}{}
+    \addConstraint{\mathbf A^\mathrm T \mathbf h \leq \mathbf c} {}{}{}
+  \end{mini*}
+  Where $\mathbf h = [f_1,\ldots,f_n,g_1,\ldots,g_m]^\mathrm T$, with $\mathbf c$ and $\mathbf A$ the same as in the primal LP.
+  \label{def:lpdual}
+\end{definition}
+
+Since the Optimal Transport Problem is actually a Linear Programming Problem, therefore, one can use known methods for solving such
+problems, such as Simplex or Interior Point Method. An explanation on how to solve such LP problems in OT can be found in Chapter
+3 of \citet{peyre2019computational}.
 

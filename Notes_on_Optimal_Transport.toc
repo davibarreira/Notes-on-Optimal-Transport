@@ -8,6 +8,7 @@
 \contentsline {chapter}{\numberline {4}Wasserstein Distance}{23}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Optimal Transport Problems with Exact Solution}{33}{chapter.5}%
 \contentsline {section}{\numberline {5.1}1D Optimal Transport}{33}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Appendix}{36}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Auxiliary - Probability and Analysis}{36}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Auxiliary - Inequalities}{39}{section.6.2}%
+\contentsline {section}{\numberline {5.2}Transport Between Discrete Measures}{34}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Appendix}{38}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Auxiliary - Probability and Analysis}{38}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Auxiliary - Inequalities}{41}{section.6.2}%
