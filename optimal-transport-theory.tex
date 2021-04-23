@@ -1721,3 +1721,63 @@ to the Kullback-Leibler divergence, which does not.
   cases clearly highlight how $W_p$ incorporates geometrical information while $KL$ doesn't.}
 	\label{fig:wl-kl}
 \end{figure}
+
+\newpage
+\chapter{Optimal Transport Problems with Exact Solution}
+
+In many cases, obtaining the exact solution to an OT problem might not be possible,
+thus requiring the use of methods to approximate the real solution. Yet,
+there are situations where it's possible to obtain the exact OT plan. This chapter
+explores some of these situations.
+
+\section{1D Optimal Transport}
+
+\label{sec:1dOT}
+For $\mu,\nu \in P_p(\mathbb R)$, the Wasserstein has a closed form solution, which
+relies on the pseudoinverse of the cumulative distribution function.
+\begin{definition}
+  Let $\mu \in \mathcal P(\mathbb R)$. The cumulative distribution function (CDF) is
+  \begin{equation}
+    F_\mu(x) := \mu((-\infty,x])
+  \end{equation}
+  Note that $F_\mu$ is a nondecreasing and right-continuous function.
+  \label{def:cumulativefunction}
+\end{definition}
+
+\begin{definition}
+  Given a nondecreasing and right-continuous function $F:\mathbb R \to [0,1]$,
+  its pseudoinverse is
+  \begin{equation}
+    F^{-1}(x):= \inf\{
+    y \in \mathbb R \ : \ F(y) \geq x
+    \}
+  \end{equation}
+  \label{def:pseudoinverse}
+\end{definition}
+After introducing these definitions, we can present the formula for computing the Wasserstein
+distance (Remark 2.30 on \citet{peyre2019computational}):
+\begin{equation}
+  W_p(\mu,\nu)^p = \int_0^1| F_\mu^{-1}(x)- F_\nu^{-1}(x) |^p dx
+\end{equation}
+Note that for $p=1$ and $\mu,\nu$ both atomless, then
+there exists an optimal Monge map $T = F_\nu^{-1} \circ F_\mu$.
+
+For the discrete 1-D distributions, an even simpler algorithm can be devised. Let
+$\mu = \sum^n_i=1 u_i \delta_{x_i}$ and
+$\nu = \sum^m_j=1 v_i \delta_{v_j}$, where
+$x_1\leq x_2 \leq ... \leq x_n$ and
+$y_1\leq y_2 \leq ... \leq y_m$. Consider that each position $x_i$ has mass $u_i$
+and each position $y_j$ has capacity $v_j$. The optimal transport plan
+consists of moving particle $x_i$
+to the closest position $y_j$, until capacity $v_j$ is filled.
+
+\begin{figure}[H]
+  \centering
+  \def\svgscale{0.6}
+  \includesvg[inkscapelatex=false]{Figures/ot-1d-discrete.svg}
+  \caption{Illustration of the algorithm for optimally transporting distribution $\mu$ in blue
+  to distribution $\nu$ in red.}
+  \label{fig:ot-1d-discrete}
+\end{figure}
+
+

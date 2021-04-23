@@ -6,6 +6,8 @@
 \contentsline {chapter}{\numberline {2}On the Existence of Transport Plans}{7}{chapter.2}%
 \contentsline {chapter}{\numberline {3}Duality of the Kantorovich Problem}{10}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Wasserstein Distance}{23}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Appendix}{34}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Auxiliary - Probability and Analysis}{34}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Auxiliary - Inequalities}{37}{section.5.2}%
+\contentsline {chapter}{\numberline {5}Optimal Transport Problems with Exact Solution}{33}{chapter.5}%
+\contentsline {section}{\numberline {5.1}1D Optimal Transport}{33}{section.5.1}%
+\contentsline {chapter}{\numberline {6}Appendix}{36}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Auxiliary - Probability and Analysis}{36}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Auxiliary - Inequalities}{39}{section.6.2}%
