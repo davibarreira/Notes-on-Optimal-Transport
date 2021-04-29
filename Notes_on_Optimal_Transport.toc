@@ -1,14 +1,15 @@
 \babel@toc {british}{}
 \contentsline {chapter}{Preface}{ii}{chapter*.1}%
-\contentsline {section}{A Brief Introduction to Optimal Transport}{ii}{section*.2}%
-\contentsline {chapter}{Notation}{vii}{chapter*.3}%
-\contentsline {chapter}{\numberline {1}Monge \& Kantorovich}{1}{chapter.1}%
-\contentsline {chapter}{\numberline {2}On the Existence of Transport Plans}{7}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Duality of the Kantorovich Problem}{10}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Wasserstein Distance}{23}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Optimal Transport Problems with Exact Solution}{33}{chapter.5}%
-\contentsline {section}{\numberline {5.1}1D Optimal Transport}{33}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Transport Between Discrete Measures}{34}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Appendix}{38}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Auxiliary - Probability and Analysis}{38}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Auxiliary - Inequalities}{41}{section.6.2}%
+\contentsline {chapter}{Notation}{iv}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Fundamentals of Optimal Transport}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}A Brief Introduction}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Monge \& Kantorovich}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}On the Existence of Transport Plans}{11}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Duality of the Kantorovich Problem}{14}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Wasserstein Distance}{26}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Optimal Transport Problems with Exact Solution}{36}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}1D Optimal Transport}{36}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Transport Between Discrete Measures}{37}{subsection.1.6.2}%
+\contentsline {chapter}{\numberline {2}Appendix}{41}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Auxiliary - Probability and Analysis}{41}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Auxiliary - Inequalities}{44}{section.2.2}%

@@ -1,0 +1,168 @@
+\newpage
+\section{On the Existence of Transport Plans}
+As stated before, it is not trivial to know when the Monge Problem
+indeed has a solution. It is easier to work with the Kantorovich
+Problem. In this section we present some results that relate
+to the existence of Optimal Transport Plans for the Kantorovich Problem.
+
+\begin{theorem}(Santambrogio 1.4)
+  Let $X$ and $Y$ be compact metric spaces.
+  Given $\mu\in \mathcal{P}(X)$, $\nu \in \mathcal P(Y)$ and
+  $c:X\times Y \to[0,+\infty]$, if $c$ is continuous, then
+  (KP) admits a solution.
+  \label{thm:Santambrogio1.4}
+\end{theorem}
+\begin{prf}
+  We begin by using the notion of weak convergence to characterize
+  continuity of functions defined on probability measures.
+
+  Note that since $c$ is continuous and $(X \times Y)$ is compact,
+  then $c$ is continuous and bounded. Also,
+  $K(\gamma) = \int_{X\times Y}c \ d\gamma$ is continuous with respect to weak
+  convergence, since
+  $\gamma_n \rightharpoonup \gamma$, if, and only if, for every $f$ continuous
+  and bounded function, it's true that $\int f \ d\gamma_n \to \int f \ d\gamma$.
+
+  Now, let's \textbf{show that $\Pi(\mu,\nu)$ is compact}.
+  Take $\gamma_n \in \Pi(\mu,\nu)$. Note that $\gamma_n$ is tight (\ref{def:tight}),
+  because $(X\times Y)$ is compact. Then, by Prokhorov Theorem \ref{Prokhorov},
+  $\exists \gamma_{n_k} \rightharpoonup \gamma$.
+
+  Take $\phi(x) \in C(X)$ and $\psi(y) \in C(Y)$. Therefore,
+  \begin{equation*}
+    \begin{split}
+      \int \phi(x) \ d\mu
+      \underset{Cor.\ref{cor_marginals}}{=}
+      \int\phi(x)\ d\gamma_{n_k}
+      \to
+      \int \phi(x) \ d\gamma \\
+      \int \psi(y) \ d\nu
+      \underset{Cor.\ref{cor_marginals}}{=}
+      \int\psi(y)\ d\gamma_{n_k}
+      \to
+      \int \psi(y) \ d\gamma
+    \end{split}
+  \end{equation*}
+  % \ref{cor_marginals}
+
+  We conclude that $\gamma \in \Pi(\mu,\nu)$, which implies that
+  $\Pi(\mu,\nu)$ is compact. Finally, since $K(\cdot)$ is continuous with respect to weak convergence
+  and defined on a compact set, it attains a minimum. In other words,
+  there exists a transport plan $\gamma$ that minimizes the Kantorovich
+  Problem.
+\end{prf}
+
+Before going into the next theorem, let's prove a small result.
+\begin{lemma}
+  Let $(X,d)$ be a metric space and $f_k: X \to \mathbb R$ be l.s.c and bounded from below for every $k \in \mathbb N$.
+  Then, $f = \sup_k f_k$ is also l.s.c and bounded from below.
+\end{lemma}
+
+\begin{prf}
+  Since $f_k > L$, then $\sup_k f_k > L$, thus $f$ is bounded from below.
+
+  Next, since $f_k$ is l.s.c, therefore for $x_n \to x$:
+  \begin{equation*}
+  f_k(x) \leq \lim_{j} \inf_{n \geq j} f_k(x_n) \implies 
+  \sup_k f_k(x) \leq \sup_k \lim_{j} \inf_{n \geq j} f_k(x_n)
+  \end{equation*}
+  Note that $\inf_{n\geq j} f_k(x_n) \leq \sup_k \inf_{n\geq j}f_k(x_n)$, hence
+  \begin{equation*}
+    \lim_j \inf_{n\geq j} f_k(x_n) \leq \lim_j \sup_k \inf_{n\geq j}f_k(x_n) \implies
+    \sup_k \lim_j \inf_{n\geq j} f_k(x_n) \leq \lim_j \sup_k \inf_{n\geq j}f_k(x_n)
+  \end{equation*}
+  Also, note that $\inf_{n\geq j} f_k(x_n) \leq \inf_{n\geq j} \sup_k f_k(x_n)$, hence
+  \begin{equation*}
+    \sup_k \inf_{n \geq j} f_k(x_n) \leq
+    \inf_{n \geq j} \sup_k f_k(x_n) \implies 
+    \lim_j \sup_k \inf_{n \geq j} f_k(x_n) \leq
+    \lim_j \inf_{n \geq j} \sup_k f_k(x_n)
+  \end{equation*}
+  We conclude that $\sup_k f(x) \leq \lim_j \inf_{n \geq j} \sup_k f_k(x_n)$. So $f$ is l.s.c.
+
+\end{prf}
+
+\begin{theorem}(Santambrogio 1.5)
+  \label{teo1.5}
+  Let $X$ and $Y$ be compact metric spaces.
+  Given $\mu\in \mathcal{P}(X)$, $\nu \in \mathcal P(Y)$ and
+  $c:X\times Y \to[0,+\infty]$, if $c$ is lower semi-continuous
+  bounded from below, then
+  (KP) admits a solution.
+\end{theorem}
+\begin{prf}
+
+  This proof follows the same ideas from the proof of Theorem \ref{thm:Santambrogio1.4}.
+  The only thing we need to prove is that $K(\gamma)$ is l.s.c with respect to weak convergence.
+
+  Let's use that for $c:X\to \mathbb R \cup \{+\infty\}$ bounded from below,
+  then, $c$ is l.s.c if and only if there exists a sequence of
+  $k-$Lipschitz  functions
+  $c_k$ such that
+  $\forall x \in X$, $\sup_k c_k(x) = c(x)$.
+
+  Since $c$ is indeed l.s.c and bounded from below, then we know that $c = \sup_k c_k$, and by the
+  Monotone Convergence Theorem,
+  \begin{equation*}
+    K(\gamma) =\int c \ d\gamma =
+    \int \sup_k c_k \ d\gamma = \sup_k\int c_k \ d\gamma
+  \end{equation*}
+
+  Note that we also know that $c_k$ are Lipschitz, hence, they are also all continuous and bounded.
+  This implies that $K_k(\gamma) = \int c_k \ d\gamma$ is also bounded and continuous with respect to weak convergence.
+  Therefore, $K(\gamma) = \sup_k K_k(\gamma)$, which implies that $K(\gamma)$ is l.s.c and bounded.
+  By the Weierstrass's Theorem, we conclude that
+  there exists a transport plan $\gamma$ that minimizes the Kantorovich
+  Problem.
+\end{prf}
+
+\begin{theorem}(Santambrogio 1.7)
+  Let $X$ and $Y$ be Polish (complete and separable) metric spaces.
+  Given $\mu\in \mathcal{P}(X)$, $\nu \in \mathcal P(Y)$ and
+  $c:X\times Y \to[0,+\infty]$, if $c$ is lower semi-continuous then
+  (KP) admits a solution.
+  \label{thm:existanceKPpolish}
+\end{theorem}
+\begin{prf}
+
+  Let's prove that $\Pi(\mu,\nu)$ is compact. To do this,
+  we prove that $\Pi(\mu,\nu)$
+  is tight (\ref{def:tight}), and therefore, by Prokhorov's Theorem (i) \ref{Prokhorov},
+  it is pre-compact. Once this is done,
+  the proof follows in the same manner as Theorem
+  \ref{thm:Santambrogio1.4}.
+
+  Note that since $\mu$ and $\nu$ are probability measures, then,
+  the families $\{\mu\}$ and $\{\nu\}$ each containing only one element
+  are pre-compact (actually, compact). Since $X$ is Polish, we can use Prokhorov (ii)
+  \ref{Prokhorov}, to conclude that $\mu$ and $\nu$ are tight.
+  Hence,
+  for $\epsilon > 0, \exists K_X \subset X$ and $K_Y \subset Y$
+  both compacts, such that
+  $\mu(X\setminus K_X), \nu(Y\setminus K_Y)<\epsilon /2$.
+
+  Next, note that
+  \begin{equation*}
+    (X \times Y) \setminus (K_X \times K_Y) \subset
+    (X \setminus K_X \times Y)\cup
+    (X \times Y \setminus K_Y)
+  \end{equation*}
+  Therefore, for any $\gamma_n \in \Pi(\nu,\mu)$ we obtain
+  \begin{equation*}
+    \gamma_n((X \times Y) \setminus (K_X \times K_Y)) \leq
+    \gamma_n((X \setminus K_X) \times Y) +
+    \gamma_n(X \times (Y \setminus K_Y))
+  \end{equation*}
+
+  Finally, note that $\gamma_n(A \times Y) = \mu(A)$. Hence,
+  \begin{equation*}
+    \gamma_n((X \times Y) \setminus (K_X \times K_Y)) \leq
+    \mu(X \setminus K_X) +
+    \nu(Y \setminus K_Y) < \epsilon
+  \end{equation*}
+
+  Which shows that every sequence $\gamma_n \in \Pi(\mu,\nu)$ is
+  tight, concluding our proof.
+
+
+\end{prf}

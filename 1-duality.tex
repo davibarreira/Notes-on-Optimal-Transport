@@ -1,0 +1,677 @@
+\newpage
+\section{Duality of the Kantorovich Problem}
+
+In this section we deal with Duality Theorems regarding the Kantorovich Problem.
+Under some conditions, the original Kantorovich Problem (Primal) is equivalent to a Dual
+formulation, where instead of minimizing transport plans, one seeks to maximize potentials.
+Hence, we'll begin this section by introducing the notion of the Dual Problem, and then we'll prove the
+equivalence between the Dual and the Primal, starting from more restrictive conditions (e.g. compact spaces)
+and moving to more general conditions (e.g. Polish spaces). We finish the section with the celebrated
+Kantorovich-Rubinstein's Duality Theorem.
+
+Before introducing the Dual Problem, we need the following result:
+\begin{lemma}
+
+  The Kantorovich Problem (\ref{def:KP}) is equivalent to:
+\begin{align}
+  \inf_{\gamma \in \mathcal M_+(X\times Y)}
+  \int_{X \times Y} c(x,y)d\gamma &+
+  \sup_{(\phi,\psi) \in B}
+  \int_X \phi(x) \ d\mu
+  \nonumber
+  \\
+  &+ \int_Y \psi(y) \ d\nu
+  - \int_{X\times Y} \phi(x) + \psi(y) \ d\gamma
+  \label{eq:KP2}
+\end{align}
+Where $B := \{\phi \in C_b(X) \ \mathrm{and} \ \psi \in C_b(Y)\}$.
+\end{lemma}
+\begin{prf}
+  Let's suppose that $\gamma \notin \Pi(\mu,\nu)$.
+  Then, without lost of generality, $\exists A \ : \ \mu(A) \neq
+    \gamma(A,Y)$. Hence, can make $\phi(x) = M$ in $A$ and null elsewhere.
+  So,
+  \begin{equation*}
+    \int_A \phi \ d\mu - \int_A \phi \ d\gamma	= M(\mu(A)-\gamma(A,Y))
+  \end{equation*}
+  Since we can make $M$ arbitrarily large or small, we conclude that
+  \begin{equation*}
+    \sup_{(\phi,\psi) \in B}
+    \int_X \phi(x) \ d\mu + \int_Y \psi(y) \ d\nu -
+    \int_{X\times Y} \phi(x) + \psi(y) \ d\gamma = +\infty
+  \end{equation*}
+
+  This implies that for $\gamma \notin \Pi(\mu,\nu)$, equation \eqref{eq:KP2}
+  is $+\infty$. If $\gamma \in \Pi(\mu,\nu)$, then we return to
+  \begin{equation*}
+    \inf_{\gamma \in \Pi(\mu,\nu)} \int_{X\times Y} c \ d\gamma
+  \end{equation*}
+  With this, we proved that the argument that minimizes
+  equation \eqref{eq:KP2} must
+  be inside $\{\gamma \in \Pi(\mu,\nu)\}$, which is the original Kantorovich
+  Problem.
+\end{prf}
+
+\vspace{5mm}
+
+With (KP) reformulated, the Dual Problem consists of exchanging the order
+of the $\inf$ and the $\sup$:
+\begin{itemize}
+  \item \textbf{Primal}
+        \footnote{$(\phi\oplus \psi) (x,y) = \phi(x) + \psi(y)$}:
+        \begin{equation}
+          \inf_{\gamma \in \mathcal M_+(X\times Y)}
+          \sup_{(\phi,\psi) \in B}
+          \int_{X \times Y} c \ d\gamma +
+          \int_X \phi \ d\mu + \int_Y \psi \ d\nu -
+          \int_{X\times Y} \phi \oplus \psi \ d\gamma
+        \end{equation}
+
+  \item \textbf{Dual}:
+        \begin{equation}
+          \sup_{(\phi,\psi) \in B}
+          \inf_{\gamma \in \mathcal M_+(X\times Y)}
+          \int_{X \times Y} c \ d\gamma +
+          \int_X \phi \ d\mu + \int_Y \psi \ d\nu -
+          \int_{X\times Y} \phi \oplus \psi \ d\gamma
+        \end{equation}
+\end{itemize}
+
+Note that in the Dual formulation, we can rewrite it as:
+\begin{equation}
+  \sup_{(\phi,\psi)\in B}
+  \int_X \phi \ d\mu + \int_Y \psi \ d\nu -
+  \inf_{\gamma \in \mathcal M_+(X\times Y)}
+  \int_{X\times Y} c - (\phi \oplus \psi) \ d\gamma
+\end{equation}
+
+If there exists an $A$ such that for all $\forall (x,y) \in A, \ \phi(x) + \psi(y) \geq c(x,y)$, then
+$\inf_\gamma \int c - (\phi \oplus \psi) \ d\gamma = -\infty$
+since we can choose any $\gamma \in \mathcal M_+(X\times Y)$.
+
+Therefore, we can formally state the Dual Problem as:
+\begin{definition}
+  Given $\mu \in \mathcal P(X)$, $\nu \in \mathcal P (Y)$ and
+  a cost $c:X \times Y \to \mathbb R_+$. The
+  Dual Problem is given by
+\end{definition}
+\begin{flalign}
+  \mathrm{(DP)} &&
+  \sup \left \{
+  \int_X \phi \ d\mu + \int_Y \psi \ d\nu \ :
+  \phi \in C_b(X) \ , \psi \in C_b(y) \ ,
+  \ \phi \oplus \psi \leq c
+  \right \}
+  &&
+  \label{eqt:dualproblem}
+\end{flalign}
+
+We call \textbf{Weak Duality} if
+$\mathrm{(DP)} \leq \mathrm{(KP)}$, and we call \textbf{Strong Duality}
+if
+$\mathrm{(DP)} = \mathrm{(KP)}$.
+One can easily prove that for (KP), the Weak Duality is always true.
+The more interesting question is ``When does one have Strong Duality?''.
+
+\begin{lemma}
+  The Dual Problem for the Kantorovich Problem always satisfies the
+  Weak Duality, i.e.
+$\mathrm{(DP)} \leq \mathrm{(KP)}$.
+\end{lemma}
+
+\begin{prf}
+  Since $\phi \oplus \psi \leq c$. Therefore,
+  \begin{equation*}
+    \int_X \phi \ d\mu +
+    \int_Y \psi \ d\nu
+    =
+    \int_{X \times Y} \phi \oplus \psi \ d\gamma \leq
+    \int_{X\times Y} c(x,y) \ d\gamma
+  \end{equation*}
+\end{prf}
+
+Before starting the proof of duality, we must introduce the concepts
+of $c$-transform and $c$-Cyclical monotonicity.
+
+\begin{definition}(c-Transform)
+  Given $f: X \to \overline{\mathbb R}$, and
+  $c:X\times Y \to \overline{\mathbb R}$,
+  the $c$-transform of $f$ is:
+  \begin{equation}
+    f^c(y) := \inf_x c(x,y) - f(x)
+  \end{equation}
+  Function $f^c$ is also called the $c$-conjugate of $f$. Moreover,
+  we say that $f$ is $c$-concave if
+  $\exists \ g:Y\to \overline{\mathbb R}$
+  such that $g^c(x) = f(x)$.
+  \label{def:c-transform}
+
+  Note that the $c$-transform is a generalization of the
+  Legendre-Fenchel transform, which is defined as:
+  \begin{equation}
+    f^*(y) := \sup_x x \cdot y - f(x)
+  \end{equation}
+\end{definition}
+
+\begin{lemma}
+  Let $c: X \times Y \to \overline{\mathbb R}$ be uniformly continuous. Define two functions
+  $\phi:X \to \mathbb R$ and $\psi : Y \to \mathbb R$
+  Therefore, $\phi^c$ and $\psi^c$ have the same modulus of continuity
+  \footnote{Check Theorem \ref{thm:mod_continuity} for the definition of modulus of continuity}
+  as $c$.
+  \label{lem:cunif}
+\end{lemma}
+\begin{prf}
+  By Theorem \ref{thm:mod_continuity}, there exists a modulus
+  of continuity $\omega$, such that
+  \begin{equation*}
+    |c(x,y) - c(x',y')| \leq \omega(d(x,x')+d(y,y'))
+  \end{equation*}
+  Observe that for $g_x(y) = c(x,y) - \phi(x)$
+  \begin{equation*}
+    |g_x(y) - g_x(y')|=|c(x,y) - c(x,y')| \leq
+    \omega(d(x,x)+d(y,y')) = \omega(d(y,y'))
+  \end{equation*}
+  Hence, $g_x$ has modulus of continuity $\omega$. Now, using the
+  Inf-Sup Inequality \ref{lem:infsup_ineq}
+  \begin{align*}
+    |\inf_x g_x(y) - \inf_x g_x(y')| & =
+    |\phi^c(y) - \phi^c(y')| \leq \sup_x |g_x(y) - g_x(y')| =                          \\
+                                     & =\sup_x |c(x,y) - c(x,y')| \leq \omega(d(y,y'))
+  \end{align*}
+
+  Using the same argument for $\psi^c$, we showed that both
+  $c-$transforms have the same modulus of continuity.
+
+\end{prf}
+
+With the definition of $c$-transforms and the lemma above, we can prove the following theorem:
+
+\begin{theorem}(Santambrogio 1.11)
+
+  For $X$ and $Y$ compact metric spaces, and $c:X \times Y \to
+    \overline{\mathbb R}$ continuous. Then, the Dual Problem
+  has a solution $(\phi,\phi^c)$ for $\phi$ $c-$concave. Hence
+  \begin{equation}
+    \max(\mathrm{DP}) =
+    \max_{\phi \in c-conc.(X)} \int_X \phi \ d\mu +
+    \int_Y \phi^c \ d\nu
+  \end{equation}
+  \label{thm:c-conc}
+\end{theorem}
+\begin{prf}
+  Let $(\phi_n,\psi_n)$ be a maximizing sequence of the Dual problem.
+  Note that the $c$-transforms always improve the Dual Problem, since
+  $\phi_n\oplus \psi_n \leq c$, which implies that
+  \begin{align*}
+    \phi_n^c(y):= \inf_x c(x,y) - \phi_n(x) \geq \psi_n(y) \\
+    \psi_n^c(x):= \inf_y c(x,y) - \psi_n(y) \geq \phi_n(x) \\
+    \int_X \phi_n \ d\mu +
+    \int_Y \psi_n \ d\nu \leq
+    \int_X \phi_n \ d\mu +
+    \int_Y \phi_n^c \ d\nu
+  \end{align*}
+  Hence, the sequence $(\phi_n, \phi^c_n)$ is also maximizing.
+
+  Since $X \times Y$ is compact, the cost $c$ is uniformly continuous. Therefore,
+  by Lemma \ref{lem:cunif}, the $c-$transforms of $\phi_n$ and $\psi_n$ are bounded by the
+  same modulus of continuity $\omega$ as the cost function $c$.
+
+  Instead of using
+  \begin{equation*}
+    \psi^c_n (x) = \inf_y c(x,y) - \psi(y)
+  \end{equation*}
+  We will use
+  \begin{equation*}
+    \psi^c_n (x) := \inf_y c(x,y) - \phi_n^c(y) = \phi_n^{c c}(x)
+  \end{equation*}
+  This sequence is still maximizing, since
+  \begin{align*}
+    \phi_n^c(y)  = \inf_x c(x,y) - \phi_n(x) \geq \psi_n(y) &\implies 
+    \phi_n(x) + \phi_n^c(y) \leq c(x,y)                        \\
+    &\implies
+    \psi_n^c(x)  = \inf_y c(x,y) - \phi_n^c(y) \geq \phi_n(x)
+  \end{align*}
+
+  Therefore, for a maximizing sequence $(\phi_n,\psi_n)$, we can
+  instead take the maximizing sequence
+  $(\psi^c_n,\phi^c_n)=(\phi^{c c}_n,\phi^c_n)$.
+
+  Our goal now is to use the Àrzela-Ascoli Theorem (\ref{thm:arzela-ascoli}), so
+  we can take a subsequence converging uniformly. To use the theorem, we'll
+  show that our sequence
+  $(\psi^c_n,\phi^c_n)$ is Equicontinuous (see Definition \ref{def:equicontinuous})
+  and Equibounded (see definition \ref{def:equibounded}).
+
+  First, note that $(\psi^{c}_n,\phi^c_n)$
+  is in fact Equicontinuous, since
+  for any $\epsilon > 0$, we can take $\delta >0$ such that
+  $d(y,y') < \delta \implies w(d(y,y')) < \epsilon$ and
+  $|\phi_n^c(y) - \phi_n^c(y')| \leq w(d(y,y')) < \epsilon$, for every
+  $n \in \mathbb N$.
+  
+  Next, let's prove that the sequence is Equibounded. Taking the supremum of the inequality, we obtain
+  \begin{equation*}
+    \sup_{y,y'} |\phi^c_n(y) - \phi^c_n(y')| \leq
+    \sup_{y,y'}w(d(y,y')) = w(\text{diam}(Y))
+  \end{equation*}
+  The equality in the equation above is true because the function
+  $\omega$ is increasing, and the set $Y$ is compact. Again, the
+  same argument works for $\psi_n^c$.
+
+  Next, realize that we can add and subtract constants from
+  the Dual Problem without modifying the results:
+
+  \begin{equation*}
+    \int_X \psi_n^c \ d\mu + \int_Y \phi_n^c \ d\nu =
+    \int_X \psi_n^c + C_n \ d\mu + \int_Y \phi_n^c - C_n \ d\nu
+  \end{equation*}
+
+  Let's take $C_n = \min_y \phi_n^c(y)$. We now change the sequence
+  of functions to $(\psi_n^c + C_n, \phi_n^c - C_n)$, which preserves
+  the maximizing property. Note that $\min_y \phi_n^c - C_n = 0$.
+  Hence,
+
+  \begin{align*}
+    \sup_{y,y'} |\phi^c_n(y) - \phi^c_n(y')| =
+    \max_y \phi_n^c(y) - \min_y \phi_n^c(y) =
+    \max_y \phi_n^c(y) \leq \omega(\text{diam}(Y))
+  \end{align*}
+  Also, for any $x \in X$:
+  \begin{align*}
+    \psi_n^c(x) = \inf_y c(x,y) - \phi^c_n(y) \in
+    [\min_y  \ c(x,y) - \omega(\text{diam}(Y)),\max_y  \ c(x,y) \ ]
+  \end{align*}
+
+  With this, we showed that the sequence is Equibounded. Therefore,
+  since we are on a compact set and the sequence
+  $(\psi_n^c, \phi_n^c)$ is both Equicontinuous and Equibounded,
+  we can apply the Àrzela-Ascoli Theorem \ref{thm:arzela-ascoli}.
+  Thus, we can obtain a subsequence
+  $(\psi_{n_k}^c,\phi_{n_k}^c)$ that converges uniformly to
+  $(\psi,\phi)$. As a consequence of this uniform convergence
+
+  \begin{equation*}
+    \int_X \psi_{n_k}^c \ d\mu +
+    \int_Y \phi_{n_k}^c \ d\nu
+    \to
+    \int_X \phi \ d\mu +
+    \int_Y \psi \ d\nu
+  \end{equation*}
+  With this, we proved that there exists a pair of functions
+  $(\phi, \psi)$ that are the limits of a maximizing sequence and that
+  satisfy the constraint (i.e. $\phi(x)+\psi(y) \leq c(x,y)$), hence,
+  the Dual Problems has a solution. Also, since $\phi^c \geq \psi$,
+  then $(\phi,\phi^c)$ is also an optimal solution for the Dual, and this maximization
+  problem can be restricted to searching in $c$-concave functions, i.e.:
+  \begin{equation*}
+    \max(\mathrm{DP}) =
+    \max_{\phi \in c-conc.(X)} \int_X \phi \ d\mu +
+    \int_Y \phi^c \ d\nu
+  \end{equation*}
+\end{prf}
+
+\vspace{5mm}
+
+When Strong Duality is true, the functions $\phi, \psi$ that maximize the Dual Problem
+are called the \textbf{Kantorovich Potentials}.
+We haven't yet proved that $\mathrm{\max(DP)}=\mathrm{\min(KP)}$, the theorem above
+only gave us an idea of how the solution of the Dual Problem looks-like. Before proving
+our first theorem on Strong Duality, we'll need a bit more definitions
+and results.
+
+\begin{definition}(Cyclic Monotonicity)
+  For $c:X \times Y \to \overline{\mathbb R}$, a set $\Gamma \subset
+    X \times Y$ is called $c$-cyclical monotone (c-CM) if
+  $\forall n \in \mathbb N$ and $(x_i,y_i) \in \Gamma$ for
+  $i \in \{1,...,n\}$
+  \begin{equation}
+    \sum^n_{i=1}c(x_i,y_i) \leq
+    \sum^n_{i=1} c(x_i,y_{\sigma(i)})
+  \end{equation}
+  Where $\sigma(i)$ is a permutation of the indexes.
+  \label{def:cyclic-monotonicity}
+\end{definition}
+Note that
+this is a stronger property than monotonicity, since for
+$n=2$ and $c(x,y) = \langle x, y \rangle$, if $\Gamma$ is c-CM,
+then monotonicity is satisfied:
+\begin{equation}
+  \langle x_1,y_1 \rangle + \langle x_2, y_2 \rangle \leq
+  \langle x_1, y_2, \rangle + \langle x_2, y_1 \rangle
+\end{equation}
+
+\begin{definition}
+  For $X$	a separable metric space, we define the support of a
+  a measure $\mu$ as
+  \begin{equation}
+    \text{spt } \mu := \bigcap
+    \{
+    A \ : \ A \text{ is closed and } \mu(X\setminus A) =0
+    \}
+  \end{equation}
+\end{definition}
+
+We can now give an overview of the proof
+of first Strong Duality Theorem. The proof consists of showing
+that for an optimal
+plan $\gamma$, its support $\text{spt} (\gamma)$ is $c$-CM and
+that for a $c$-CM set there exists a $c$-concave function
+$\phi(x)$ such that $\phi(x)+\phi^c(y) = c(x,y)$ for
+$(x,y) \in \text{spt}(\gamma)$. Hence, this would prove that
+\begin{equation}
+  \int_{X\times Y} c(x,y) \ d\gamma = \int_X \phi(x)\ d\mu + \int_Y \phi^c(y)d\nu
+\end{equation}
+
+\begin{theorem}(Santambrogio 1.37)
+  If $\Gamma \neq \varnothing $ and is $c$-CM with
+  $c:X\times Y \to \mathbb R$. Then,
+  there exists a $c$-concave function
+  $\phi:X \to \mathbb R \cup \{-\infty\}$ (different than the constant value $-\infty$) such that
+  \begin{equation}
+    \Gamma \subset \{
+    (x,y) \ : \ \phi(x)+\phi^c(y) = c(x,y)
+    \}
+  \end{equation}
+  In other words,
+  $\forall x,y \in \Gamma, \ c(x,y) = \phi(x) + \phi^c(y)$.
+  \label{thm:existsPhic}
+\end{theorem}
+
+\begin{prf}
+  Fix a point $(x_0,y_0) \in \Gamma$. For $x \in X$, let
+  \begin{align*}
+    \phi(x) & := \inf\{
+    c(x,y_n) - c(x_n,y_n) + c(x_n,y_{n-1})-c(x_{n-1},y_{n-1})+...+
+    \\
+            & +c(x_1,y_0)-c(x_0,y_0) \ : \ n \in \mathbb N,
+    (x_i,y_i) \in \Gamma \ \forall i=1,...,n
+    \}
+    \\
+    \\
+    \psi(y) & :=
+    -\inf \{
+    -c(x_n,y)+c(x_n,y_{n-1}) - c(x_{n-1},y_{n-1})+...+
+    \\
+            & c(x_1,y_0)
+    -c(x_0,y_0)) \ : \ n\in \mathbb N, (x_i,y_i) \in \Gamma \
+    \forall i = 1,...,n, y_n = y
+    \}
+  \end{align*}
+  Note that if $y \notin (\pi_y)(\Gamma)$, then there is no
+  $(x_n,y) = (x_n,y_n) \in \Gamma$. Therefore,
+  \begin{equation*}
+    \psi(y) = -\inf\{\varnothing\} = -\infty
+  \end{equation*}
+  This implies that $\psi(y)> -\infty \iff y \in (\pi_y)(\Gamma)$. Note that:
+  \begin{align*}
+    \psi^c(x) & = \inf_y c(x,y) - \psi(y) =
+    \inf_{y \in (\pi_y)(\Gamma)}
+    c(x,y) - \psi(y)\\
+              & =
+    \inf_{y \in (\pi_y)(\Gamma)} c(x,y)
+    + \inf \{
+    -c(x_n,y)+... +
+    +c(x_1,y_0)
+    -c(x_0,y_0)) :                        \\
+              & \hspace{9em}
+    n\in \mathbb N, (x_i,y_i) \in \Gamma \
+    \forall i = 1,...,n, y_n = y
+    \}                                    \\
+              & = \phi(x)
+  \end{align*}
+
+  Hence, $\phi(x)$ is $c$-concave, and $\phi(x)$ is not constantly equal to $-\infty$,
+  since for $x=x_0$, we have
+  \begin{align*}
+     & c(x_0, y_n) + (\sum_{i=0}^{n-1} c(x_{i+1},y_{i}) ) - \sum_{i=0}^n c(x_i,y_i) \geq 0                               \\
+     & \implies \phi(x_0) = \inf \{c(x_0, y_n) + (\sum_{i=0}^{n-1} c(x_{i+1},y_{i}) ) - \sum_{i=0}^n c(x_i,y_i)\} \geq 0
+  \end{align*}
+  Note that the inequality above is true due to the fact that $\Gamma$ is $c$-CM.
+
+  Now, the only thing left to prove is that $\phi(x)+\phi^c(y) = c(x,y)$ for every $(x,y) \in \Gamma$.
+  First, note that for $\epsilon > 0$ and $(x,y) \in \Gamma$, then:
+  \begin{align*}
+    &\phi(x) = \psi^c(x) = \inf_y c(x,y) - \psi(y) =
+    \inf_{y \in (\pi_y)(\Gamma)} c(x,y) - \psi(y)
+    \implies \\
+    &\exists \bar y \in (\pi_y)(\Gamma) \ : \
+    \phi(x)+ \epsilon > c(x,\bar y) - \psi(\bar y)
+  \end{align*}
+  Also, note that from the definition of $\psi$, we have:
+  \begin{align*}
+    -\psi(y) \leq -c(x,y) + c(x,\bar y) - c(\bar x_n, \bar y) + ... - c(\bar x_0, \bar y_0)
+    \ : \forall i, (\bar x_i, \bar y_i) \in \Gamma
+  \end{align*}
+  Since this is true for any chain on $\Gamma$ starting on $\bar y$, it's true for the infimum, therefore:
+  \begin{equation*}
+    -\psi(y) \leq -c(x,y) + c(x,\bar y) - \psi(\bar y) \leq -c(x,y) + \phi(x) + \epsilon
+  \end{equation*}
+
+  Since the $\epsilon$ was arbitrary, we can conclude that
+  $c(x,y) \leq \phi(x,y) + \psi(x)$. But, we also know that
+  \begin{align*}
+    \phi^c(y) = \psi^{c c}(y) & = \inf_x c(x,y) - \phi(x)                 \\
+                              & = \inf_x c(x,y) - \inf_y c(x,y) - \psi(y) \\
+                              & \geq \inf_x c(x,y) - c(x,y) + \psi(y)     \\
+                              & = \psi(y)
+  \end{align*}
+  Hence, $\phi(x)+\phi^c(y) \geq \phi(x) + \psi(y) \geq c(x,y)$.
+
+  Lastly, one would need to show that this $\phi$ is indeed measurable. The general proof is complicated,
+  but, if we assume that $c$ is uniformly continuous, then, we know that $c$-transforms are continuous (this was
+  shown in Theorem \ref{thm:c-conc}). Since $\phi = \psi^c$, then, $\phi$ is continuous, therefore, it is measurable
+  if we consider the Borel $\sigma$-algebra.
+\end{prf}
+
+\begin{theorem} (Santambrogio 1.38)
+  If $\gamma$ is an optimal transport plan for cost $c$ continuous,
+  then $\text{spt } \gamma$ is $c$-CM.
+  \label{thm:gamma-cCM}
+\end{theorem}
+\begin{prf}
+  The proof consists in supposing that $\text{spt } \gamma$ is not $c$-CM. Then, we construct a
+  $\tilde \gamma \in \Pi(\mu,\nu)$ such that $\int_{X\times Y} c(x,y) \ d\tilde\gamma <
+    \int_{X \times Y} c(x,y) \ d\gamma$, which contradicts the optimality of $\gamma$.
+
+  Check \citet{santambrogio2015optimal} for the complete proof.
+\end{prf}
+
+\vspace{5mm}
+With these results, we can prove the first Strong Duality theorem.
+
+\begin{theorem}
+  For $X$ and $Y$ compact metric spaces, and $c:X \times Y \to
+    \overline{\mathbb R}$ continuous. Then, $\max\mathrm{(DP)} = \mathrm{\min(KP)}$,
+    and DP admits a solution $(\phi,\phi^c)$.
+  \label{thm:compactstrongduality}
+\end{theorem}
+\begin{prf}
+  Using Theorem \ref{thm:Santambrogio1.4}, we obtain that $\exists \gamma \in \Pi(\mu,\nu)$
+  such that it minimizes the Kantorovich Problem, therefore, by Theorem \ref{thm:gamma-cCM},
+  $\text{spt}\gamma$ is $c$-CM.
+
+  By Proposition \ref{thm:c-conc}, we know that a solution to the Dual Problem
+  can be found in the set of $c$-concave functions.
+  Using \ref{thm:existsPhic}, we can assert that there is a set of $c$-concave
+  functions such that $\phi(x)+\phi^c(y) = c(x,y)$ for every $(x,y) \in \text{spt }\gamma$.
+  Since $X\times Y$ is compact, then $c$ is uniformly compact, which implies that
+  $\phi$ and $\phi^c$ are continuous and bounded.
+
+  Hence, since we already know that $\mathrm{\max(DP)} \leq \mathrm{\min(KP)}$, we conclude that
+  $\mathrm{\max(DP)} = \mathrm{\min(KP)}$.
+\end{prf}
+
+\begin{theorem}
+  For $X$ and $Y$ Polish spaces and $c:X\times Y \to \mathbb R$ uniformly continuous and bounded. Then,
+  (DP) admits a solution $(\phi,\phi^c)$ and $\mathrm{\max(DP)}=\mathrm{\min (KP)}$.
+  \label{thm:polishStrongDuality}
+\end{theorem}
+
+\begin{prf}
+  First, note that since $X$ and $Y$ are Polish and $c$ is continuous,
+  one can use Theorem \ref{thm:existanceKPpolish} and affirm that exists an optimal solution
+  $\gamma$ to (KP).
+
+  By the same arguments used on the proof of Theorem \ref{thm:compactstrongduality},
+  we stablish that $\text{spt } \gamma$ is $c$-CM, and that $\phi, \phi^c$ are continuous functions
+  such that $\forall (x,y) \in \text{spt } \gamma$, $\phi(x) + \phi^c(y) = c(x,y)$.
+
+  In the Dual Problem, the admissible functions $\phi$ and $\psi$ must be continuous and bounded. Hence,
+  we just need to prove that the $\phi$ and $\phi^c$ are indeed bounded. Note that, since $c$ is bounded,
+  then, $|c| \leq M \in \mathbb R$ and
+  \begin{equation*}
+    \phi^c(y) = \inf_x c(x,y) - \phi(x) \leq  \inf_x M - \phi(x) =
+    M - \sup_x \phi(x)
+  \end{equation*}
+  Note that in $\ref{thm:existsPhic}$, we showed that $\phi$ is not constantly $-\infty$. Therefore,
+  \begin{equation*}
+    -\infty < L < \sup_x \phi(x) \implies
+    \phi^c(y) \leq M - \sup_x \phi(x) \leq M - L
+  \end{equation*}
+  Similarly, since $\phi = \psi^c$ and $\phi^c(y)\geq \psi(y)$ (shown in \ref{thm:gamma-cCM}), then:
+  \begin{align*}
+    \phi(x) = \inf_y c(x,y) - \psi(y) \geq - M - \sup_y \psi(y) & \geq - M - \sup_y \phi^c(y) \\
+                                                                & \geq -M - M + L
+  \end{align*}
+
+  Hence, we obtained an upper bound for $\phi^c$ and a lower bound for $\phi$. Now, we obtain an upper bound
+  for $\phi$ and a lower bound for $\phi^c$ using a similar argument and relying on the fact that
+  $\sup \psi(y) > L > -\infty$:
+  \begin{align*}
+    \phi(x)  & = \inf_y c(x,y) - \psi(y) \leq M - \sup_y \psi(y) \leq M - L        \\
+    \phi^c(x) & = \inf_x c(x,y) - \phi(x) \geq - M - \sup_x \phi(x) \geq -M - M - L
+  \end{align*}
+
+  Finally, using the same arguments as Theorem \ref{thm:compactstrongduality}, we conclude that
+  $\mathrm{\max (DP)} = \mathrm{\min (KP)}$ and that $(\phi,\phi^c)$ are a solution for the Dual Problem.
+\end{prf}
+
+One cost that is of special interest is the quadratic cost $\frac{1}{2} |x-y|^2$. Note that
+this cost is neither bounded nor uniformly continuous for non-compact metric spaces. Hence, the previous
+theorems do not address it. But one can still prove that Strong Duality is true for such case.
+
+\begin{theorem}
+  Let $\mu, \nu \in \mathcal P (\mathbb R^d)$, with $c(x,y) = \frac{1}{2} |x-y|^2$. Suppose that
+  $\int|x|^2 d\mu, \int|y|^2 d\nu < +\infty$
+  \footnote{This is Theorem 1.40 in \citet{santambrogio2015optimal}, but note that there is a small typo in the book,
+    where it states $\int|x|^2 dx, \int|y|^2 dy < + \infty$ instead of the correct $\int|x|^2 d\mu, \int|y|^2 d\nu < +\infty$.}
+  . Instead of the original Dual Problem, consider the
+  following formulation:
+  \begin{flalign}
+    \mathrm{(DP')} &&
+    \sup \left \{
+    \int_{\mathbb R^d} \phi \ d\mu + \int_{\mathbb R^d} \psi \ d\nu \ :
+    \phi \in L ^1(\mu) \ , \psi \in L ^1(\nu) \ ,
+    \ \phi \oplus \psi \leq c
+    \right \}
+    &&
+    \label{eqt:dualproblemvar}
+  \end{flalign}
+  Therefore, (DP') admits a solution $(\phi,\psi)$ and $\mathrm{\max (DP')} = \mathrm{\min (KP)}$.
+\end{theorem}
+\begin{prf}
+  First, in the same way as the proof of Theorem \ref{thm:polishStrongDuality}, (KP) has an optimal solution $\gamma$
+  with $\text{spt }\gamma$ that is $c$-CM and $ \forall (x,y) \in \text{spt } \gamma$ we have $\phi(x)+ \psi(y) = c(x,y)$.
+  We also have that $-\psi(y)=-\phi^c(y)=\sup_x - \frac{|x-y|^2}{2} + \phi(x)$.
+  Note that, for $h(x) := \frac{|x|^2}{2} -\phi(x)$
+  \begin{align*}
+    h^*(y):=\sup_x \langle x,y \rangle - h(x) =
+    \sup_x \langle x,y \rangle - \frac{|x|^2}{2}  + \phi(x) &= \\
+    \frac{|y|^2}{2} + \sup_x -\frac{|x-y|^2}{2} + \phi(x) = \frac{|y|^2}{2} - \psi(y)
+  \end{align*}
+  Therefore, $h(x)$ is equal to the Legendre-Fenchel transform of
+  $\frac{|y|^2}{2} + \psi(y)$, which implies that $h$ is convex l.s.c. The same argument can be used
+  to show that $\frac{|y|^2}{2} - \psi(y)$ is also convex l.s.c.
+
+  Since $\frac{|x^2|}{2} - \phi(x)$ is convex, there exists a supporting hyperplane, hence, it
+  is bounded from below by a linear function, which implies that
+  \begin{align*}
+    \frac{|x^2|}{2} - \phi(x) \geq \alpha \langle x,y \rangle  + \beta & \implies
+    \phi(x) \leq \frac{|x^2|}{2} - \alpha \langle x,y \rangle - \beta             \\
+                                                                       & \implies
+    \int_{\mathbb R^d} \phi(x) \ d\mu \leq \int_{\mathbb R^d} \frac{|x^2|}{2} - \alpha \langle x,y \rangle - \beta \ d\mu < +\infty
+  \end{align*}
+
+  The same argument can be made for $\psi$, which means that $\phi_+ \in  L^1(\mu)$ and $\psi_+ \in L^1(\nu)$.
+  Due to the fact that $\phi(x) + \psi(y) = c(x,y)$ in the support of $\gamma$, then
+  \begin{equation*}
+    \int_{\mathbb R^d \times \mathbb R^d} \phi \oplus \psi \ d\gamma  =
+    \int_{\mathbb R^d \times \mathbb R^d} c \ d\gamma  \geq 0
+  \end{equation*}
+  Which implies that the negative portions of $\phi$ and $\psi$ are also integrable, leading us to conclude
+  that $\phi \in L^1(\mu)$ and $\psi \in L^1(\nu)$.
+
+  Finally, by the same arguments as the previous theorems, we prove that
+  $\mathrm{\max(DP')}= \mathrm{\min(KP)}$.
+
+\end{prf}
+
+\vspace{5mm}
+A stronger result can be proven regarding the duality of KP. We'll present it here without a proof.
+\begin{theorem}(Santambrogio 1.42)
+  For $X$ and $Y$ Polish spaces and $c:X\times Y \to \mathbb R\cup \{+\infty\}$ l.s.c and bounded from below. Then,
+  $\mathrm{\sup(DP)}=\mathrm{\min (KP)}$.
+  Note that in this theorem, one cannot guarantee the existence of the $(\phi,\psi)$ that maximize the Dual Problem.
+  \label{thm:strongerDuality}
+\end{theorem}
+
+
+If the cost $c(x,y)$ is actually a distance metric (Def. \ref{def:metric}),
+then we can prove the following result:
+\begin{theorem}
+  Let $X$ be a metric space, and $c:X \times X \to \mathbb{R}$, where $c$ is a distance metric. Therefore,
+  a function $f:X \to \mathbb{R}$ is $c$-concave if and only if it is Lipschitz continuous with a constant
+  less than 1 with respect to the distance $c$.
+  We call $\text{Lip}_1^{(c)}$ this set of Lipschitz functions with constant less than 1. Moreover,
+  $f^c = -f$.
+  \label{thm:cConcaveLip1}
+\end{theorem}
+\begin{prf}
+
+  $\implies$) Let $f:X \to \mathbb R$ be a $c$-concave function. Hence, $\exists \ g:X \to \overline{\mathbb R}$ such that
+  \begin{equation*}
+    f(x) := \inf_y c(x,y) - g(y)
+  \end{equation*}
+  Using the triangle inequality of the cost, we get:
+  \begin{gather*}
+    c(x,y) \leq c(x,z) + c(z,y) \implies \sup_y c(x,y) - c(y,z) \leq c(x,z) \\
+    c(y,z) \leq c(y,x) + c(x,z) \implies \sup_y c(y,z) - c(x,y) \leq c(x,z) \\
+    \therefore \\
+    \sup_y |c(y,z) - c(x,y)| \leq c(x,z)
+  \end{gather*}
+  Therefore,
+  \begin{align*}
+    |f(x) - f(z)| & = |\inf_y \{c(x,y) - g(y) \} \ - \ \inf_y \{c(z,y) - g(y)\}| \leq \\
+                  & \underset{\ref{lem:infsup_ineq}}{\leq}
+    \sup_y |c(x,y) - c(z,y)| \leq c(x,z)
+  \end{align*}
+
+  $\impliedby$) Let $f \in \text{Lip}^{(c)}_1$. Using the Lipschitz inequality,
+  \begin{equation*}
+    f(x) - f(y) \leq c(x,y) \implies f(x) \leq \inf_y c(x,y) + f(y)
+  \end{equation*}
+  But note that $f(x) = c(x,x) + f(x) \geq \inf_y c(x,y) - f(y)$. This implies that
+  $f(x) = \inf_y c(x,y) + f(y)$. Hence, $f(x) = g^c(x)$, where $g(y) = -f(y)$. Which proves
+  that $f$ is $c$-concave, and $f = (-f)^c$. Finally, note that $-f$ is also $\text{Lip}_1$,
+  therefore, the same argumentation leads to $-f = f^c$.
+\end{prf}
+\vspace{5mm}
+
+Lastly, using  Theorems
+\ref{thm:strongerDuality} and \ref{thm:cConcaveLip1}, one obtains the famous
+Kantorovich-Rubinstein Duality:
+
+\begin{theorem}(Kantorovich-Rubinstein)
+
+  Let $(X,d)$ be a Polish space with metric $d$, and cost function $c(x,y) = d(x,y)$.
+  Then, for $\mu, \nu \in \mathcal P(X)$, the Kantorovich Problem
+  is equivalent to
+  \begin{equation}
+      \sup \left \{
+      \int_X \phi \ d\mu - \int_X \phi \ d\nu \ :
+      \phi \in Lip_1(X)
+      \right \}
+  \end{equation}
+  \label{thm:Kantorovich-Rubinstein}
+\end{theorem}

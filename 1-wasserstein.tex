@@ -1,0 +1,539 @@
+\newpage
+\section{Wasserstein Distance}
+
+In this section we focus on how the minimal transport cost can be used as a distance metric
+in the space of probability measures. Let's assume that $(X,d)$ is a Polish metric space,
+$d$ is a lower semi-continuous metric on this space and $ p \in [1,+\infty)$.
+
+\begin{definition}(Probability space with p-Moments)
+
+  \begin{equation}
+    \mathcal P_p(X) := \{
+         \mu \in \mathcal P(X): \int_{X \times X} d(x,y)^p \ d \mu(x) d \mu(y) < +\infty
+      \}
+  \label{eq:Pp}
+  \end{equation}
+  Note that this is equivalent to the set of probability measures such that $\int_X d(x,x_0) \ d\mu<+\infty$
+  for every $x_0 \in X$. The proof of this statement can be found
+  in \citet{garling2018analysis} Proposition 21.1.1.
+\end{definition}
+
+\begin{definition}(Wasserstein Distance)
+
+  Let $(X,d)$ be a Polish metric space, with $c:X \times X \to \mathbb R$ such that $c(x,y)=d(x,y)^p$, and
+  $p \in [1,+\infty)$.
+  For $\mu,\nu \in \mathcal P_p(X)$, the Wasserstein Distance is given by:
+  \begin{equation}
+    W_p(\mu,\nu) :=
+    \left(
+    \inf_{\gamma \in \Pi(\mu,\nu)}
+    \int_{X \times X} d(x,y)^p \ d\gamma
+    \right)^{1/p}
+    \label{def:Wasserstein}
+  \end{equation}
+  Note that the restriction to $\mu,\nu \in \mathcal P_p(X)$ is necessary for $W_p$ to be a distance metric.
+  Moreover, for $p=1$, then $c(x,y) = d(x,y)$ is a metric on $X$, therefore, for $X$ Polish, one can
+  use Kantorovich-Rubinstein's Duality Theorem \ref{thm:Kantorovich-Rubinstein} to obtain:
+  \begin{equation}
+    W_1(\mu,\nu) =
+    \sup_{\phi \in Lip_1} \int_X f d (\mu - \nu)
+  \end{equation}
+\end{definition}
+
+Let's prove that $W_p$ indeed is a metric on $\mathcal P_p(X)$.
+
+\begin{lemma} (Gluing Lemma)
+
+  Let $(X,d)$ be a metric space. For $\mu,\nu,\rho \in \mathcal P(X)$ and
+  $\gamma^+ \in \Pi(\mu,\rho)$, $\gamma^- \in \Pi(\rho,\nu)$. Then,
+  $\exists \ \sigma \in \mathcal P(X \times X \times X)$ such that
+  $(\pi_{x,y})_\# \sigma  = \gamma^+$.
+  $(\pi_{y,z})_\# \sigma  = \gamma^-$.
+  \label{lem:gluing}
+\end{lemma}
+\begin{prf}
+  First, use disintegration (Def. \ref{def:disintegration}) with respect to $f = \pi_y$ to obtain $\gamma^+_y$ and $\gamma^-_y$.
+  We know that such
+  disintegration exists and is essentially unique since $X$ is Polish (see Theorem \ref{thm:disintegrationunique}).
+  Note that disintegrated measures are actually
+  defined on $X \times \{y\} \subset X \times X$, but, by abuse of notation, we'll consider that they
+  are measures on $X$, and $y$ is only an index.
+
+  Therefore, make $\sigma = \gamma_y^+ \otimes \rho \otimes \gamma_y^-$, and let $\phi:X \times X \to \mathbb R$
+  be a measurable function.
+  Hence:
+  \begin{align*}
+    \int_{X \times X \times X} \phi(x,y) \ d\sigma & \overset{\text{Fubini}}{=}
+    \int_X \int_X \int_X \phi(x,y) \
+    d\gamma_y^+(x) \otimes \rho(y) \otimes \gamma_y^-(z)                                        \\
+                                                                  & \overset{\text{Indep.}}{=}
+    \int_X d\gamma_y^-(z) \ \int_X \int_X \phi(x,y) \
+    d\gamma_y^+(x) \otimes \rho(y)                                                              \\
+                                                                  & \overset{\text{Disint.}}{=}
+    \int_X d\gamma_y^-(z) \ \int_{X \times X} \phi(x,y) \
+    d\gamma^+(x,y)                                                                              \\
+                                                                  & \overset{\text{\hfill}}{=}
+    \int_{X\times X} \phi(x,y) \
+    d\gamma^+(x,y)
+  \end{align*}
+  Since $\phi(x,y)$ is arbitrary, then by Corollary \ref{cor_marginals}, we can conclude that
+  $(\pi_{x,y})_\# \sigma  = \gamma^+$. By the same argument, we obtain
+  $(\pi_{y,z})_\# \sigma  = \gamma^-$, which concludes our proof.
+
+\end{prf}
+
+\begin{proposition}
+  $W_p(\cdot,\cdot)$ is a metric on $\mathcal P_p(X)$.
+\end{proposition}
+\begin{prf} Let's prove each of the three properties that categorize a metric.
+
+  \vspace{5mm}
+  \noindent	i) $d(x,y) = 0 \iff x = y$.
+
+  \vspace{5mm}
+  \noindent
+  If $\mu=\nu$, then
+  $(id,id)_\# \mu = \gamma$, hence $\int_{X \times X} d(x,y)^p
+    \ d\gamma = \int_{X \times X} d(x,x)^p \ d\mu =0$.
+
+  \vspace{5mm}
+  If $W_p(\mu,\nu)=0$, then $\int_{X\times X}d(x,y)^p \ d\gamma = 0$. Therefore, $\gamma$ is concentrated
+  on $\{x=y\}$, otherwise, there would exist a set $\ A \times B$ such that $\gamma(A \times B)>0$ and $x\neq y$.
+  Therefore $\int_X d(x,y)^p d\gamma >0$.
+
+  Since $\gamma$ is concentrated on $\{x=y\}$, then for any set Borel set $K \subset X$:
+  \begin{equation*}
+    \gamma(K) = \int_{X\times X} \mathbbm 1_K(x,y) \ d\gamma =
+    \int_{x=y} \mathbbm 1_K(x,y) \ d\gamma = \int_{x=y} \mathbbm 1_K(x) \ d\mu
+    = \int_{x=y} \mathbbm 1_K (y) \ d\nu
+  \end{equation*}
+  We can conclude that $\mu(K)=\nu(K)$ for every Borel set $K$, therefore $\mu=\nu$ almost everywhere.
+
+  \vspace{5mm}
+
+  \noindent	ii) $d(x,y)=d(y,x)$.
+  \begin{equation*}
+    W_p(\mu,\nu) = \left(\int_{X \times X} d(x,y)^p d\gamma \right)^{1/p} =
+    \left(\int_{X \times X} d(y,x)^p d\gamma\right)^{1/p} = W_p(\nu,\mu)
+  \end{equation*}
+
+  \vspace{5mm}
+  \noindent	iii) $d(x,z) \leq d(x,y) + d(y,z)$.
+
+  Let $\mu,\nu,\rho \in \mathcal P_p(X)$, and $\gamma^+ \in \Pi(\mu,\rho)$, $\gamma^- \in \Pi(\rho,\nu)$ are
+  the optimal transport plans for the respective measures.
+  Using the Gluing Lemma \ref{lem:gluing}, we know that there exists a measure
+  $\sigma \in \mathcal P(X \times X \times X)$, where
+  $(\pi_{x,y})_\# \sigma = \gamma^+$ and
+  $(\pi_{y,z})_\# \sigma = \gamma^-$. Also, let $\gamma := (\pi_{x,z})_\# \sigma$. Hence,
+  \begin{align*}
+    W_p(\mu,\nu) & \quad \leq
+    \left(
+      \int_{X \times X} d(x,z)^p \ d\gamma
+    \right)^{1/p} =
+    \left(
+      \int_{X \times X} d(x,z)^p \ d(\pi_{x,z})_\# \sigma
+    \right)^{1/p}\\
+    & \underset{Thm. \ref{thm:pushforward}}{=}
+    \left(
+    \int_{X \times X \times X} d(x,z)^p \ d \sigma
+    \right)^{1/p}\\
+    & \quad \leq
+    \int_{X^3} (d(x,y)+d(y,z))^p \ d \sigma \\
+    &=
+    ||
+    d \circ (\pi_{x,y})(x,y,z) -
+    d \circ (\pi_{y,z})(x,y,z)
+    ||_{L^p(\sigma)} \\
+    & \underset{\ref{lem:minkowski}}{\leq}
+    ||
+    d \circ (\pi_{x,y})(x,y,z)
+    ||_{L^p(\sigma)} +
+    ||
+    d \circ (\pi_{y,z})(x,y,z)
+    ||_{L^p(\sigma)} \\
+    & =
+    \left(
+      \int_{X^3} d(x,y)^p \ d\sigma
+    \right)^{1/p} +
+    \left(
+      \int_{X^3} d(y,z)^p \ d\sigma
+    \right)^{1/p} \\
+    & =
+    \left(
+      \int_{X^2} d(x,y)^p \ d\gamma^+
+    \right)^{1/p} +
+    \left(
+      \int_{X^2} d(y,z)^p \ d\gamma^-
+    \right)^{1/p} \\
+    & =
+    W_p(\mu,\rho) + W_p(\rho,\nu)
+  \end{align*}
+  Which proves the triangle inequality for the Wasserstein distance.
+
+\end{prf}
+
+\begin{definition} (Wasserstein Space)
+  For a Polish space $X$, we call $\mathcal P_p(X)$ a Wasserstein space if it is endowed with
+  the p-Wasserstein metric. Note that is also common to see this space symbolized by $\mathcal W_p(X)$.
+\end{definition}
+
+\begin{proposition}
+  For a bounded Polish space $X$, $p \in [1,+\infty)$, $\mu,\nu \in \mathcal P_p(X)$ and $C\in \mathbb R_+$, then
+  \begin{equation}
+    W_1(\mu,\nu) \leq W_p(\mu,\nu) \leq CW_1(\mu,\nu)^{1/p}
+  \end{equation}
+  \label{prop:ineqwasserstein}
+\end{proposition}
+\begin{prf}
+  Let $p\leq q \in [1,+\infty)$ and $\gamma \in \Pi(\mu,\nu)$. Hence, $\phi(x)=x^{q/p}$ is a convex function, so by Jensen's
+  inequality:
+  \begin{align*}
+    \phi\left(
+    \int d(x,y)^p d\gamma
+    \right)^{1/q} =
+    \left(
+    \int d(x,y)^p d\gamma
+    \right)^{1/p}
+     & \leq
+    \left(
+    \int \phi(d(x,y)^p) d\gamma
+    \right)^{1/q} \\
+     & =
+    \left(
+    \int (d(x,y)^q) d\gamma
+    \right)^{1/q}
+  \end{align*}
+  This implies that $W_p(\mu,\nu) \leq W_q(\mu,\nu)$, when $p\leq q$. In particular,
+  $W_1(\mu,\nu)\leq W_p(\mu,\nu)$ for $p\geq 1$.
+
+  Now, since $X$ is bounded, then $d(x,y) \leq \sup_{x,y \in X}d(x,y) = d(X)$. Hence,
+  \begin{gather*}
+    d(x,y)^p \leq d(X)^{p-1}d(x,y) \\
+    \therefore
+    \\
+    \left(
+    \int d(x,y)^p d\gamma
+    \right)^{1/p} \leq
+    \left(
+    \int d(x,y) d\gamma
+    \right)^{1/p}d(X)^{\frac{p-1}{p}}
+  \end{gather*}
+  Therefore, we conclude that $W_p(\mu,\nu)\leq d(X)^{\frac{p-1}{p}} W_1(\mu,\nu)^{1/p}$
+
+\end{prf}
+
+Next, let's present some of the topological properties of such space.	A first thing to note is that
+for probability spaces, the notion of weak convergence can be made more strict with the following lemma:
+
+\begin{lemma}
+  For a space of probability measures, we say that $\mu_n$ converges weakly to $\mu$, i.e.
+  $\mu_n \rightharpoonup \mu \iff \ \forall f \in C_c(X), \ \int f \ d\mu_n \to \int f \ d\mu$, where
+  $C_c(X)$ is the space of continuous functions with compact support. Note that
+  $C_c(X) \subset C_0(X) \subset C_b(X)$.
+  \label{lem:weakconvergenceCc}
+\end{lemma}
+\begin{prf}
+
+  $\implies)$ If $\mu_n \rightharpoonup \mu$	, then $f \in C_c(X)\subset C_b(X)$, hence $\int f d\mu_n \to \int f d\mu$.
+
+  \vspace{5mm}
+  $\impliedby)$ Suppose that $\forall f \in C_c(X),\ \int f d\mu_n \to \int f d\mu$. Hence, note that for
+  any constant $M$, $\int f + M d\mu_n = \int f d\mu_n + C \to \int f d\mu + C$.
+  Take $g \in C_b(X)$ and make $g' = g + C \geq 0$ and
+  $g' \mathbbm 1_{[-k,k]} = f_k \in  C_c(X)$. Which implies that $f_k \uparrow g'$.
+  Now,
+  \begin{align*}
+    \left|\int g d\mu_n - \int g d\mu \right| & =
+    \left|\int g' d\mu_n - \int g' d\mu \right|      \\
+                                              & \leq
+    \left|\int g' d\mu_n - \int f_k d\mu_n \right| +
+    \left|\int f_k d\mu_n - \int f_k d\mu \right| +
+    \left|\int f_k d\mu - \int g' d\mu \right|
+  \end{align*}
+  Since $f_k \in C_c(X)$, then for $n$ big enough,
+  $\left|\int f_k d\mu - \int f_k d\mu_n \right|< \epsilon$. Therefore,
+  \begin{align*}
+    \left|\int g d\mu_n - \int g d\mu \right| \leq
+    \left|\int g' d\mu_n - \int f_k d\mu_n \right| +
+    \epsilon +
+    \left|\int f_k d\mu - \int g' d\mu \right|
+  \end{align*}
+  Since $f_k \uparrow g'$, then,
+  by the Monotone Convergence Theorem,
+
+  \begin{gather*}
+    \lim_{k\to +\infty}
+    \left|\int g' d\mu_n - \int f_k d\mu_n \right| = 0 \\
+    \lim_{k\to +\infty}
+    \left|\int f_k d\mu - \int g' d\mu \right| = 0 \\
+    \therefore
+  \end{gather*}
+
+  \begin{equation*}
+    \lim_{k\to +\infty}\left|\int g d\mu_n - \int g d\mu \right| =
+    \left|\int g d\mu_n - \int g d\mu \right| \leq
+    \epsilon
+  \end{equation*}
+\end{prf}
+
+\begin{theorem}
+  Let $(X,d)$ be a Polish compact space with $\mu_n,\mu \in P_p(X)$ and
+  $p \in [1,+\infty)$, then $W_p(\mu_n,\mu)\to 0 \iff \mu_n \rightharpoonup \mu$.
+  \label{thm:compactwassersteinconv}
+\end{theorem}
+\begin{prf}
+
+  $\implies)$ Let $W_p(\mu_n,\mu)\to 0$. Since $X$ is compact and $c$ is a continuous function,
+  by Theorem \ref{thm:Santambrogio1.4} the Kantorovich Problem has a solution. Also, by Theorem \ref{thm:compactstrongduality},
+  we obtain that $\max(\mathrm{DP})=\min(\mathrm{KP})$. First, we prove for $p=1$.
+  In this case, using the Lipschitz version of DP:
+  \begin{equation*}
+    W_1(\mu,\nu)=
+    \max \left \{
+    \int_X \phi \ d\mu - \int_X \phi \ d\nu \ :
+    \phi \in Lip_1(X)
+    \right \} \to 0
+  \end{equation*}
+  This implies that for any $f \in \text{Lip}_1, \int f d\mu_n \to \int f d\mu$. Note that, by linearity,
+  the same is true for any Lipschitz function. Since $X$ is compact, then Lipschitz functions are
+  dense on $C(X)$ (see Theorem \ref{thm:lipdense}), which leads us to conclude that $\mu_n \rightharpoonup \mu$
+  (by Portmanteau \ref{Portmanteau}). Now, by Proposition \ref{prop:ineqwasserstein},
+  the same is valid for any $p\geq 1$.
+
+  $\impliedby)$ Let $\mu_n \rightharpoonup \mu$. Define a subsequence $\mu_{n_k}$ such that
+  $\lim_k W_1(\mu_{n_k},\mu)=\limsup_n W_1(\mu_n,\mu)$. By the same arguments already used,
+  we know that for each $\mu_{n_k}$ there is a $\phi_{n_k} \in \text{Lip}_1$ such that
+  $W_1(\mu_{n_k},\mu) = \int_X \phi_{n_k}d(\mu_{n_k}-\mu)$.
+
+  For an arbitrary $\epsilon >0$, make $\delta = \epsilon$. Since $\phi_{n_k}$ is 1-Lipschitz,
+  if $d(x,y) < \delta$, then
+  $|\phi_{n_k}(x) - \phi_{n_k}(y)| \leq d(x,y) < \epsilon, \ \forall k \in \mathbb N$. Therefore, the sequence is
+  Equicontinuous.
+
+  Also, for $x_0 \in X$, we can make $\phi_{n_k}'(x):= \phi_{n_k}(x) - \phi_{n_k}(x_0)$. Note that these functions are
+  1-Lipschitz and still satisfy
+  $W_1(\mu_{n_k},\mu) = \int_X \phi_{n_k}'d(\mu_{n_k}-\mu)$. Hence, let's use $\phi_{n_k}'$ as our new subsequence.
+  In this case,
+  \begin{equation*}
+    |\phi_{n_k}'(x)| =
+    |\phi_{n_k}(x) - \phi_{n_k}(x_o)|
+    \leq d(x,x_o) \leq d(X) <+\infty
+  \end{equation*}
+  This implies that this sequence of $\phi_{n_k}'$ is Equibounded.
+  With this, we can use Arzelà-Ascoli Theorem (\ref{thm:arzela-ascoli})
+  to obtain a sub-subsequence that converges uniformly to a $\phi \in \text{Lip}_1(X)$.
+  Replace and relabel the original subsequence, obtaining:
+  \begin{align*}
+     & W_1(\mu_{n_k},\mu) = \int_X \phi_{n_k}d(\mu_{n_k}-\mu) \\
+     & =
+    \left|
+    \int_X \phi_{n_k}d\mu_{n_k}+
+    \int_X \phi d\mu_{n_k} -
+    \int_X \phi d\mu_{n_k} +
+    \int_X \phi d\mu -
+    \int_X \phi d\mu -
+    \int_X \phi_{n_k}d\mu
+    \right|                                                        \\
+     & \leq
+    \underbrace{
+      \left|
+      \int_X \phi_{n_k}d\mu_{n_k} -
+      \int_X \phi d\mu_{n_k}
+      \right|}
+    _{\text{Goes to }0, \text{due to } \phi_{n_k}\to_u \phi}+
+    \underbrace{
+      \left|
+      \int_X \phi d\mu-
+      \int_X \phi_{n_k} d\mu
+      \right|}
+    _{\text{Goes to }0, \text{due to } \phi_{n_k}\to_u \phi}+
+    \underbrace{
+      \left|
+      \int_X \phi d\mu_{n_k} -
+      \int_X \phi d\mu
+      \right|}
+    _{\text{Goes to }0, \text{due to } \mu_{n_k}\rightharpoonup \mu}
+  \end{align*}
+
+  Therefore $\limsup_n W_1(\mu_n,\mu) \leq 0 \implies W_1(\mu_n\mu) \to 0$. To conclude the proof
+  for any $p \in [1,+\infty)$, we use Proposition \ref{prop:ineqwasserstein}:
+  \begin{equation*}
+    0 \leq W_p(\mu_n,\mu) \leq CW_1(\mu_n,\mu)^{1/p} \leq 0
+  \end{equation*}
+\end{prf}
+
+\begin{theorem}
+  For $X \subset \mathbb R^n$, $\mu_n,\mu \in \mathcal P_p(X)$, $x_0 \in X$ and
+  $d$ is metric on $X$, then
+  \begin{equation}
+    W_p(\mu_n,\mu) \to 0 \iff \int_X d(x,x_0)^p d\mu_n \to \int_X d(x,x_0)^p d\mu
+    \text{ and } \mu_n \rightharpoonup \mu
+  \end{equation}
+  \label{thm:convwasserstein}
+\end{theorem}
+
+\begin{prf}
+
+  $\implies)$ Let $W_p(\mu_n,\mu)\to 0$. Since $X$ is Polish, and $c$ is a continuous function,
+  by Theorem \ref{thm:existanceKPpolish} the Kantorovich Problem has a solution. Also, by Theorem \ref{thm:strongerDuality},
+  we obtain that $\sup(\mathrm{DP})=\min(\mathrm{KP})$. We know that
+  $W_p(\mu_n,\mu) \geq W_1(\mu_n,\nu)\geq 0$, hence, using the Lipschitz version of the Dual Problem for $W_1$:
+  \begin{equation*}
+    \sup \left \{
+    \int_X \phi \ d\mu_n - \int_X \phi \ d\mu \ :
+    \phi \in Lip_1(X)
+    \right \} \to 0
+  \end{equation*}
+
+This implies that for any $f \in \text{Lip}_1, \int f d\mu_n \to \int f d\mu$. Note that, by linearity,
+the same is true for any Lipschitz function, not only $\text{Lip}_1$. Finally, since Lipschitz functions are
+dense on $C_c(X)$ (see Theorem \ref{thm:lipdense}),
+we can use Lemma \ref{lem:weakconvergenceCc} to conclude that $\mu_n \rightharpoonup \mu$.
+
+To prove the other condition (i.e.
+$\int_X d(x,x_0)^p d\mu_n \to \int_X d(x,x_0)^p d\mu$),
+define $\delta_{x_0}$ as a measure with mass on $x_0$. Which means that the optimal transport plan
+$\gamma_n$ is in $\Pi(\mu_n,\delta_{x_0})$. This implies that $\gamma_n(x,y) = 0$ for any $y \neq x_0$. Therefore
+\begin{align*}
+  W_p(\mu_n,\delta_{x_0})^p = \int_{X \times X} d(x,y)^p d\gamma_n & = \int_{X \times \{x_0\}} d(x,y)^p d\gamma_n                              \\
+  & = \int_X d(x,x_0)^p d\mu_n \to W_p(\mu,\delta_{x_0})^p = \int_X d(x,x_0)^p d\mu
+\end{align*}
+Where we used the fact that $W(\mu_n, \delta_{x_0}) \to W(\mu,\delta_{x_0})$, which is true since
+$W(\mu_n,\delta_{x_0}) - W(\mu,\delta_{x_0}) \leq W(\mu_n,\mu)$.
+
+\vspace{5mm}
+$\impliedby)$ Consider now that $\mu_n \rightharpoonup \mu$ and
+Define $\pi_R :X \to \overline{\text{B}(R)}$, which is the projection on the closed ball with radius $R$
+centered at $x_0$. Since $W_p(\cdot,\cdot)$ is a metric, we have:
+\begin{gather*}
+  W_p(\mu_n,\mu) \leq
+  W_p(\mu_n,(\pi_R)_\#\mu_n) +
+  W_p((\pi_R)_\#\mu_n,(\pi_R)_\#\mu)+
+  W_p((\pi_R)_\#\mu_n,\mu)
+\end{gather*}
+
+For sake of clarity in the proof, let's define, without loss of generalization, that $d(x,x_0) = |x|$ and
+$d(x,y) = |x-y|$.
+Now, note that $|x - \pi_R(x)| =|x| - |x| \wedge R$ and
+that the plan $(id,\pi_R)_\# \mu$ is a possible solution to the OT Problem of transporting
+$\mu$ to $(\pi_R)_\#\mu$. Therefore:
+\begin{align*}
+  W_p(\mu,(\pi_R)_\# \mu)^p & \leq
+  \int_{X \times X} |x-y|^p d (id,\pi_R)_\# \mu =
+  \int_{(id,\pi_R)^{-1}(X\times X)} |x-\pi_R(x)|^p d\mu \\
+                            & =
+  \int_{X} |x-(x\wedge R)|^p d\mu =
+  \int_{B(R)^c} (|x|-R)^p d\mu                                    \\
+\end{align*}
+And using the same arguments:
+\begin{align*}
+  W_p(\mu_n,(\pi_R)_\# \mu_n)^p & \leq
+  \int_{B(R)^c} (|x|-R)^p d\mu_n
+\end{align*}
+Now, note that
+\begin{equation*}
+  \int_X |x|^p - (|x|\wedge R)^p d\mu = \int_{B(R)}|x|^p -|x|^p d\mu
+  + \int_{B(R)^c} |x|^p - R^p d\mu \leq \int_{B(R)^c} |x|^p d\mu
+\end{equation*}
+Since $\mu_n, \mu \in \mathcal P_p(X)$, we know that
+$\int_{X}|x|^p d\mu = C < +\infty$ and
+$\int_{X}|x|^p d\mu_n = C < +\infty$ then
+\begin{align*}
+  \int_{B(R)^c} |x|^p d\mu = C - \int_{B(R)}|x|^p d\mu \quad \therefore \quad
+  \lim_{R \to 0}
+  \int_{B(R)^c}|x|^p = 0
+\end{align*}
+Using that $(|x|- R)^p \leq |x|^p - (|x|\wedge R)^p$ for every $x \in B(R)^c$, we get
+\begin{align*}
+  W_p(\mu_n,(\pi_R)_\# \mu)^p \leq
+  \int_{B(R)^c} (|x|-R)^p d\mu_n \leq
+  \int_{B(R)^c} |x|^p-R^p d\mu_n \leq
+  \int_{B(R)^c}|x|^p
+\end{align*}
+Now, note that since $\int|x|^p \mu_n \to \int|x|^p d\mu$ and that $(|x|\wedge R)$ is continuous and bounded,
+\begin{align*}
+  \lim_n
+  W_p(\mu_n,(\pi_R)_\#\mu_n) & \leq
+  \lim_n
+  \int_{B(R)^c} (|x|-R)^p d\mu_n    \\
+                             & \leq
+  \lim_n
+  \int_{B(R)^c} |x|^p-R^p d\mu_n =
+  \int_{B(R)^c} |x|^p-R^p d\mu \leq
+  \int_{B(R)^c} |x|^p d\mu
+\end{align*}
+Hence,
+\begin{align*}
+  \lim_R \lim_n (W_p(\mu_n,(\pi_R)_\#\mu_n) \leq \lim_R
+  \int_{B(R)^c} |x|^p d\mu = 0 \\
+  \lim_R (W_p(\mu,(\pi_R)_\#\mu) \leq \lim_R
+  \int_{B(R)^c} |x|^p d\mu = 0
+\end{align*}
+
+Lastly, note that since $\overline{B(R)}$ is compact, then we can use Theorem \ref{thm:compactwassersteinconv}
+to stablish that
+\begin{equation*}
+  \lim_n W_p((\pi_R)_\#\mu_n,(\pi_R)_\#\mu) = 0
+\end{equation*}
+
+We can then conclude that
+\begin{align*}
+  \limsup_n W_p(\mu_n,\mu) &\leq
+  \lim_R \limsup_n (
+  W_p(\mu_n,(\pi_R)_\#\mu_n) \\ & \quad \quad+
+  W_p((\pi_R)_\#\mu_n,(\pi_R)_\#\mu)\\ & \quad \quad+
+  W_p((\pi_R)_\#\mu_n,\mu)) \\
+  &= 0
+\end{align*}
+
+\end{prf}
+
+The Theorem above was proved for $X \subset \mathbb R^d$,
+but a more general result can be proven for Polish spaces. Such result is presented below without a proof.
+The proof can be found in \citet{villani2008optimal} under Theorem 6.9.
+
+\begin{theorem}
+
+  For $(X,d)$ a Polish metric space, $\mu_n,\mu \in \mathcal P_p(X)$ and $x_0 \in X$. Then
+  \begin{equation}
+    W_p(\mu_n,\mu) \to 0 \iff \int_X d(x,x_0)^p d\mu_n \to \int_X d(x,x_0)^p d\mu
+    \text{ and } \mu_n \rightharpoonup \mu
+  \end{equation}
+  \label{thm:polishwmetrize}
+\end{theorem}
+
+Let's just put some words on these last two theorems we introduced.
+We showed that the p-Wasserstein distance metrizes weak convergence
+of probability measures in the space $\mathcal P_p(X)$, with $(X,d)$ a Polish space.
+Such property is very useful and is not present in many other commonly used distances such as
+Total Variation and the Kullback-Leibler Divergence.
+
+Yet, there are many other ways to metrize weak convergence, such as Prokhorov's distance and bounded
+Lipschitz distance. So, besides this \textit{metrization}, \citet{villani2008optimal}
+gives the following reasons that make $W_p$ such an interesting metric:
+\begin{enumerate}[(i)]
+  \item It's definition makes it a natural choice in OT problems;
+  \item The distance has a rich duality, especially for $p=1$;
+  \item Since it's defined with an infimum, it is easy to bound from above;
+  \item Wasserstein distances incorporate information of the ground geometry.
+\end{enumerate}
+
+For applications in Data Science, the equivalence with weak convergence and the
+incorporation of the ground geometry are probably the most attractive characteristics.
+Figure \ref{fig:wl-kl}
+highlights how $W_p$ takes into account the underlying geometry compared
+to the Kullback-Leibler divergence, which does not.
+
+
+\begin{figure}[H]
+  \centering
+  \def\svgscale{0.7}
+  \includesvg[inkscapelatex=false]{Figures/wassersteingeometry.svg}
+	\caption{Comparison between Wasserstein distance and KL Divergence, based on \citet{montavon2016boltzmann}.
+  On the left,
+  there is a large overlap between the two distributions, but a large geometrical distance for a portion. On the right,
+  there is much less overlap, but the whole distribution is geometrically closer. These two
+  cases clearly highlight how $W_p$ incorporates geometrical information while $KL$ doesn't.}
+	\label{fig:wl-kl}
+\end{figure}
