@@ -7,9 +7,9 @@
 \contentsline {section}{\numberline {1.3}On the Existence of Transport Plans}{11}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Duality of the Kantorovich Problem}{14}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Wasserstein Distance}{26}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Optimal Transport Problems with Exact Solution}{36}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}1D Optimal Transport}{36}{subsection.1.6.1}%
-\contentsline {subsection}{\numberline {1.6.2}Transport Between Discrete Measures}{37}{subsection.1.6.2}%
-\contentsline {chapter}{\numberline {2}Appendix}{41}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Auxiliary - Probability and Analysis}{41}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Auxiliary - Inequalities}{44}{section.2.2}%
+\contentsline {section}{\numberline {1.6}Optimal Transport Problems with Exact Solution}{37}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}1D Optimal Transport}{37}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Transport Between Discrete Measures}{38}{subsection.1.6.2}%
+\contentsline {chapter}{\numberline {2}Appendix}{42}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Auxiliary - Probability and Analysis}{42}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Auxiliary - Inequalities}{45}{section.2.2}%

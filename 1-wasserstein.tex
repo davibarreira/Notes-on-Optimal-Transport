@@ -525,6 +525,15 @@ Figure \ref{fig:wl-kl}
 highlights how $W_p$ takes into account the underlying geometry compared
 to the Kullback-Leibler divergence, which does not.
 
+\citet{villani2008optimal} also points out that:
+\begin{quote}
+  As a geenral rule, the $W_1$ distance is more flexible and easier to bound,
+  while the $W_2$ distance better reflects geometric features (at least for problems
+  with a Riemannian flavor), and is better adapted when there is more structure; it also
+  scales better with the dimension. Results in $W_2$ distance are usually stronger, and more
+  difficult to establish, than results in $W_1$ distance.
+\end{quote}
+
 
 \begin{figure}[H]
   \centering
@@ -537,3 +546,97 @@ to the Kullback-Leibler divergence, which does not.
   cases clearly highlight how $W_p$ incorporates geometrical information while $KL$ doesn't.}
 	\label{fig:wl-kl}
 \end{figure}
+
+Before finishing our initial exposition on the Wasserstein distance, let's prove some more relevant results.
+
+\begin{corollary}(Continuity of $W_p$)
+  Let $(X,d)$ be a Polish metric space, and $p \in [1,+\infty)$, then $W_p$ is continuous on $P_p(X)$, i.e.
+  if $\mu_k \rightharpoonup \mu$, $\nu_k \rightharpoonup \nu$, and
+  $\int d(x_0, x)^p d\mu_k(x) \to \int d(x_0,x)^p d\mu$,
+  $\int d(x_0, x)^p d\nu_k(x) \to \int d(x_0,x)^p d\nu$
+  , then
+  \begin{equation}
+    W_p(\mu_k,\nu_k) \to W_p(\mu,\nu)
+  \end{equation}
+\end{corollary}
+\begin{prf}
+  Just note that
+  \begin{equation*}
+    W_p(\mu_k,\nu_k) \leq W_p(\mu_k,\mu) + W_p(\mu,\nu) + W_p(\nu_k,\nu)
+  \end{equation*}
+  Hence, taking the limit and using Theorem \ref{thm:polishwmetrize}
+  \begin{equation*}
+    \lim_{k\to +\infty} 
+    W_p(\mu_k,\nu_k) \leq  W_p(\mu,\nu)
+  \end{equation*}
+  We can perform the same steps, but now for the reverse inequality
+  \begin{equation*}
+    W_p(\mu,\nu) \leq W_p(\mu,\mu_k) + W_p(\mu_k,\nu_k) + W_p(\nu_k,\nu)
+  \end{equation*}
+  And again, taking the limit, we conclude that
+  \begin{equation*}
+    W_p(\mu_k,\nu_k) \to W_p(\mu,\nu).
+  \end{equation*}
+
+\end{prf}
+
+Note that if we didn't have
+  $\int d(x_0, x)^p d\mu_k(x) \to \int d(x_0,x)^p d\mu$ and
+  $\int d(x_0, x)^p d\nu_k(x) \to \int d(x_0,x)^p d\nu$
+in the hypothesis, we would instead conclude that
+\begin{equation*}
+  W_p(\mu,\nu)\leq \liminf W_p(\mu_k,\nu_k).
+\end{equation*}
+
+The last results that we want to prove is that for a Polish space $X$, then the
+p-Wasserstein space is also complete and separable. To prove this, we first
+need the following non-trivial lemma.
+
+\begin{lemma}(\citet{villani2008optimal} 6.14 - Cauchy sequences in $W_p$ are tight)
+
+  Let $X$ be a Polish space, $p \geq 1$ and $(\mu_n)_{n\in \mathbb N}$ a Cauchy sequence
+  in $(P_p(X), W_p)$. Then $(\mu_n)$ is tight.
+\end{lemma}
+
+% \begin{prf}
+%   First, note that since $W_p \geq W_1$, then $(\mu_n)$ is also a Cauchy sequence in $W_1$.
+%   Hence, for $\varepsilon >0$, there exists $N \in \mathbb N$ such that for $k \geq N$, then
+%   \begin{equation*}
+%     W_1(\mu_N,\mu_k) < \varepsilon^2.
+%   \end{equation*}
+%   Now, take the subset $\{\mu_1,...,\mu_N\}$. It's clear that it is tight, hence, there exists
+%   a compact set $K$ such that $\mu_j(X \setminus K) < \varepsilon$ for all $j \in \{1,...,N\}$.
+%   Since $K$ is compact, it can be covered by a finite number of balls, thus
+%   \begin{equation*}
+%     K \subset B(x_1,\varepsilon)\cup ... \cup B(x_m,\varepsilon) := U.
+%   \end{equation*}
+%   Next, cover $U$ with $U_\varepsilon := \{x \in X: d(x,U) < \varepsilon\}$, and define
+%   \begin{equation*}
+%     \phi(x):= \max \left \{0 \ ;\ 1- \frac{d(x,U)}{\varepsilon} \right \}.
+%   \end{equation*}
+%   This implies that $\mathbbm 1_U \leq \phi \leq \mathbbm 1_{U_\varepsilon}$ and
+%   $\frac{\phi(x)}{\varepsilon} \in \text{Lip}_1(X)$. Hence, we can use the Kantorovich-Rubinstein
+%   and obtain the following inequality:
+%   \begin{align*}
+%     \mu_k (U_\varepsilon) &\geq
+%     \int \phi d\mu_k
+%     \\ &= 
+%     \int \phi d\mu_j + \left(
+%       \int \phi d\mu_k - \int \phi d \mu_j
+%     \right)
+%     \\ &\geq 
+%     \mu_j(U) -
+%     \frac{W_1(\mu_k,\mu_j)}{\varepsilon}.
+%   \end{align*}
+%   If $k\geq N$, then for $j = N$ we have 
+%   $W_1(\mu_k,\mu_j) < \varepsilon^2$, and if $k \leq N$, then 
+% \end{prf}
+
+Finally, we can now prove the following theorem.
+
+\begin{theorem}(\citet{villani2008optimal} 6.18)
+
+  Let $X$ be a \textbf{complete} and \textbf{separable} metric space and $p \in [1,+\infty)$. Then $(P_p(X),W_p)$
+  is also \textbf{complete} and \textbf{separable}. Moreover, any probability measure on
+  $P_p(X)$ can be approximated by a sequence of probability measures with finite support.
+\end{theorem}
