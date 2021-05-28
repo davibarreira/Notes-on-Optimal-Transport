@@ -16,6 +16,12 @@ end
 # ╔═╡ 3e1a0dc2-6d70-4b9a-afb5-fdee4983a2a8
 using PlutoUI, OptimalTransport, VegaLite, LinearAlgebra, Distributions, Distances
 
+# ╔═╡ d6fc9a57-446a-47ef-ba0f-b1eb20b36d05
+using Plots
+
+# ╔═╡ f618c774-6ff9-4ea7-942b-4eb8009b73ac
+using StatsPlots
+
 # ╔═╡ 8eec5c9e-bef6-11eb-282c-297b67ffdd26
 md"""
 # Optimal Transport Dynamic Formulation
@@ -111,9 +117,6 @@ is given by $\mu t + \nu (1-t)$, while in the right we have the displacement int
 # ╔═╡ 685fa3c8-c3bb-42aa-ad79-d73b7dd4a292
 @bind t Slider(0:0.1:1)
 
-# ╔═╡ 90cb48e4-374e-4369-ba04-9acbd7e25b1f
-
-
 # ╔═╡ 458e0b3a-8277-4616-b19f-d197beb3ad66
 begin
 	μ = Normal(0,2)
@@ -144,16 +147,16 @@ function plotDistributions( μ::Distributions.UnivariateDistribution,
     x  = collect(-10:0.1:40)
     y  = pdf(μ,x)*scalemu
     z  = pdf(ν,x)*scalenu
-    cy = cdf(μ,x)
-    cz = cdf(ν,x);
-    cmin = min.(cy,cz)
-    cmax = max.(cy,cz)
+	
+	p  = plot(μ)
+	p  = plot!(ν)
+	pdfs= plot!(x,y+z)
 
-    pdf1 = @vlplot(:line,x={x,type="quantitative"},
-			y={y,type="quantitative",scale={domain=[0,0.25]}},color={value=colormu})
-    pdf2 = @vlplot(:line,x={x,type="quantitative"},
-			y={z,type="quantitative",scale={domain=[0,0.25]}},color={value=colornu})
-    pdfs = @vlplot()+ pdf1 + pdf2
+#     pdf1 = @vlplot(:line,x={x,type="quantitative"},
+# 			y={y,type="quantitative",scale={domain=[0,0.25]}},color={value=colormu})
+#     pdf2 = @vlplot(:line,x={x,type="quantitative"},
+# 			y={z,type="quantitative",scale={domain=[0,0.25]}},color={value=colornu})
+#     pdfs = @vlplot()+ pdf1 + pdf2
 
     return pdfs
 end
@@ -173,27 +176,18 @@ function plotInterpolation( μ,ν,Tp,colormu="blue",colornu="red",scale=1.0)
 	w  = y*scale + z*(1.0-scale)
 	xt = x*scale + Tp(x)*(1-scale)
    
-
-    pdf1 = @vlplot(:line,x={x,type="quantitative",scale={domain=[-10,40]}},
-			y={y,type="quantitative",scale={domain=[0,0.25]}},color={value=colormu})
-    pdf2 = @vlplot(:line,x={Tp(x),type="quantitative"},
-			y={z,type="quantitative",scale={domain=[0,0.25]}},color={value=colornu})
-	pdf3 = @vlplot(:line,x={xt,type="quantitative",scale={domain=[-10,40]}},
-			y={w,type="quantitative",scale={domain=[0,0.25]}},color={value="green"})
-    pdfs = @vlplot()+ pdf3+ pdf1 + pdf2
+	p  = plot(μ)
+	p  = plot!(ν)
+	pdfs = plot!(xt,w)
+	# pdf1 = @vlplot(:line,x={x,type="quantitative",scale={domain=[-10,40]}},
+	# 		y={y,type="quantitative",scale={domain=[0,0.25]}},color={value=colormu})
+	# pdf2 = @vlplot(:line,x={Tp(x),type="quantitative"},
+	# 		y={z,type="quantitative",scale={domain=[0,0.25]}},color={value=colornu})
+	# pdf3 = @vlplot(:line,x={xt,type="quantitative",scale={domain=[-10,40]}},
+	# 		y={w,type="quantitative",scale={domain=[0,0.25]}},color={value="green"})
+	# pdfs = @vlplot()+ pdf3+ pdf1 + pdf2
 
     return pdfs
-    
-#     xs  = collect(-10:0.1:40)
-#     z  = pdf(μ,xs)
-# 	w  = pdf(ν,xs)
-# 	# y  = z*scale+w*(1-scale)
-# 	xt = xs*scale + Tp.(xs)*(1-scale)
-
-#     pdf1 = @vlplot(:line,x={xt,type="quantitative",scale={domain=[-10,40]}},
-# 			y={w,type="quantitative",scale={domain=[0,0.25]}},color={value=colormu})
-
-    return pdf1
 end
 
 
@@ -201,7 +195,7 @@ end
 p3 = plotInterpolation(μ,ν,otplan(μ,ν),"blue","red",1-t);
 
 # ╔═╡ 04c8df6b-c8d2-47a3-965c-25d7bbb7e44f
-[p2+p1 p3]
+plot(p2,p3)
 
 # ╔═╡ Cell order:
 # ╟─8eec5c9e-bef6-11eb-282c-297b67ffdd26
@@ -211,12 +205,13 @@ p3 = plotInterpolation(μ,ν,otplan(μ,ν),"blue","red",1-t);
 # ╟─bf2d96ce-3a28-4b35-8c89-5d17ff32ffd3
 # ╟─685fa3c8-c3bb-42aa-ad79-d73b7dd4a292
 # ╟─04c8df6b-c8d2-47a3-965c-25d7bbb7e44f
-# ╟─90cb48e4-374e-4369-ba04-9acbd7e25b1f
-# ╟─458e0b3a-8277-4616-b19f-d197beb3ad66
-# ╟─0d6c295b-3dc9-45b6-ab2a-d12b0cff9eb2
-# ╟─30512da5-2a0b-439e-a70d-32d38d7b928b
-# ╟─64862f33-db02-445c-b83a-8e4b9c35d9d0
-# ╟─753a6bc3-bdaf-4807-bef0-18171e4f2910
-# ╟─77b8cc32-92c7-4822-831c-c2ce17ead071
-# ╟─3e1a0dc2-6d70-4b9a-afb5-fdee4983a2a8
-# ╟─a728d84e-a3de-4234-a28a-1456f949d075
+# ╠═458e0b3a-8277-4616-b19f-d197beb3ad66
+# ╠═0d6c295b-3dc9-45b6-ab2a-d12b0cff9eb2
+# ╠═30512da5-2a0b-439e-a70d-32d38d7b928b
+# ╠═64862f33-db02-445c-b83a-8e4b9c35d9d0
+# ╠═753a6bc3-bdaf-4807-bef0-18171e4f2910
+# ╠═77b8cc32-92c7-4822-831c-c2ce17ead071
+# ╠═3e1a0dc2-6d70-4b9a-afb5-fdee4983a2a8
+# ╠═a728d84e-a3de-4234-a28a-1456f949d075
+# ╠═d6fc9a57-446a-47ef-ba0f-b1eb20b36d05
+# ╠═f618c774-6ff9-4ea7-942b-4eb8009b73ac
