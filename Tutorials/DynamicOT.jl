@@ -97,8 +97,22 @@ We can prove that every curve with this property is also a geodesic.
 """
 
 
+# ╔═╡ bf2d96ce-3a28-4b35-8c89-5d17ff32ffd3
+md"""
+---
+#### Displacement Interpolation
+Using the idea of geodesic in Wasserstein space, one can define the notion of
+displacement interpolation. Note in the left the "Euclidean interpolation", which
+is given by $\mu t + \nu (1-t)$, while in the right we have the displacement interpolation.
+
+---
+"""
+
 # ╔═╡ 685fa3c8-c3bb-42aa-ad79-d73b7dd4a292
 @bind t Slider(0:0.1:1)
+
+# ╔═╡ 90cb48e4-374e-4369-ba04-9acbd7e25b1f
+
 
 # ╔═╡ 458e0b3a-8277-4616-b19f-d197beb3ad66
 begin
@@ -194,8 +208,10 @@ p3 = plotInterpolation(μ,ν,otplan(μ,ν),"blue","red",1-t);
 # ╟─b9e7b154-9fa1-4821-bc45-f4fc334ca045
 # ╟─7f7b005b-16a9-4c81-b154-5d4274d1d61c
 # ╟─78ec8d37-6e18-47c7-9b3b-d2355a060eb0
-# ╠═685fa3c8-c3bb-42aa-ad79-d73b7dd4a292
-# ╠═04c8df6b-c8d2-47a3-965c-25d7bbb7e44f
+# ╟─bf2d96ce-3a28-4b35-8c89-5d17ff32ffd3
+# ╟─685fa3c8-c3bb-42aa-ad79-d73b7dd4a292
+# ╟─04c8df6b-c8d2-47a3-965c-25d7bbb7e44f
+# ╟─90cb48e4-374e-4369-ba04-9acbd7e25b1f
 # ╟─458e0b3a-8277-4616-b19f-d197beb3ad66
 # ╟─0d6c295b-3dc9-45b6-ab2a-d12b0cff9eb2
 # ╟─30512da5-2a0b-439e-a70d-32d38d7b928b
