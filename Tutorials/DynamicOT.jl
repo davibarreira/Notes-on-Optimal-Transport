@@ -4,6 +4,15 @@
 using Markdown
 using InteractiveUtils
 
+# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
+macro bind(def, element)
+    quote
+        local el = $(esc(element))
+        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : missing
+        el
+    end
+end
+
 # ╔═╡ 3e1a0dc2-6d70-4b9a-afb5-fdee4983a2a8
 using PlutoUI, OptimalTransport, VegaLite, LinearAlgebra, Distributions, Distances
 
@@ -83,11 +92,26 @@ d(\omega(t),\omega(s) ) = |t-s| d(\omega(0),\omega(1)), \quad
 \forall t,s \in [0,1].
 ```
 
+We can prove that every curve with this property is also a geodesic. 
+
 """
 
 
-# ╔═╡ f1b625cc-48b0-4567-8588-08b0e6145cec
+# ╔═╡ 685fa3c8-c3bb-42aa-ad79-d73b7dd4a292
+@bind t Slider(0:0.1:1)
 
+# ╔═╡ 458e0b3a-8277-4616-b19f-d197beb3ad66
+begin
+	μ = Normal(0,2)
+	ν = Normal(30,3)
+end
+
+# ╔═╡ 753a6bc3-bdaf-4807-bef0-18171e4f2910
+function otplan(μ, ν)
+    # Use T instead of γ to indicate that this is a Monge map.
+    T(x) = quantile(ν, cdf(μ, x))
+    return T
+end
 
 # ╔═╡ 77b8cc32-92c7-4822-831c-c2ce17ead071
 """
@@ -111,43 +135,72 @@ function plotDistributions( μ::Distributions.UnivariateDistribution,
     cmin = min.(cy,cz)
     cmax = max.(cy,cz)
 
-    pdf1 = @vlplot(:line,x={x,type="quantitative"},y={y,type="quantitative"},color={value=colormu})
-    pdf2 = @vlplot(:line,x={x,type="quantitative"},y={z,type="quantitative"},color={value=colornu})
+    pdf1 = @vlplot(:line,x={x,type="quantitative"},
+			y={y,type="quantitative",scale={domain=[0,0.25]}},color={value=colormu})
+    pdf2 = @vlplot(:line,x={x,type="quantitative"},
+			y={z,type="quantitative",scale={domain=[0,0.25]}},color={value=colornu})
     pdfs = @vlplot()+ pdf1 + pdf2
 
     return pdfs
 end
 
 
-# ╔═╡ 685fa3c8-c3bb-42aa-ad79-d73b7dd4a292
-
-
-# ╔═╡ 458e0b3a-8277-4616-b19f-d197beb3ad66
-begin
-	μ = Normal(0,2)
-	ν = Normal(30,3)
-	p1= plotDistributions(μ,ν,"blue","red",1,1)
-end
+# ╔═╡ 0d6c295b-3dc9-45b6-ab2a-d12b0cff9eb2
+p1= plotDistributions(μ,ν,"blue","red",1,1);
 
 # ╔═╡ 30512da5-2a0b-439e-a70d-32d38d7b928b
+p2= plotDistributions(μ,ν,"green","green",1-t,t);
+
+# ╔═╡ a728d84e-a3de-4234-a28a-1456f949d075
+function plotInterpolation( μ,ν,Tp,colormu="blue",colornu="red",scale=1.0)
+	x  = collect(-10:0.1:10)
+    y  = pdf(μ,x)
+    z  = pdf(ν,Tp(x))
+	w  = y*scale + z*(1.0-scale)
+	xt = x*scale + Tp(x)*(1-scale)
+   
+
+    pdf1 = @vlplot(:line,x={x,type="quantitative",scale={domain=[-10,40]}},
+			y={y,type="quantitative",scale={domain=[0,0.25]}},color={value=colormu})
+    pdf2 = @vlplot(:line,x={Tp(x),type="quantitative"},
+			y={z,type="quantitative",scale={domain=[0,0.25]}},color={value=colornu})
+	pdf3 = @vlplot(:line,x={xt,type="quantitative",scale={domain=[-10,40]}},
+			y={w,type="quantitative",scale={domain=[0,0.25]}},color={value="green"})
+    pdfs = @vlplot()+ pdf3+ pdf1 + pdf2
+
+    return pdfs
+    
+#     xs  = collect(-10:0.1:40)
+#     z  = pdf(μ,xs)
+# 	w  = pdf(ν,xs)
+# 	# y  = z*scale+w*(1-scale)
+# 	xt = xs*scale + Tp.(xs)*(1-scale)
+
+#     pdf1 = @vlplot(:line,x={xt,type="quantitative",scale={domain=[-10,40]}},
+# 			y={w,type="quantitative",scale={domain=[0,0.25]}},color={value=colormu})
+
+    return pdf1
+end
 
 
-# ╔═╡ 753a6bc3-bdaf-4807-bef0-18171e4f2910
+# ╔═╡ 64862f33-db02-445c-b83a-8e4b9c35d9d0
+p3 = plotInterpolation(μ,ν,otplan(μ,ν),"blue","red",1-t);
 
-
-# ╔═╡ 60c9d728-2c4b-4c12-b55a-9ec4e2cf0dd2
-
+# ╔═╡ 04c8df6b-c8d2-47a3-965c-25d7bbb7e44f
+[p2+p1 p3]
 
 # ╔═╡ Cell order:
 # ╟─8eec5c9e-bef6-11eb-282c-297b67ffdd26
 # ╟─b9e7b154-9fa1-4821-bc45-f4fc334ca045
 # ╟─7f7b005b-16a9-4c81-b154-5d4274d1d61c
 # ╟─78ec8d37-6e18-47c7-9b3b-d2355a060eb0
-# ╠═f1b625cc-48b0-4567-8588-08b0e6145cec
-# ╠═3e1a0dc2-6d70-4b9a-afb5-fdee4983a2a8
-# ╠═77b8cc32-92c7-4822-831c-c2ce17ead071
 # ╠═685fa3c8-c3bb-42aa-ad79-d73b7dd4a292
-# ╠═458e0b3a-8277-4616-b19f-d197beb3ad66
-# ╠═30512da5-2a0b-439e-a70d-32d38d7b928b
-# ╠═753a6bc3-bdaf-4807-bef0-18171e4f2910
-# ╠═60c9d728-2c4b-4c12-b55a-9ec4e2cf0dd2
+# ╠═04c8df6b-c8d2-47a3-965c-25d7bbb7e44f
+# ╟─458e0b3a-8277-4616-b19f-d197beb3ad66
+# ╟─0d6c295b-3dc9-45b6-ab2a-d12b0cff9eb2
+# ╟─30512da5-2a0b-439e-a70d-32d38d7b928b
+# ╟─64862f33-db02-445c-b83a-8e4b9c35d9d0
+# ╟─753a6bc3-bdaf-4807-bef0-18171e4f2910
+# ╟─77b8cc32-92c7-4822-831c-c2ce17ead071
+# ╟─3e1a0dc2-6d70-4b9a-afb5-fdee4983a2a8
+# ╟─a728d84e-a3de-4234-a28a-1456f949d075
