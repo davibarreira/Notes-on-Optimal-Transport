@@ -40,7 +40,7 @@ Let's start with some definitions.
 **Def (Metric Derivative)**: For a curve $\omega:[0,1] \to X$, the metric derivative
 of $\omega$ at time $t$, denoted by $|\omega'|(t)$, is
 ```math
-|\omega'|(t) := \lim_{h \to 0} \frac{d(\omega(t+h),\omega(t)}{|h|}
+|\omega'|(t) := \lim_{h \to 0} \frac{d(\omega(t+h),\omega(t))}{|h|}
 ```
 
 **Def (Absolute Continuity)**: A curve $\omega:[0,1] \to X$ is said to be
@@ -206,12 +206,12 @@ plot(p2,p3)
 # ╟─685fa3c8-c3bb-42aa-ad79-d73b7dd4a292
 # ╟─04c8df6b-c8d2-47a3-965c-25d7bbb7e44f
 # ╠═458e0b3a-8277-4616-b19f-d197beb3ad66
-# ╠═0d6c295b-3dc9-45b6-ab2a-d12b0cff9eb2
-# ╠═30512da5-2a0b-439e-a70d-32d38d7b928b
-# ╠═64862f33-db02-445c-b83a-8e4b9c35d9d0
-# ╠═753a6bc3-bdaf-4807-bef0-18171e4f2910
-# ╠═77b8cc32-92c7-4822-831c-c2ce17ead071
-# ╠═3e1a0dc2-6d70-4b9a-afb5-fdee4983a2a8
-# ╠═a728d84e-a3de-4234-a28a-1456f949d075
-# ╠═d6fc9a57-446a-47ef-ba0f-b1eb20b36d05
-# ╠═f618c774-6ff9-4ea7-942b-4eb8009b73ac
+# ╟─0d6c295b-3dc9-45b6-ab2a-d12b0cff9eb2
+# ╟─30512da5-2a0b-439e-a70d-32d38d7b928b
+# ╟─64862f33-db02-445c-b83a-8e4b9c35d9d0
+# ╟─753a6bc3-bdaf-4807-bef0-18171e4f2910
+# ╟─77b8cc32-92c7-4822-831c-c2ce17ead071
+# ╟─3e1a0dc2-6d70-4b9a-afb5-fdee4983a2a8
+# ╟─a728d84e-a3de-4234-a28a-1456f949d075
+# ╟─d6fc9a57-446a-47ef-ba0f-b1eb20b36d05
+# ╟─f618c774-6ff9-4ea7-942b-4eb8009b73ac
