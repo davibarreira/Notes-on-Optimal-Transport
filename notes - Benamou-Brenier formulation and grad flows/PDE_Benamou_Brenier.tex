@@ -1,0 +1,736 @@
+In these notes we aim at proving the so called Benamou-Brenier formulation of Optimal Transport. Formally this result in summarized in the following formula.
+\begin{equation}
+\label{Benamou-Brenier_informal}
+\tag{BB}
+\frac{1}{2}W^2_2(\rho_0, \rho_1) 
+= 
+\inf_{(\rho, v)}
+\left\{
+\int_0^1\int_{\Omega}\left|v(t,x)\right|^2 \dd \rho_t(x)\dd t: 
+\begin{array}{c}
+\partial_t \rho_t + \nabla\cdot\left(\rho_t v_t\right) = 0\\
+\rho(0,\cdot) = \rho_0, \ \rho(1, \cdot) = \rho_1 
+\end{array}
+\right\}
+\end{equation}
+
+The present notes will the presentation from \cite{ambrosio2008gradient},\cite{santambrogio2015optimal}. There exists a huge literature concerning the topic, however the author believes that either the references present the results in a too informal way, or with a excessively heavy theoretical machinery. Our goal will be to present the following Theorem \ref{theorem.Benamou-Brenier} in a precise way, in the sequel we will discuss the key points in the statement of the Theorem so that we are able to clarify the connection between the formula \eqref{Benamou-Brenier_informal} and the geodesics in the Wasserstein spaces $\left(\mathcal{P}_p(\Omega), W_p\right)$. 
+\begin{theorem}{(Benamou-Brenier Formula)}
+	\label{theorem.Benamou-Brenier}
+	Let $\rho_0, \rho_1$ be probability measures in the space of probability measures with finite $p$-moments, $\mathcal{P}_p(\Omega)$, for $p>1$. Then the following characterization of the p-Wasserstein distance holds
+	\begin{equation*}
+	\frac{1}{p}W^p_p(\rho_0, \rho_1) 
+	= 
+	\inf_{(\rho, v)}
+	\left\{
+	\int_0^1\int_{\Omega}\left|v(t,x)\right|^p \dd \rho_t(x)\dd t: 
+	\begin{array}{c}
+	(\rho_t)_{t \in [0,1]} \text{ is A.C.}, \\
+	(\rho_t, v_t)_{t \in [0,1]} \text{ solve \eqref{continuity_equation}},\\
+	\rho(0,\cdot) = \rho_0, \ \rho(1, \cdot) = \rho_1 
+	\end{array}
+	\right\},
+	\end{equation*}
+	where the inf is taken over family of probability measures $(\rho_t)_{t \in [0,1]}$ which are {\em absolutely continuous} (A.C.) in the Wasserstein space $\left(\mathcal{P}_p(\Omega), W_p\right)$. Furthermore, the tuple of measures and velocities $(\rho_t, v_t)_{t \in [0,1]}$ are such that $v_t \in L^p(\rho_t;\mathbb{R}^d)$ and solve the {\em Continuity Equation} \eqref{continuity_equation} 
+	\begin{equation}
+	\label{continuity_equation}
+	\tag{CE}
+	\partial_t \rho_t + \nabla\cdot\left(\rho_t v_t\right) = 0
+	\end{equation}
+	in the weak sense. 
+\end{theorem} 
+
+Before the proof of Theorem \eqref{theorem.Benamou-Brenier} of this result, we need to understand the key concepts and the properties of the elements in its statement. Our objectives before setting out for the proof are threefold:
+\begin{enumerate}
+	\item Understand what are AC curves in the general context of metric spaces, as this corresponds to the space where we are minimizing; 
+	\item What means for $(\rho_t, v_t)_{t \in [0,1]}$ to solve \eqref{continuity_equation} and what properties can we expect from the solutions;
+	\item Which are the geodesics in $(\mathcal{P}_p(\Omega), W_p)$? 
+	\item Draw a relation between the minimizer of the optimization problem given by the Benamou-Brenier formulation and the geodesics in the Wasserstein sapces. 
+\end{enumerate} 
+
+\subsection{A.C. curves in metric spaces $(X,d)$} 
+In $\mathbb{R}^d$, we say a function $f:[0,T] \to \mathbb{R}^d$ is absolutely continuous if it is a.e. differentiable and its derivative belongs in $L^1\left([0,T], \mathbb{R}^d\right)$. If we are working in a general metric space $(X,d)$, however, we cannot define A.C. curves this way, since to define an equivalent notion of derivative requires the structure of a vector space.\footnote{We will see however that we can still define the "norm" of the derivative.}
+
+However, for functions on euclidean spaces, we can always write that 
+\begin{equation*}
+|f(t) - f(s)| \le \int_s^t |\dot{f}(r)|\dd r,
+\end{equation*} 
+as long as $f$ has an derivative a.e. defined. This motivates the following definition. 
+
+\begin{definition}
+	Let $(X,d)$ be a metric space and a curve over $X$, $\omega : [0,T] \to X$. We say that $\omega$ is an A.C. curve if there exists some $g \in L^1([0,T])$ such that, for $t > s$
+	\begin{equation*}
+	d\left(\omega(t), \omega(s)\right) \le \int_s^t g(r)\dd r.
+	\end{equation*}
+	Let $\text{AC}([0,T];X)$, or merely $\text{AC}(X), \text{AC}$ when there is no ambiguity concerning the metric space and/or time intervals, denote the space of all absolutely continuous curves from $[0,T]$ assuming values in $X$.  
+\end{definition}
+\begin{remark}
+	If $g$ is a constant, then the curve $\omega$ is Lipschitz continuous. 
+\end{remark}
+
+As we have mentioned before, we can not define an derivative of $\omega$ as 
+\begin{equation}
+\dot{\omega}(t) = \lim_{h \to 0} \frac{\omega(t+h) - \omega(t)}{h}
+\end{equation}
+since the quantity $\omega(t+h) - \omega(t)$ does not make sense in a metric space. Instead, we can define the {\em metric derivative}
+\begin{equation}
+\label{metric_derivative}
+|\dot{\omega}|(t) := \lim_{h \to 0} \frac{d(\omega(t+h), \omega(t))}{h}.
+\end{equation}
+Indeed, the class of A.C. curves always admits a metric derivative as we shall prove in the following theorem. 
+
+\begin{theorem}
+	\label{theorem.AC_metric_derivative}
+	Let $(X,d)$ be a separable, bounded, metric space. Then for all A.C. curves $\omega :[0,T] \to X$
+	\begin{equation*}
+	|\dot{\omega}|(t) := \lim_{h \to 0} \frac{d(\omega(t+h), \omega(t))}{h}.
+	\end{equation*}
+	exists $\mathcal{L}^1([0,T])$-a.e., the function $t \mapsto |\dot{\omega}|(t)$ is integrable and $|\dot{\omega}|(\cdot)$ is the minimal integral modulus of continuity of $\omega$, which implies that 
+	\begin{equation}
+	d(\omega(t),\omega(s)) = \int_s^t |\dot{\omega}|(r)\dd r.
+	\end{equation} 
+\end{theorem}
+\begin{proof}
+	Let $\left(x_n\right)_{n \in \mathbb{N}}$ be a dense sequence in $(X,d)$ and define $d_n(t):= d(x_n, \omega(t))$, for each $n \in \mathbb{N}$. Then, it is clear that $d_n : [0,T] \to \mathbb{R}_+$ is an AC curve since 
+	\begin{align*}
+		|d_n(t) - d_n(s)| = |d(x_n, \omega(t)) - d(x_n, \omega(s))|\\
+		\le d(\omega(t),\omega(s))), 
+	\end{align*} 
+	so that it has the same modulus of continuity of $\omega$. In particular, $d_n(\cdot)$ is a.e. differential in $[0,T]$. Setting 
+	\begin{equation*}
+		|\dot{\omega}(t)| := \sup_{n \in \mathbb{N}} d_n'(t),
+	\end{equation*}
+	we will prove that this supremum coincides with the metric derivative of $\omega$. In other words, it a.e. coincides with the limit 
+	\begin{equation*}
+		\lim_{s \to t} \frac{d(\omega(s), \omega(t))}{|s - t|}.
+	\end{equation*}
+	It suffices to check that 
+	\begin{equation*}
+		\limsup_{s \to t} \frac{d(\omega(s), \omega(t))}{|s - t|} \le |\dot{\omega}(t)| \le \liminf_{s \to t} \frac{d(\omega(s), \omega(t))}{|s - t|}, \text{ for a.e. $t \in [0,T]$.}
+	\end{equation*}
+	
+	The first inequality is proven as follows: from the density of $(x_n)_{n \in \mathbb{N}}$ we have 
+	\begin{align*}
+		d(\omega(s), \omega(t)) 
+		&= \sup_{n \in \mathbb{N}} |d_n(s) - d_n(t)|\\ 
+		&= \sup_{n \in \mathbb{N}} \int_s^td'_n(r) \dd r\\
+		&\le \int_s^t \left(\sup_{n \in \mathbb{N}} d'_n(r)\right)\dd r\\
+		&= \int_s^t |\dot{\omega}(r)|\dd r.
+	\end{align*}
+	By Lebesgue's differentiation theorem we have that for all Lebesgue points of $|\dot{\omega}(t)|$
+	\begin{equation*}
+		\limsup_{s \to t} \frac{d(\omega(s), \omega(t))}{|s - t|} \le \lim_{s \to t} \frac{1}{|s - t|} \int_s^t |\dot{\omega}(r)|\dd r = |\dot{\omega}(t)|. 
+	\end{equation*}
+	
+	The second inequality comes from the same observation that $d(\omega(s), \omega(t))) 
+	= \sup_{n \in \mathbb{N}} |d_n(s) - d_n(t)|$, implying that we can always write $d(\omega(s), \omega(t))) 
+	\ge |d_n(s) - d_n(t)|$ and therefore, dividing both sides by $|s - t|$, taking the liminf we have 
+	\begin{equation*}
+		\liminf_{s \to t} \frac{d(\omega(s), \omega(t))}{|s - t|} \ge \sup_{n \in \mathbb{N}} \liminf_{s \to t} \frac{|d_n(s) - d_n(t)|}{|s - t|} = \sup_{n \in \mathbb{N}} = |\dot{\omega}(t)| \text{ for a.e. $t \in [0,T]$.}
+	\end{equation*}
+\end{proof}
+
+We can also prove that 
+\begin{equation}
+\label{length}
+\text{Length}(\omega) 
+:= \sup
+\left\{
+\sum_{k = 1}^n d(\omega(t_{k -1}), \omega(t_{k})): 
+0 = t_0 < t_1 < \dots < t_n = 1
+\right\}
+= \int_0^1|\dot{\omega}|(t)\dd t \end{equation}
+
+With this first discussion, we have the necessary tools to define the notion of {\em geodesics} and {\em constant speed geodesics} in metric spaces. 
+
+\begin{definition}
+	\label{definition.geodesic}
+	Given a metric space $(X,d)$ and two points $x_0, x_1 \in X$, we say an A.C. curve is a geodesic if it attends the following infimum 
+	\begin{equation}
+	\inf 
+	\left\{
+	\int_0^1 |\dot{\omega}|(t)\dd t: 
+	\begin{array}{c}
+	\omega :[0,1] \to X \text{ is A.C.}\\
+	\omega(0) = x_0, \ \omega(1) = x_1.
+	\end{array}
+	\right\}
+	\end{equation}
+	If $\omega$ is such a curve, we say it is a geodesic joining $x_0$ and $x_1$. 
+\end{definition}
+
+We are particularly interested in constant speed geodesics, {\em i.e.} geodesics with constant metric derivative ($|\dot{\omega}| \equiv$ const). In fact, such geodesics are the minimizers, provided that they exist, of the following minimization problem
+\begin{equation}
+\label{const_speed_geodesic}
+\min \left\{
+\int_0^1 |\dot{\omega}|^p(t)\dd t: 
+\begin{array}{c}
+\omega :[0,1] \to X \text{ is A.C.}\\
+\omega(0) = x_0, \ \omega(1) = x_1.
+\end{array}
+\right\}
+\end{equation}
+for $p>1$. Indeed, we can easily check that the minimizers for \eqref{const_speed_geodesic} are constant speed geodesics using Jensen's inequality
+\begin{equation*}
+\left(\min_{\omega \in \text{AC}}\text{Length}(\omega)\right)^p
+\le 
+\left(\int_0^1|\dot{\omega}|(t)\dd t\right)^p
+\le 
+\int_0^1 |\dot{\omega}|^p(t)\dd t
+\end{equation*}
+where the second inequality is actually an equality if and only if the integrand $|\dot{\omega}|^p(\cdot)$ is constant. Hence taking the infimum over all $\omega \in$ AC on the r.h.s. we get an lower bound with $\left(\min_{\omega \in \text{AC}}\text{Length}(\omega)\right)^p$, which is attained for the curve with constant metric derivative having this same value. In particular, since this curve has minimal length, it is a geodesic with constant speed. 
+
+Hence we have proven that
+\begin{equation}
+\tilde \omega \in \argmin_{\omega \in \text{AC}} \int_0^1|\dot{\omega}|^p(t)\dd t
+\end{equation}
+if and only if $\tilde \omega$ is a geodesic with constant speed. 
+
+\subsection{The Continuity Equation}
+In this section we want to further precise what it means for a curve of probability measures to solve the PDE given by \eqref{continuity_equation}. In fact, we will see that there are two equivalent definitions for the relaxed notion of solution to this PDE, which we will call {\em weak solutions} and {\em solutions in the sense of distributions}. 
+
+\begin{definition}[Weak solution for \eqref{continuity_equation}]
+	\label{definition.weak_solution}
+	We say that a the tuple $(\mu_t, v_t)_{t \in [0,T]}$ solve \eqref{continuity_equation} in the weak sense if for all $\varphi \in C^1_c(\Omega)$
+	\begin{equation}
+	t \mapsto \int_{\Omega}\varphi(x)\dd \mu_t(x), \text{ is an A.C. curve in time}
+	\end{equation}
+	and 
+	\begin{equation}
+	\frac{\dd}{\dd t} \int_{\Omega}\varphi\dd \mu_t =
+	\int_{\Omega}\nabla \varphi\cdot v_t\dd \mu_t \text{ for a.e. $t \in [0,T]$}.
+	\end{equation}
+\end{definition}
+
+\begin{definition}[Solution for \eqref{continuity_equation} in the sense of distributions]
+	\label{definition.solution_distributions}
+	We say that a the tuple $(\mu_t, v_t)_{t \in [0,T]}$ solve \eqref{continuity_equation} in the sense of distributions {\em with fixed boundary conditions} if for all $\psi \in C^1([0,T]\times \Omega)$ it holds that 
+	\begin{equation}
+	\int_0^1\left(\int_{\Omega}\partial_t\psi \dd\mu_t + \int_{\Omega}\nabla\psi\cdot v_t\dd\mu_t\right)\dd t = \int_{\Omega}\psi(1,\cdot)\dd\mu_1 - \int_{\Omega}\psi(0,\cdot)\dd\mu_0.
+	\end{equation}
+	We say that a the tuple $(\mu_t, v_t)_{t \in [0,T]}$ solve \eqref{continuity_equation} in the sense of distributions {\em with free boundary conditions} if for all $\psi \in C^1_c((0,T)\times \Omega)$ it holds that 
+	\begin{equation}
+	\int_0^1\left(\int_{\Omega}\partial_t\psi \dd\mu_t + \int_{\Omega}\nabla\psi\cdot v_t\dd\mu_t\right)\dd t = 0.
+	\end{equation}
+\end{definition}
+
+Let us discuss the physical meaning of \eqref{continuity_equation} and give an explicit solution for this PDE. Consider a velocity field $v = v(t,x)$ depending on time and space and let a particle move according to this field starting from the position $x$. Then, if $y_x(t)$ denotes the position of this particle at time $t$, it solves the following ODE
+\begin{equation}
+\label{ODE}
+\tag{ODE}
+\left\{
+\begin{array}{l}
+\dot{y}_x(t) = v(t, y_x(t)),\\
+y_x(0) = x.
+\end{array}
+\right. 
+\end{equation}
+Under suitable conditions, {\em e.g.} $v$ being Lipschitz, \eqref{ODE} has a unique solution for all $t \in [0,T]$ and we can define the mapping 
+\begin{equation}
+\label{ODE.flow}
+\begin{array}{rl}
+Y_t: \Omega &\to \Omega\\
+x & \mapsto y_x(t).
+\end{array}
+\end{equation}
+Define the family of measures $\mu_t:= (Y_t)_{\#}\mu_0$. 
+\begin{proposition}
+	\label{proposition.CE_explicit_sol}
+	The tuple $(\mu_t, v_t)_{t \in [0,T]}$, with $\mu_t: (Y_t)_{\#}\mu_0$, is a weak solution for the continuity equation \eqref{continuity_equation}. 
+\end{proposition}
+\begin{proof}
+	It follows with a simple computation:
+	\begin{align*}
+	\frac{\dd}{\dd t}\int_{\Omega}\varphi \dd \mu_t 
+	&= \frac{\dd}{\dd t}\int_{\Omega}\varphi \dd (Y_t)_{\#}\mu_0 
+	= \frac{\dd}{\dd t}\int_{\Omega}\varphi\left(Y_t(x)\right) \dd\mu_0\\
+	&= \int_{\Omega}\nabla\varphi\left(Y_t(x)\right)\cdot \dot{Y}_t(x) \dd\mu_0 
+	= 
+	\int_{\Omega}\nabla\varphi\left(Y_t(x)\right)\cdot v_t(Y_t(x)) \dd\mu_0\\
+	&= \int_{\Omega}\nabla\varphi\left(x\right)\cdot v_t(x) \dd(Y_t)_{\#}\mu_0\\
+	&= \int_{\Omega}\nabla\varphi\left(x\right)\cdot v_t(x) \dd\mu_t
+	\end{align*}
+\end{proof}
+
+\subsection{Geodesics in $\mathcal{P}_p(\Omega)$ are solutions of the Continuity Equation}
+
+Now, let us answer the 3-rd question: {\bf \em Which are the geodesics in $(\mathcal{P}_p(\Omega), W_p)$?} More importantly, given two measures $\mu_0, \mu_1 \in \mathcal{P}_p(\Omega)$, can we always find a geodesic joining them? This is equivalent to asking if $(\mathcal{P}_p(\Omega), W_p)$ is a {\em geodesic space}. 
+
+If we can hope to construct an geodesic between any two measures in such space, we should try to use objects that are well defined for no matter the choice of such measures. Indeed, using Monge's optimal maps is not a good idea\footnote{ Although we will see shortly that this particular case will have interesting properties liked to the continuity equation.} since Monge's problem does not always admits a solution. On the other hand, the optimal transport plan from Kantorovitch's problem always exists. 
+
+With this idea in mind, given $\mu_0, \mu_1 \in \mathcal{P}_p(\Omega)$ for $p > 1$, let $\gamma \in \Pi(\mu_0, \mu_1)$ denote the optimal transport plan with the cost $c(x,y) = |x-y|^p$. Define the map $\pi_t$ as 
+\begin{equation*}
+\begin{array}{rl}
+\pi_t: \Omega\times \Omega &\to \Omega \\
+(x,y)&\mapsto (1-t)x + ty.
+\end{array}
+\end{equation*}
+Set $\mu_t := \pi_{t,\#}\gamma$. 
+
+\begin{lemma}
+	\label{lemma.characterization_const_speed_geo}
+	The family $(\mu_t)_{t \in [0,1]}$ defined as $\mu_t := \pi_{t,\#}\gamma$, where $\gamma$ is an optimal coupling between $\mu_0$ and $\mu_1$ is a constant speed geodesic joining $\mu_0$ and $\mu_1$. 
+\end{lemma}
+\begin{proof}
+	First let us show that
+	\begin{equation*}
+	W_p(\mu_s, \mu_t) \le |t-s|W_p(\mu_0, \mu_1).
+	\end{equation*}
+	It is easy to check that the map 
+	\begin{equation*}
+	\gamma_{s,t} := (\pi_s, \pi_t)_{\#}\gamma \in \Pi(\mu_s, \mu_t). 
+	\end{equation*}
+	Indeed, if $\pi_X$ denotes the projection onto the first variable, we have that 
+	$$
+	\pi_{X,\#}\left((\pi_s, \pi_t)_{\#}\gamma\right) 
+	= 
+	\pi_{X}\circ(\pi_s, \pi_t)_{\#}\gamma = \pi_{s,\#}\gamma =: \mu_s.
+	$$ 
+	So, since $\gamma$ solves the Kantorovitch problem defining $W_p(\mu_0, \mu_1)$, we can always write
+	\begin{align*}
+	W^p_p(\mu_s, \mu_t) 
+	&\le \int_{\Omega\times \Omega} |x - y|^p\dd \gamma_{s,t} 
+	= \int_{\Omega\times \Omega} |x - y|^p\dd (\pi_s, \pi_t)_{\#}\gamma(x,y)\\
+	&= \int_{\Omega\times \Omega} |\pi_s(x,y) - \pi_t(x,y)|^p\dd \gamma(x,y)\\
+	&= |t-s|^p \int_{\Omega\times \Omega} |x-y|^p\dd \gamma(x,y)\\
+	&= |t-s|^pW_p^p(\mu_0, \mu_1).
+	\end{align*}
+	We can actually do better; it holds that $W_p(\mu_s, \mu_t) = |t-s|W_p(\mu_0, \mu_1)$. Using the triangle inequality we have that 
+	\begin{align*}
+	W_p(\mu_0, \mu_1) 
+	&\le W_p(\mu_0, \mu_s) + W_p(\mu_s, \mu_t) + W_p(\mu_t, \mu_1)\\
+	&\le (s - 0)W_p(\mu_0, \mu_1) + W_p(\mu_s, \mu_t) + (1- t)W_p(\mu_0, \mu_1).
+	\end{align*} 
+	Which gives the converse inequality, {\em e.g.} $W_p(\mu_0, \mu_1) \le |t - s|W_p(\mu_s, \mu_t)$.
+	
+	In addition, if we compute the metric derivative of $\left(\mu_t\right)_{t \in [0,1]}$, we obtain 
+	\begin{equation*}
+	|\dot{\mu}|(t) = \lim_{h \to 0^+} \frac{W_p(\mu_{t+h}, \mu_{t})}{h} = W_p(\mu_0, \mu_1),
+	\end{equation*}
+	for all $t \in [0,1]$. 
+\end{proof}
+This shows that the Wasserstein space is a geodesic space, {\em i.e.} given two measures, we can always find a geodesic connecting them. However, we are particularly interested in the case where an optimal transport map between $\mu_0$ and $\mu_1$ exists, for instance if we take $\mu_0$ to be absolutely continuous w.r.t. the Lebesgue measure. 
+
+If $T$ denotes the optimal map for the transport problem between $\mu_0$ and $\mu_1$, then defining $T_t := (1-t)\text{id} + tT$, and the measures $(\mu_t)_{t \in [0,1]}$, then analogous computations show that this family constitute a constant speed geodesic connecting $\mu_0, \mu_1$. 
+
+We claim that $\mu_t$ solves \eqref{continuity_equation} with an appropriated velocity field, let us try to compute it heuristically. From our previous computations, we can expect that the geodesic will have a constant velocity along the curve, so let's guess the speed will satisfy 
+\begin{equation}
+v_t(T_t(x)) = T(x) - x,
+\end{equation}
+that is, the velocity at any point in the geodesic at some time $t$ will correspond to the difference of initial and final positions. Some direct properties are draw from the optimality of $T$, e.g. 
+\begin{equation}
+W_p^p(\mu_0, \mu_1) = \int_{\Omega}|T(x) - x|^p\dd\mu_0 = \int_{\Omega}|v_t(T_t(x))|^p\dd\mu_0 = \int_{\Omega}|v_t(x)|^p\dd\mu_t,
+\end{equation}  
+in particular, this curve satisfies 
+\begin{equation}
+|\dot{\mu}|(t) = \norm{v_t}^p_{L^p(\mu_t)} = W_p^p(\mu_0, \mu_1).
+\end{equation}
+In addition, it is easy to check that $(\mu_t, v_t)$ solve \eqref{continuity_equation} using the characterization from \ref{proposition.CE_explicit_sol} by just checking that the map $T_t(\cdot)$ corresponds to the flow \eqref{ODE.flow} of the ODE with velocity field $v_t$ defined above. Indeed, it reduces to checking 
+\begin{equation}
+\frac{\dd}{\dd t}T_t(x)= T(x) - x =: v_t(T_t(x)).
+\end{equation}
+
+Therefore, the velocity field we are looking for is $v_t(x) := (T - \text{id})\circ T_t^{-1}$, provided that $T_t$ is invertible. It turns out that this is the case, regardless of the invertibility of the optimal map $T$, as long as the cost from the optimal transport problem that gives $T$ is of the form $c(x,y) = h(x-y)$, with $h$ strictly convex. This is the case for the p-Wasserstein distances with $p>1$. 
+
+\begin{lemma}[\cite{santambrogio2015optimal}, Lemma 4.22]
+	\label{lemma.invertibily_Tt}
+	Let $\gamma$ be an optimal transport plan between $\mu_0$ and $\mu_1$ for a transport
+	cost $c(x, y) =  h(x-y)$ where $h : \mathbb{R}^d \to \mathbb{R}$ is a strictly convex function, and suppose
+	that it is induced by a transport map $T$. Choose a representative of $T$ such that
+	$(x, T(x)) \in \text{supp}(\gamma)$ for all $x$. Then the map $x \mapsto (1 - t)x + tT(x)$ is injective for $t \in (0,1)$.
+\end{lemma}
+\begin{proof}
+	Fill later. 
+\end{proof}
+
+This way, the velocity field we wanted is well defined and we can summarize this discussion in the following Theorem.
+\begin{theorem}
+	\label{theorem.geodesics_by_transportmap}
+	Let $\mu_0, \mu_1 \in \mathcal{P}_p(\Omega)$ with $p> 1$ be such that there exists an optimal map $T$ which realizes the optimal transport problem associated with $W_p^p(\mu_0, \mu_1)$. Setting $T_t:= (1-t)\text{id} + tT$, then the family $(\mu_t, v_t)_{t \in [0,1]}$ given by 
+	\begin{equation}
+	\mu_t:= T_{t, \#}\mu_0, \quad v_t := (T - \text{id})\circ T_t^{-1}
+	\end{equation}
+	solve \eqref{continuity_equation}, correspond to a constant speed geodesic joining $\mu_0$,$\mu_1$ and satisfy the following
+	\begin{equation}
+	|\dot{\mu}|(t) = \norm{v_t}^p_{L^p(\mu_t)} = W_p^p(\mu_0, \mu_1), \quad \text{for all $t \in [0,1]$.}
+	\end{equation} 
+\end{theorem} 
+
+\subsection{AC curves in $\mathcal{P}_p(\Omega)$ and the Benamou-Brenier formulation}
+
+Now we are almost in position to prove Theorem \ref{theorem.Benamou-Brenier}. In fact, given Theorem \ref{theorem.geodesics_by_transportmap} it is no surprise that the Benamou-Brenier formula holds, using it our approach is to approximate any given measures with a absolutely continuous sequence that will admit an optimal transport map and use the velocities defined as above for these approximations. 
+
+There is still two major issues that need to be addressed:
+\begin{enumerate}
+	\item The minimization is done over the space of AC curves, so in order for it to be equivalent to the minimization over solutions of the transport equation \eqref{continuity_equation}, we need to establish a link between all the AC curves and \eqref{continuity_equation}, namely prove the existence of a suitable velocity field for each AC curve in $\mathcal{P}_p(\Omega)$.  
+	\item The functional 
+	$$
+	(\mu, v) \mapsto \frac{1}{p}\int_0^1\int_{\Omega}\left|v(t,x)\right|^p \dd \rho_t(x)\dd t
+	$$
+	is not jointly convex, hence we will have to introduce an change of variables $(\mu, v)\mapsto (\mu, E):= (\mu, \mu v)$ and study the following characterization 
+	\begin{equation*}
+	\frac{1}{p}\frac{|E|^p}{\mu^{p-1}} = \sup 
+	\left\{
+	a\mu + b\cdot E: 
+	\begin{array}{c}
+	a \in \mathbb{R},\\
+	b \in \mathbb{R}^d,
+	\end{array}
+	\quad 
+	a +\frac{1}{q}|b|^q \le 0
+	\right\}.
+	\end{equation*} 
+	This way, the new optimization problem will become 
+	\begin{equation*}
+	\inf_{(\rho, E)}
+	\left\{
+	\B_p(\rho_t, E_t): 
+	\begin{array}{c}
+	(\rho_t)_{t \in [0,1]} \text{ is A.C.}, \\
+	(\rho_t, E_t)_{t \in [0,1]} \text{ solve \eqref{continuity_equation}},\\
+	\rho(0,\cdot) = \rho_0, \ \rho(1, \cdot) = \rho_1 
+	\end{array}
+	\right\}, 
+	\end{equation*}
+	where $\B_p$, which stands for Benamou-Brenier, is a  functional over $\mathcal{M}\left([0,1]\times\Omega\right)\times \mathcal{M}^N\left([0,1]\times\Omega\right)$ defined by 
+	\begin{equation*}
+	\B_p(\rho, E):= \sup
+	\left\{
+	\int_{\Omega}a\dd \rho + \int_{\Omega} b\cdot \dd E:
+	\begin{array}{l}
+	(a,b) \in C([0,1]\times\Omega, \mathbb{R}\times \mathbb{R}^N),\\
+	a + \frac{1}{p}|b|^p \le 0 \text{ pointwise.}
+	\end{array}
+	\right\}
+	\end{equation*}
+\end{enumerate} 
+
+We will start with the functional $\B_p$ since it will be used in the connection between the AC curves and \eqref{continuity_equation}. 
+\begin{lemma}[\cite{santambrogio2015optimal}, Lemma 5.17]
+	\label{lemma.benamou_brenier_functional}
+	Let $\disp K_q:=\left\{
+	(a,b) \in \mathbb{R}\times \mathbb{R}^N: a + \frac{1}{q}|b|^q \le 0
+	\right\}$. Then, for $(t,x) \in \mathbb{R}\times \mathbb{R}^N$, it holds that
+	\begin{equation*}
+		\sup_{a,b \in K_q} at + b\cdot x =
+		\left\{
+		\begin{array}{rl}
+			\frac{1}{p}\frac{|x|^p}{t^{p-1}},& \text{ for $t>0$;}\\
+			0,& \text{ for $t=0, x=0$};\\
+			+\infty,& \text{ if $t=0$ and $x\neq 0$, or if $t< 0$}
+		\end{array}
+		\right.
+	\end{equation*}
+	where $\disp \frac{1}{p} + \frac{1}{q} = 1$. 
+\end{lemma}
+\begin{proof}
+	\underline{\bf Case $t>0$:} Let us fix some vector $b$ and find the $a$ which maximizes $at + b\cdot x$ given the constraint that $(a,b) \in K_q$. Since $t>0$, the maximal $a$ is given by $\disp -\frac{1}{q}|b|^q$. Hence the supremum assumes the form 
+	\begin{align*}
+		t\left(\sup_{b \in \mathbb{R}^N}b\cdot\frac{x}{t} -\frac{1}{q}|b|^q \right) = t\frac{1}{p}\left|\frac{|b|^p}{t^p}\right|,
+	\end{align*} 
+	where the second inequality is given by the explicit formula for the Legendre transform of $\disp \frac{1}{p}|\cdot|$. 
+	
+	\underline{\bf Case $t=0, x=0$:} Trivially gives $0$. 
+	
+	\underline{\bf Case $t=0$ and $x \neq 0$ or $t < 0$:} If $t= 0$, then we can just take a sequence $b_n = nx$ and $a_n = \disp  -\frac{1}{q}|b|^q$, so that every the pair $(a_n, b_n) \in K_q$ and letting $n \to +\infty$, we get the desired result. 
+	
+	For $t < 0$, again we can just take $a$ going to $+\infty$. 
+\end{proof}
+
+Before establishing the desired relation between geodesics in the Wasserstein space and the solutions of the transport equation, we will state some more properties of the Benamou-Brenier funtional $\B_p$ in the following Proposition. Its proof is technical and can be skipped, however let's remark that these properties are one of the crucial ingredients of Theorem \ref{theorem.relation_geodesics_CE}. 
+
+\begin{proposition}[Properties of $\B_p$, \cite{santambrogio2015optimal}]
+\label{proposition.properties_Bp}
+	The functional $\B_p$ is convex and lower semi-continuous on the
+	space $\mathcal{M}\left([0,1]\times\Omega\right) \times \mathcal{M}^N\left([0,1]\times\Omega\right)$ for the weak-* convergence. Moreover, the following properties
+	hold:
+	\begin{enumerate}
+	\item $\B_p (\rho, E) \ge 0$;
+	
+	\item $\disp \B_p(\rho, E) = \sup\left\{ \int a\dd \rho + \int b\cdot \dd E: (a,b) \in L^{\infty}([0,1]\times \Omega; K_q) \right\}$;
+	\item if both $\rho$ and $E$ are absolutely
+	´ continuous w.r.t. a same positive measure, we can write 
+	$$
+	\B_p(\rho, E) = \int \frac{1}{p}\frac{|E(x)|^p}{\rho(x)^{p-1}}\dd \lambda(x).
+	$$, where we identify $\rho$ and $E$
+	with their densities w.r.t. 
+	
+	\item $\B_p(\rho, E) < +\infty$ only if $\rho \ge 0$ and $E \ll \rho$,
+	´
+	\item for $\rho \ge 0$ and $E \ll \rho$, there exists some velocity field $v$ such that $E = v\cdot \rho$ and $\B_p(\rho, E) = \disp \frac{1}{p}\int|v|^p\dd \rho$;
+	\item If $\Omega = \mathbb{R}^N$ , $\rho^{\varepsilon} = \rho \star \eta_{\varepsilon}$ and $E^{\varepsilon} = E\star \eta_{\varepsilon}$ (for standard even mollifying kernel
+	$\eta$ ), then we have $\B_p\left(\rho^{\varepsilon}, E^{\varepsilon}\right) \le \B_p(\rho, E)$.
+	\end{enumerate}
+\end{proposition} 
+
+\begin{theorem}
+	\label{theorem.relation_geodesics_CE}
+	Let $\left(\mu_t\right)_{t \in [0,1]}$ be an AC curve in $\left(\mathcal{P}_p(\Omega), W_p\right)$ for $p>1$ and $\Omega \subset \mathbb{R}^N$ compact. For a.e. $t \in [0,1]$ there is a vector field $v_t \in L^p(\mu_t; \mathbb{R}^N)$ such that
+	\begin{enumerate}
+		\item $\partial_t \mu_{t} + \nabla \cdot(v_t \mu_{t}) = 0$ in the weak sense;
+		\item For a.e. $t \in [0,1]$, it holds $\norm{v_t}_{L^p(\mu_{t})} \le \left|\dot{\mu}\right|(t)$.
+	\end{enumerate} 
+
+	Conversely, if $\left(\mu_t\right)_{t \in [0,1]}$ is a curve in $\left(\mathcal{P}_p(\Omega), W_p\right)$ such that 
+	$$
+	v_t \in L^p(\mu_{t}; \mathbb{R}^N), \text{ with } \int_0^1\norm{v_t}_{L^p(\mu_{t})}\dd t < +\infty \text{ and } \partial_t\mu_{t} + \nabla\cdot(v_t\mu_t) = 0,
+	$$
+	in the weak sense. Then $\left(\mu_t\right)_{t \in [0,1]}$ is an AC curve and $\left|\dot{\mu}\right|(t) \le \norm{v_t}_{L^p(\mu_t)}$. 
+\end{theorem}
+\begin{proof}
+	{\bf AC implies $(\mu_t, v_t)$ solves \eqref{continuity_equation}:}
+	
+	Let us begin with the with a AC curve. Up to a change of variables in time, we can assume it is a Lipschitz continuous curve. As we have discussed previously if $\mu_0, \mu_1 \ll \mathcal{L}^N$, then there is some optimal transport map with $\mu_1 = T_{\#}\mu_0$ and the interpolation $\mu_t := T_{t,\#}\mu_0$ with $T_t = ((1-t)\text{id} + tT)$, such that $(\mu_t, v_t)$ solve \eqref{continuity_equation} with 
+	$$
+		v_t = (T-\text{id})\circ T_t^{-1}.
+	$$
+	
+	Therefore, the strategy for the proof is exploiting this connection between geodesics and the continuity equation and to ensure that we can always take the optimal transport map, we will use an approximation argument. So, take a {mollifier} $\eta_k$ with compact support over $B(0,1/k)$ and define 
+	$$
+		\eta^k_{i/k} := \eta_k\star \mu_{i/k}, \quad \text{for $i=0,\dots, j$ and $k \in \mathbb{N}$.}
+	$$
+	
+	Since the optimal transport map $T^{i,k}$ between $\mu^k_{i/k}$ and $\mu^k_{i+1/k}$ exists, we know from Theorem \ref{theorem.geodesics_by_transportmap} that the constant speed geodesics are given by interpolations. The speed at a position $T^{i,k}(x)$ is
+	$$
+		\frac{\Delta \text{displacement}}{\Delta t} = \frac{T^{i,k}(x) - x}{1/k} \Rightarrow v^{i,k}:=k\left(T^{i,k} - \text{id}\right)
+	$$
+	and at some time $t$, since we have constant speed, 
+	$$
+		v^{i,k}_t = k\left(T^{i,k} - \text{id}\right)\circ \left(T^{i,k}_t\right)^{-1}
+	$$
+	where $T^{i,k}_t$ transports particles from time $0$ to $t$ and must be chosen such that:
+	\begin{enumerate}
+		\item it is invective so that $\left(T^{i,k}_t\right)^{-1}$ exists; 
+		\item $\disp \frac{\dd }{\dd t}T^{i,k}_t = v^{i,k}$, so that that $\mu^{k}_t := \left(T^{i,k}_t\right)_{\#}\mu^k_{i/k}$ solves \eqref{continuity_equation} with constant speed. 
+	\end{enumerate}
+	Clearly $T^{i,k}_t := (i+1 -kt)\text{id} + (kt - i)T^{i,k}$ satisfies such conditions. Therefore let us compute 
+	\begin{align*}
+		\norm{v^k_t}^p_{L^p\left(\mu_t^k\right)} 
+		&= \int_{\Omega} |v^k_t|^p\dd \mu^k_t = k^p\int_{\Omega} \left|(T^{i,k} - \text{id})\circ \left(T^{i,k}_t\right)^{-1}(x)\right|^p\dd \mu^k_t(x)\\
+		&= k^p\int_{\Omega} \left|(T^{i,k} - \text{id})\circ\left(T^{i,k}_t\right)^{-1}(x)\right|^p\dd \left(T^{i,k}_{t,\#}\mu^k_{i/k}\right)(x)\\
+		&= k^p\int_{\Omega} \left|T^{i,k} - \text{id}\right|^p\dd\mu^k_{i/k}\\
+		&= k^pW_p^p\left(\mu^k_{i/k},\mu^k_{i+1/k}\right) = k^pW_p^p\left(\eta_k\star\mu^k_{i/k},\eta_k\star\mu^k_{i+1/k}\right)\\
+		&\le k^pW_p^p\left(\mu^k_{i/k},\mu^k_{i+1/k}\right) \le 
+		 \int_{i/k}^{i+1/k}\left|\dot{\mu}\right|^p(t)\dd t.
+	\end{align*} Where the last estimate comes from Jensen's inequality and from the definition of geodesics as the inf of AC curves over $[0,1]$ by taking $\omega(t) = \mu\left(\frac{t}{k} + \frac{i}{k}\right)$, which gives 
+	\begin{align*}
+		k^pW_p^p\left(\mu^k_{i/k},\mu^k_{i+1/k}\right)
+		&\le  k^p\left(\int_{0}^{1}\left|\dot{\omega}\right|(t)\dd t\right)^p \le \int_{i/k}^{i+1/k}\left|\dot{\mu}\right|^p(t)\dd t.
+	\end{align*}
+	This gives an easy estimate for  $\norm{v^k}^p_{L^p(\Omega\times(a,b))}$, let $i_a, i_b$ be such that $i_a \le ka < i_a+1$ and the same for $i_b$. Then 
+	\begin{align*}
+		\int_a^b\norm{v^k}^p_{L^p\left(\mu^k_t\right)}\dd t  
+		&\le 
+		\sum_{i = i_a}^{i_b} \int_{i/k}^{i+1/k}\norm{v^k}^p_{L^p\left(\mu^k_t\right)}\dd t
+		\le \int_a^b\left|\dot{\mu}\right|^p(t)\dd t + \frac{2\text{Lip}(\mu)}{k}. 
+	\end{align*}
+	
+	Now define the momentum measures $E^k \in \mathcal{M}^N\left(\Omega \times [0,1]\right)$ as 
+	$$
+		\int \phi\cdot \dd E^k = \int_0^1\int_{\Omega} \phi(t,x)\cdot v^k_t(x)\dd \mu^k_t(x)\dd t
+	$$
+	for all $\phi \in C\left(\Omega \times [0,1]\right).$ Then we can estimate $\norm{E^k}$ as follows 
+	$$
+	\norm{E^k} = \int_0^1\norm{v^k_t}_{L^1(\mu^k_1)}\dd t \le \left(\int_0^1\norm{v^k_t}^p_{L^p(\mu^k_1)}\dd t\right)^{1/p} \le C. 
+	$$
+	Then from Banach-Alaoglu Theorem, we can assume, up to the extraction of a subsequence, that $E^k \xrightharpoonup{*} E$. In addition, we can also prove that 
+	$$\mu^k \xrightarrow[k\to +\infty]{} \mu \text{ in $C\left([0,T]; \mathcal{P}_p(\Omega)\right)$}$$
+	with the following estimation 
+	$$
+	W_p(\mu^k_t, \mu_t) \le W_p(\mu^k_t, \mu^k_{i/k}) + W_p(\mu^k_{i/k}, \mu_{i/k}) + W_p(\mu^k_{i/k}, \mu_t),
+	$$
+	where $t \in [i/k, i+1/k]$. The first term can be estimated as 
+	$$
+		W_p(\mu^k_t, \mu^k_{i/k}) = \left|t - \frac{i}{k}\right|\norm{v^{i,k}}_{L^p(\mu^k_{i/k})} \le \frac{C}{k}. 
+	$$
+	The same estimation follows for the second and third terms from properties of the convolution and from the Lipschitz continuity of the curve $(\mu_t)_{t \in [0,1]}$. 
+	
+	Therefore, as $\partial_t \mu^k + \nabla\cdot E^k = 0$, since \eqref{continuity_equation} is a linear PDE, standard weak convergence arguments give that $\partial_t \mu + \nabla \cdot E = 0$. So, from the weak-l.s.c. of the Benamou-Brenier functional, we have 
+	$$
+	\frac{1}{p}\int_0^1\norm{v_t}^p_{L^p(\mu_t)}\dd t = \B_p(\mu, E) \le \liminf_{k \to \infty} \B_p(\mu^k, E^k) = \frac{1}{p}\int_0^1\norm{v_t^k}^p_{L^p(\mu_t^k)}\dd t < +\infty, 
+	$$  
+	and from the properties of $\B_p$, we have that the limit measures are such that $E \ll \mu$ and therefore there exists some velocity field $v_t \in L^p(\mu_t)$ such that $E_t = v_t\mu$. 
+	
+	The only thing left to check is that $\norm{v_t}_{L^p(\mu_{t})} \le \left|\dot{\mu}\right|(t)$. Indeed, using the l.s.c. of $\B_p$ from above, but now integrating over some interval $(a,b)$, we have 
+	$$
+		\int_a^b\norm{v_t}^p_{L^p(\mu_t)}\dd t \le \int_a^b\left|\dot{\mu}\right|(t)\dd t.
+	$$
+	Taking $t_0$ a Lebesgue point of both $t \mapsto \norm{v_t}^p_{L^p(\mu_t)}$ and $t \mapsto \left|\dot{\mu}\right|(t)$, we obtain
+	$$
+	\norm{v_t}^p_{L^p(\mu_t)} = 
+	\lim_{\varepsilon \to 0} 
+	\frac{1}{\varepsilon}
+	\int_{t_0 - \varepsilon}^{t_0 + \varepsilon}\norm{v_t}^p_{L^p(\mu_t)}\dd t 
+	\le 
+	\lim_{\varepsilon \to 0}
+	\frac{1}{\varepsilon}
+	\int_{t_0 - \varepsilon}^{t_0 + \varepsilon}\left|\dot{\mu}\right|(t)\dd t 
+	= \left|\dot{\mu}\right|(t).
+	$$
+	
+	{\bf AC implies $(\mu_t, v_t)$ solves \eqref{continuity_equation}:}
+	
+	Given $(\mu, E)$ satisfying \eqref{continuity_equation} such that $E_t = v_t\mu_t$ for some velocity field $v_t \in L^p(\mu_t)$, by regularization techniques we can construct $(\mu^{\varepsilon}_t, v^{\varepsilon}_t)$ such that
+	$$
+		\partial_t\mu^{\varepsilon}_t + \nabla\cdot\left(v^{\varepsilon}_t\mu^{\varepsilon}_t\right) = 0,
+	$$
+	for each $t$, $\mu^{\varepsilon}_t$ is absolutely continuous w.r.t. $\mathcal{L}^N$ and this pair converges to $(\mu, v)$ as $\varepsilon \to 0$. 
+	
+	Then let $T_s$ denote the optimal transport map from $\mu^{\varepsilon}_0$ to $\mu^{\varepsilon}_s$, it is clear that 
+	$$
+		\gamma = (T_t, T_{t+h})_{\#}\mu^{\varepsilon}_0 \in \Pi(\mu^{\varepsilon}_t, \mu^{\varepsilon}_{t+h}),
+	$$
+	so that it holds 
+	\begin{align*}
+		W_p(\mu^{\varepsilon}_t, \mu^{\varepsilon}_{t+h}) 
+		&\le
+		\int_{\Omega\times\Omega} |x -y|^p\dd\gamma =  \int_{\Omega} \left|T_t(x) - T_{t+h}(x)\right|^p\dd\mu^{\varepsilon}_0\\
+		\le&
+		|h|^{1 - 1/p}
+		\left(
+		\int_{\Omega} \int_t^{t+h}\left|\frac{\dd}{\dd s}T_s(x)\right|^p\dd s\dd\mu^{\varepsilon}_0
+		\right)^{1/p}\\
+		=&
+		|h|^{1 - 1/p}
+		\left(
+		\int_{\Omega} \int_t^{t+h}\left|v^{\varepsilon}_s(y_x(s))\right|^p\dd s\dd\mu^{\varepsilon}_0
+		\right)^{1/p}\\
+		=&
+		|h|^{1 - 1/p}
+		\left(
+		\int_{\Omega} \int_t^{t+h}\left|v^{\varepsilon}_s(x)\right|^p\dd s\dd\mu^{\varepsilon}_s
+		\right)^{1/p}\\
+	\end{align*}
+	where $y_x(t)$ is the solution of $\dot{y} = v^{\varepsilon}_t(y)$ at time $t$ and initial condition $x$ and we have used that since $\mu^{\varepsilon}_t = T_{t,\#}\mu^{\varepsilon}_0$ and $\mu^{\varepsilon}_t, \mu^{\varepsilon}_t$ solve \eqref{continuity_equation}, then $\disp T_t: x\mapsto y_x(t)$ from the uniqueness of the weak solution of the transport equation. 
+	
+	Since the regularized velocity field satisfies $\int_{\Omega} \left|v^{\varepsilon}_t(x)\right|^p\dd\mu^{\varepsilon}_t \le \norm{v_t}_{L^p(\mu_t)}$, we have proven that
+	$$
+	\frac{W_p(\mu^{\varepsilon}_t, \mu^{\varepsilon}_{t+h})}{|h|} 
+	\le 
+	\left(
+	\frac{1}{|h|}
+	 \int_t^{t+h}
+	 \norm{v_t}_{L^p(\mu_t)}\dd t
+	\right)^{1/p}.
+	$$
+	Passing to the limit as $\varepsilon \to 0$, we recover $W_p(\mu_t, \mu_{t+h}$ and then as $h \to 0$, we obtain 
+	\begin{equation*}
+		\left|\dot{\mu}\right|(t) \le \norm{v_t}_{L^p(\mu_t)}
+	\end{equation*}
+	for every $t$ which is a Lebesgue point of $t \mapsto \disp \norm{v_t}_{L^p(\mu_t)}$. Therefore we conclude that the curve $(\mu_t)_{t \in [0,1]}$ is AC. 
+\end{proof}
+
+\subsection{Proof of Benamou-Brenier Formula}
+
+With all the results from the previous section, we are in position to prove Theorem \ref{theorem.Benamou-Brenier}. 
+
+{\em Proof of the Benamou-Brenier formula:}
+
+Starting with the characterization of constant speed geodesics in the Wasserstein space, we know that
+\begin{align*}
+	W^p_p(\mu, \nu) 
+	&= \left(
+	\min 
+	\left\{
+		\int_0^1 |\dot{\rho}|(t)\dd t: 
+		\begin{array}{c}
+			\text{ $\rho_t$ is AC},\\
+			\rho_0 = \mu, \ \rho_1 = \nu. 
+		\end{array}
+	\right\}
+	\right)^p \\
+	&= \min 
+	\left\{
+		\int_0^1 |\dot{\rho}|^p(t)\dd t:
+		\begin{array}{c}
+		\text{ $\rho_t$ is AC},\\
+		\rho_0 = \mu, \ \rho_1 = \nu. 
+		\end{array}
+	\right\}.
+\end{align*}
+
+However, from the relation between AC curves and the transport equation established in Theorem \ref{theorem.relation_geodesics_CE}, this minimization can be rewritten as
+\begin{equation*}
+	W^p_p(\mu, \nu) 
+	= \min 
+	\left\{
+	\B_p(\rho, E):
+	\begin{array}{c}
+	\partial_t \rho_t + \nabla \cdot E_t = 0,\\
+	\rho_0 = \mu, \ \rho_1 = \nu. 
+	\end{array}
+	\right\}.
+\end{equation*} 
+
+In the minimization, we can take the $(\rho, E)$ such that $\B_p(\rho, E) < +\infty$ without altering the minimum and for all such pairs, we know that $E \ll \rho$. In addition, for each $\rho$'s, there exists some $v_t \in L^p(\rho_t, \mathbb{R}^N)$ such that $E_t = v_t \rho_ t$ for a.e. $t \in [0,1]$. We conclude that 
+\begin{equation*}
+	W^p_p(\mu, \nu) 
+	= \min 
+	\left\{
+	\int_0^1 \norm{v_t}^p_{L^p(\rho_t)}\dd t:
+	\begin{array}{c}
+	\partial_t \rho_t + \nabla \cdot \left(\rho_t v_t\right) = 0,\\
+	\rho_0 = \mu, \ \rho_1 = \nu. 
+	\end{array}
+	\right\}.
+\end{equation*}
+\findem
+
+\begin{remark}
+	Notice that, now that we know that any AC curve in the Wasserstein space must have a corresponding velocity field such that the pair solves \eqref{continuity_equation}, the restriction of $\rho_t$ being AC in Theorem \eqref{theorem.Benamou-Brenier} becomes redundant. It was kept so that the relation with \eqref{continuity_equation} and the set over which we minimize become evident. 
+\end{remark}
+\subsection{Wasserstein Gradient Flows}
+In this section we will explore the classical theory of Wasserstein Gradient Flows and give the conceptual steps to prove the convergence of the JKO scheme (see the definition in \eqref{JKO} below) to the weak solution of a suitable evolution PDE. 
+
+Let $\mathcal{F}$ be a convex and l.s.c. functional over the space of probability measures $\mathcal{P}(\Omega)$. For simplicity, we assume $\Omega$ to be a compact subset of $\mathbf{R}^d$. We are interested in studying the following iterative scheme
+\begin{equation}
+	\label{JKO}
+	\tag{JKO}
+	\rho_{k+1}^{\tau} \in \argmin_{\rho \in \mathcal{P}(\Omega)} \F(\rho) + \frac{1}{2\tau}W^2_2(\rho, \rho^{\tau}_{k}), \quad \text{$\rho^{\tau}_0 = \rho_0$ given}. 
+\end{equation}
+
+Given this sequence, we want to check if a (suitable) interpolation of the obtained sequence $\left(\rho^{\tau}_k\right)_{k \in \mathbb{N}}$ converges to the appropriate notion of weak solution of the evolution PDE
+\begin{equation}
+	\partial_t\rho - \text{div}\left(\rho \nabla \frac{\delta \F}{\delta \rho}(\rho)\right) = 0, \quad \rho(0) = \rho_0. 
+\end{equation}
+
+In the seminal work \cite{jordan1998variational} and following works {\color{blue} ADD OTHER REFERENCES}, one can divide the structure of the this convergence result in the following steps:
+\begin{enumerate}
+	\item[1] {\bf \color{red} Obtaining optimility conditions:} For each subproblem from \eqref{JKO}, one characterizes the solution $\rho^{\tau}_{k+1}$ with an equation of a Euler-Lagrange equation of the form
+	\begin{equation*}
+		\frac{\delta \mathcal{F}}{\delta \rho}(\rho^{\tau}_{k+1}) + \frac{\psi^{\tau}_{k+1}}{\tau} \equiv \text{const, on $\{\rho^{\tau}_{k+1} > 0\}$}. 
+	\end{equation*}
+	\item[2] {\bf \color{blue} Interpolation in time:}
+		\begin{enumerate}
+			\item [2.1] {\bf \color{blue} Interpolations:} Definition of two different interpolations
+			\begin{align*}
+				&\left(\rho^{\tau}, E^{\tau}\right): \text{ obtained by staircase interpolation}\\
+				&\left(\tilde\rho^{\tau}, \tilde E^{\tau}\right): \text{ obtained by interpolation with geodesics}
+			\end{align*}
+			\item[2.2] {\bf \color{blue} Compactness:}
+				\begin{align*}
+					\left(\rho^{\tau}, E^{\tau}\right) &\xrightharpoonup{*} \left(\rho, E\right)\\
+					\left(\tilde\rho^{\tau}, \tilde E^{\tau}\right) &\xrightharpoonup{*} \left(\tilde\rho, \tilde E\right)
+				\end{align*}
+			\item[2.3] {\bf \color{blue} Reconciliation:}
+			$$
+			(\rho, E) = (\tilde \rho, \tilde E). 
+			$$
+			\item[2.4] {\bf \color{blue} Limit diffusion:}
+			$$
+				\partial_t \tilde \rho^{\tau} + \nabla \cdot \tilde E^{\tau} = 0 \xrightarrow[\tau \to 0]{} \partial_t \rho + \nabla \cdot E = 0
+			$$
+		\end{enumerate}
+	\item[3] {\bf \color{red} Characterization pf the limiting momentum $E$:} Use the optimality conditions to characterize the limit $E$ as 
+	\begin{equation*}
+		E = - \rho \nabla \frac{\delta \F}{\delta \rho}(\rho). 
+	\end{equation*}
+\end{enumerate}
+
+All the substeps from 2.1 to 2.4 are obtained analogously for no matter the choice of the functional $\mathcal{F}$, then steps 1 and 3, however, require a more {\em ad. hoc.} approach. For instance, obtaining the Euler-Lagrange equations can vary greatly; if we are dealing with the entropy functional 
+$$
+\mathcal{F}(\rho) = \int\rho \log \rho \dd x, 
+$$
+then the solutions will always be absolutely continuous w.r.t. the Lebesgue measure, so that $\{\rho_k > 0\} = \Omega$ at every iteration. As we are interested in the case of the total variation functional $\TV$, the level sets become a more critial issue. 
+
+ 	Now our goal is to detail the interpolation step in a general framework, so that this modular analysis can be adapted to easier cases,{\em e.g.} the Fokker-Planck equation), or harder ones as in for the functional $\TV$. 

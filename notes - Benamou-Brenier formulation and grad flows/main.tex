@@ -1,0 +1,117 @@
+\documentclass{amsart}
+
+%\usepackage{authblk}
+\usepackage{amsthm,amsmath,amssymb,epsfig,graphicx,mathtools}
+\usepackage{hyperref}
+\usepackage{dsfont}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{url}
+%`\usepackage{comment}r
+%\usepackage[ruled]{algorithm2e}
+%\usepackage{algpseudocode}
+\usepackage[table]{xcolor}
+\usepackage[export]{adjustbox}
+%---------------------------------------------------------
+
+
+%\usepackage{showkeys}
+\usepackage[ulem=normalem,draft]{changes}
+%\usepackage{easyReview}
+\usepackage{cancel}
+\newcommand{\joao}{\textcolor{cyan}}
+
+
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               PAGE FORMAT
+\if {
+\hoffset=-1in
+\voffset=-1in
+\topmargin=2,75cm
+\headsep=1cm
+\oddsidemargin=2cm
+\evensidemargin=2cm
+\textwidth=13cm
+\textheight=18,5cm
+\tolerance=2000
+} \fi
+
+\if{
+%\hoffset=-0.5in
+\voffset=-1in
+\topmargin=2,75cm
+\headsep=1cm
+\oddsidemargin=1cm
+\evensidemargin=1cm
+\textwidth=16cm
+\textheight=20,5cm
+\tolerance=2500
+}\fi
+
+\numberwithin{equation}{section}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           FIGURES DIRECTORY %  \newcommand\Figdir{figures/}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           THEOREMS
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}{Assumption}
+\newtheorem{claim}{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             MACROS
+\input{macro}
+\def\TV{\text{TV}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{tocdepth}{2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            TITLE
+
+\title[]{Notes on the Benamou-Brenier formulation of Optimal Transport and geodesics in the Wasserstein space}
+
+\author{J.M. Machado}
+
+\date{\today}
+
+\begin{document}
+
+\begin{abstract}
+	 
+\end{abstract}
+\maketitle
+%\tableofcontents
+
+\section{Derivation of the PDE by Benamou-Brenier formula}
+\label{section.PDE_Benamou_Brenier}
+\input{PDE_Benamou_Brenier.tex}
+
+\appendix
+\section{Technical Lemmas}
+\label{appendix.technical_lemmas}
+\input{technical_lemmas.tex}
+
+%\section{Appendix}
+%\label{appendix}
+%\input{appendix.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+
+%%%%%%
+% Compile bibliography with: 
+%pdflatx main.tex; bibtex main; pdflatex.tex
+
+\end{document}

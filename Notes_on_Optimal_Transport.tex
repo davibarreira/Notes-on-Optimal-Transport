@@ -14,7 +14,9 @@
 
 \usepackage{optidef}
 \usepackage{setspace}
-\usepackage{amsfonts, amsmath, amsthm, amssymb}
+\usepackage{amsfonts, amsthm,amsmath,amssymb,epsfig,graphicx,mathtools}
+\usepackage{physics}
+\usepackage{dsfont}
 \usepackage{bbm}
 \usepackage{bm}
 \usepackage{mathtools}
@@ -67,6 +69,8 @@
 \newtheorem{summary}{Summary}
 \newenvironment{prf}[1][Proof]{\textbf{#1.} }{\qed}
 
+\input{macro}
+\def\TV{\text{TV}}
 
 %%%%%%%%%% BOOK INFORMATION %%%%%%%%%%
 \newcommand{\authorname}{Davi Barreira, João Miguel Machado}
@@ -92,6 +96,7 @@
 \mainmatter
 \newpage
 \include{optimal-transport-theory}
+\include{2-benamou-brenier}
 \bibliography{ref}
 
 \bibliographystyle{plainnat}
