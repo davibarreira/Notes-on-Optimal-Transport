@@ -19,7 +19,7 @@
 \contentsline {subsection}{\numberline {2.1.5}Proof of Benamou-Brenier Formula}{57}{subsection.2.1.5}%
 \contentsline {subsection}{\numberline {2.1.6}Wasserstein Gradient Flows}{58}{subsection.2.1.6}%
 \contentsline {chapter}{\numberline {3}Fluxo de Gradiente em Espaços de Wasserstein}{60}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Introdução aos Fluxos de Gradiente}{61}{section.3.1}%
+\contentsline {section}{\numberline {3.1}Introdução ao Fluxo de Gradiente}{61}{section.3.1}%
 \contentsline {chapter}{\numberline {4}Appendix}{65}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Auxiliary - Probability and Analysis}{65}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Auxiliary - Inequalities}{68}{section.4.2}%
