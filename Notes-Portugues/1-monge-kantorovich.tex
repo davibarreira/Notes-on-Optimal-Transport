@@ -1,0 +1,336 @@
+\newpage
+\section{Monge \& Kantorovich}
+
+Let's start by providing some definitions that will be used throughout this section.
+\begin{definition}
+  Given $(\Omega,\mathcal F)$ where $\mathcal F$ is a $\sigma$-algebra,
+  then, $\mu: \mathcal F \to [0,+\infty]$ is a measure if:
+  \begin{enumerate}[i)]
+    \item $\mu(\varnothing)=0$
+    \item $(A_n)_{n\in \mathbb N} \subset \mathcal F$ with
+          $A_j \cap A_i = \varnothing ,\ \forall i,j \in \mathbb N\implies
+            \mu(\cup_{n \in \mathbb N}A_n) = \sum_{n \in \mathbb N}\mu(A_n)$
+  \end{enumerate}
+  We say that $\mu$ is a probability measure if besides the two
+  properties above, we also have $\mu(\Omega) = 1$.
+\end{definition}
+
+\begin{definition}
+  We call $\mathcal P(X)$ the space of probability measures defined
+  on $(X,\mathcal F)$, where the $\sigma$-algebra $\mathcal F$
+  is implicit and usually refers to the Borel $\sigma$-algebra.
+\end{definition}
+
+\begin{definition}(Pushforward)
+  Let $(X,\mathcal F)$ and $(Y, \mathcal G)$ be measurable spaces, $T : X \to Y$ a measurable map
+  and $\mu \in \mathcal P(X)$. We call $T_\# \mu$ the
+  pushforward of $\mu$, where:
+  \begin{equation}
+    T_\#\mu(B) = \mu(T^{-1}(B)),\quad \forall B \in \mathcal G
+  \end{equation}
+\end{definition}
+
+\begin{theorem}
+  Let $T: X \to Y$ be a measurable map between
+  $(X, \mathcal F, \mu)$ and $(Y, \mathcal G)$. Then,
+  $T_\# \mu$ is a measure on $(Y, \mathcal G)$ and
+  $\forall f$ measurable and integrable with respect to
+  $T_\#\mu$ one has:
+  \begin{equation}
+    \int_Y f dT_\#\mu = \int_X f \circ T d\mu
+  \end{equation}
+  \label{thm:pushforward}
+\end{theorem}
+\begin{prf}
+  Let $f_n$ be a simple positive measurable function. Hence
+  \begin{equation*}
+    \begin{multlined}
+      f_n(y) = \sum^N_{i=0} a_i \mathbbm 1_{A_i}(y) \ \therefore
+      \int_Y f_n \ dT_\# \mu =
+      \sum^N_{i=0} a_i T_\# \mu(A_i) =
+      \sum^N_{i=0} a_i \mu(T^{-1}(A_i) )
+      \\
+      (f_n\circ T)(x) =
+      \sum^N_{i=0} a_i \mathbbm 1_{A_i}(T(x))=
+      \sum^N_{i=0} a_i \mathbbm 1_{T^{-1}(A_i)}(x)
+      \\
+      \therefore
+      \\
+      \int_X f_n \circ T \ d\mu =
+      \sum^N_{i=0} a_i \mu(T^{-1}(A_i) ) \\
+    \end{multlined}
+  \end{equation*}
+
+  Hence, $\int_X f_n \circ T \ d\mu = \int_Y f_n \ dT_\# \mu$.
+
+  Now, for a positive integrable measurable function
+  $f$, there exists a sequence
+  of positive simple functions such that $f_n \uparrow f$. Then,
+  by the Monotone Convergence Theorem,
+  \begin{align*}
+    \int_Y f \ dT_\# \mu =
+    \int_Y\lim_{n\to +\infty}  f_n \ dT_\# \mu & =
+    \lim_{n\to +\infty} \int_Y f_n \ dT_\# \mu =                                                 \\
+                                               & =\lim_{n\to +\infty}	\int_X f_n \circ T \ d\mu =
+    \int_Y f \ dT_\# \mu
+  \end{align*}
+
+  If $f$ is non-positive, just use the same argument by splitting
+  the negative and positive portions of the function.
+
+\end{prf}
+
+With these definitions, we can enunciate the so called Monge Problem,
+which is known as the motivating problem that gave birth to the field
+of Optimal Transport.
+
+\begin{definition} (Monge Problem)
+  Given two probability measures $\mu \in \mathcal P(X)$,
+  $\nu \in \mathcal{P}(Y)$ and a cost function
+  $c:X\times Y \to[0,+\infty]$, solve:
+  \begin{flalign}
+    (MP) &&
+    \inf
+    \left\{
+    \int_{X} c(x,T(x))d\mu \quad : \quad
+    T_\# \mu = \nu
+    \right\}&&
+  \end{flalign}
+
+\end{definition}
+
+In the Monge Problem, no mass can be split. Therefore, one can easily
+come up with situations in which there is no solution to the problem,
+as shown in \ref{fig:monge_map_example}. A viable solution $T$ to MP
+is called a \textbf{Transport Map}.
+\begin{figure}[H]
+  \centering
+  \def\svgscale{0.8}
+  \includesvg[inkscapelatex=false]{Figures/monge_map_example.svg}
+  \caption{Example of two Optimal Transport Problems. On the left, there exists an optimal transport
+    plan, while on the right there is no possible solution.}
+  \label{fig:monge_map_example}
+\end{figure}
+
+The Monge Problem is hard to solve, and, as we stated, it might not have
+a solution. Hence, this problem can be relaxed, becoming the so called
+Kantorovich Problem. This relaxation consists of allowing mass to be
+split, thus making the set of possible solutions larger.
+Before stating the Kantorovich Problem, let's
+introduce some more definitions.
+
+
+\begin{definition}(Projection and Marginal)
+  Let $\gamma \in \mathcal P(X\times Y)$ and $\pi_x: X \times Y \to X$
+  such that $\pi_x(x,y) = x, \forall (x,y) \in X\times Y$. Hence,
+  we say that $\pi_x$ is the projection operator on $X$. We then call
+  $(\pi_x)_\#\gamma = \mu$ the marginal distribution of $\gamma$ with
+  respect to $X$.
+
+  Equivalently, if for every measurable set $A \subset X$, we have
+  $\gamma(A\times Y) = \mu(A)$, then $\mu$ is the marginal of $\gamma$
+  with respect to $X$.
+
+  \begin{corollary}
+    \label{cor_marginals}
+    Given $\gamma \in \mathcal P(X \times Y)$, $\mu$ and $\nu$ are the
+    marginals in $X$ and $Y$, respectively $\iff$ For every $f,g$
+    integrable measurable non-negative functions, we have
+    $$
+      \int_{X\times Y} f+g \ d\gamma = \int_X f d\mu + \int_Y g d\nu
+    $$
+  \end{corollary}
+  \begin{prf}
+    $\implies$) Note that $(f \circ \pi_x)(x,Y) = f(\pi_x(x,Y))=f(x)$,
+    therefore,
+    $$
+      \int_{X\times Y} f(x) \ d\gamma = \int_{X \times Y} f \circ
+      \pi_x(x,y) \ d\gamma \underset{Theo. 1}{=} \int_X f \ d
+      (\pi_x)_\# \gamma = \int_X f \ d\mu
+    $$
+
+    $\impliedby$) If for all
+    integrable measurable non-negative functions $f,g$ we have
+    $$
+      \int_{X\times Y} f+g \ d\gamma = \int_x f d\mu + \int_Y g d\nu
+    $$
+    Then, for any $A \subset X$ measurable, make $f(x) = \mathbbm 1_A(x)$
+    and $g(y) =0$. Hence,
+    $$
+      \gamma(A\times Y) =
+      \int_{X \times Y} \mathbbm 1_{A \times Y}(x,y) \ d \gamma =
+      \int_{X \times Y} \mathbbm 1_A(x) \ d \gamma =
+      \int_{X} \mathbbm 1_A(x) \ d \mu = \mu(A)
+    $$
+
+  \end{prf}
+\end{definition}
+
+\begin{definition} (Coupling)
+  Let $(X,\mu)$ and $(Y,\nu)$ be probability spaces. For
+  $\gamma \in \mathcal{P}(X\times Y)$, we say that $\gamma$
+  is a coupling of $(\mu,\nu)$ if $(\pi_x)_\# \gamma = \mu$
+  and $(\pi_y)_\# \gamma = \nu$. Also, we call $\Pi(\mu,\nu)$
+  the set of \textbf{Transport Plans}:
+  \begin{equation}
+    \Pi(\mu,\nu) :=
+    \left \{
+    \gamma \in \mathcal{P}(X \times Y) \ :
+    \ (\pi_x)_\# \gamma = \mu \quad
+    \text{and} \quad
+    (\pi_y)_\# \gamma = \nu
+    \right \}
+  \end{equation}
+\end{definition}
+
+Finally, we can state the Kantorovich Problem.
+
+\begin{definition} (Kantorovich Problem)
+  Given two probability measures $\mu \in \mathcal P(X)$,
+  $\nu \in \mathcal{P}(Y)$ and a cost function
+  $c:X\times Y \to[0,+\infty]$, solve:
+  \begin{flalign}
+    (KP) &&
+    \inf
+    \left\{
+    \int_{X \times Y} c(x,y)d\gamma \ : \
+    \gamma \in \Pi(\mu,\nu)
+    \right\}&&
+    \label{eq:KP2}
+  \end{flalign}
+  \label{def:KP}
+\end{definition}
+
+One can prove that indeed every time the Monge Problem has a
+solution, so will the Kantorovich Problem. More than that,
+the minimal cost of both problems will indeed coincide.
+Note that when the Monge Problem has a solution $T:X\to Y$, then
+$\gamma	= (id,T)_\# \mu$ is a solution to the Kantorovich Problem.
+
+We stated in the beginning of this section that (KP) was a relaxed
+version of (MP). Let's now formalize this concept.
+
+\begin{definition}(Lower Semi-Continuity)
+  A function $f:X \to \mathbb R$ is lower semi-continuous (l.s.c) if
+  \begin{equation}
+    \forall x \in X, \ f(x) \leq
+    \underset{n\to +\infty}{\liminf}f(x_n)
+  \end{equation}
+  \label{def:lsc}
+\end{definition}
+
+\begin{definition}(Relaxation)
+  Given a metric space X and
+  functional $F:X \to\mathbb R \cup \{+\infty\}$ bounded below. We
+  call $\bar F : X \to \mathbb R \cup \{+\infty\}$ a of relaxation
+  of $F$ if:
+  \begin{equation}
+    \bar F(x) := \inf \left \{
+    \liminf_n F(x_n) \ : \ x_n \to x
+    \right\}
+  \end{equation}
+  Hence, $\bar F$ is the maximal functional $G$ where $G$ is
+  lower semi-continuous and $G \leq F$.
+\end{definition}
+
+Below in Figure \ref{fig:relaxation_ex}
+we present an example of a relaxation with the aim of improving
+the intuition regarding the definition. Note that, as a
+consequence of this definition, $\inf_x F = \inf_x \bar F$. Therefore,
+if we can prove that Kantorovich Problem is a relaxation of
+the Monge  Problem, we would get that
+$\inf \text{(KP)} = \inf \text{(MP)}$
+
+
+\begin{figure}[H]
+  \centering
+  \includesvg[inkscapelatex=false]{Figures/relaxation_example.svg}
+  \caption{Example of a function F and it's relaxation.}
+  \label{fig:relaxation_ex}
+\end{figure}
+
+To prove that indeed (KP) is a relaxation of (MP) under some conditions,
+we use the following theorem, for which the complete proof can be found
+on \citet{santambrogio2015optimal}.
+
+\begin{theorem}(Santambrogio 1.32)
+  Let $\Omega \subset \mathbb R^d$ compact, with
+  $c:\Omega\times \Omega: \to [0,+\infty]$ continuous and
+  $\mu \in \mathcal P(\Omega)$ atomless (i.e., for every
+  $x \in \Omega$, we have $\mu(\{x\}) = 0)$.
+  Then, the set of plans
+  $\gamma_T = (id, T)_\# \mu$ induced by the map $T$ is dense in
+  $\Pi(\mu,\nu)$.
+  \label{thm:dense_mp}
+\end{theorem}
+
+We can now prove the following:
+
+\begin{theorem}
+  For $\Omega \subset \mathbb R^d$ compact,
+  $c:\Omega\times \Omega: \to [0,+\infty]$ continuous and
+  $\mu \in \mathcal P(\Omega)$ atomless. Then, (KP) is a relaxation
+  of (MP).
+\end{theorem}
+\begin{prf}
+  First, let's restate the Monge Problem as
+  \begin{equation*}
+    \inf \{J(\gamma) \ : \ \gamma \in \Pi(\mu,\nu)\}
+  \end{equation*}
+  Where
+  \begin{equation*}
+    J(\gamma)  =
+    \begin{cases}
+      K(\gamma)=
+      \int_{\Omega} c(x,T(x)) \ d\mu =
+      \int_{\Omega \times \Omega}c \ d\gamma_T,
+              & \text{if } \gamma = \gamma_T \\
+      +\infty & \text{otherwise}
+    \end{cases}
+  \end{equation*}
+
+  Note that indeed minimizing $J$ is equal to minimizing the
+  Monge Problem, since we only consider the transport plans
+  $\gamma_T$ that coincide with the cost when using a transport map
+  $T$.
+
+  For $K(\gamma) = \int_{\Omega \times \Omega} c \ d\gamma$,
+  we can show that $K$ is continuous with respect to weak convergence (see \ref{def:weakconv}), since
+  \begin{align*}
+    \gamma_n \rightharpoonup \gamma \iff
+    \forall f \text{ continuous}, \int f d\gamma_n \to \int f d\gamma
+    \implies
+    \\
+    \implies
+    K(\gamma_n) = \int_{\Omega \times \Omega} c \ d\gamma_n \to
+    K(\gamma)\text{, for } c \text{ continuous.}
+  \end{align*}
+
+  Also, by the definition of $J$, for any $\gamma \in \Pi(\mu,\nu)$, then $K(\gamma) \leq J(\gamma)$.
+
+  By Theorem \ref{thm:dense_mp}, for any
+  $\gamma \in \Pi(\mu,\nu)$ we can create a sequence of
+  $\gamma_{T_n}\rightharpoonup \gamma$. And by the continuity
+  of $K$ with respect to weak convergence, we have that $J(\gamma_{T_n})=K(\gamma_{T_n})\to
+    K(\gamma)$. Therefore:
+  \begin{equation*}
+    \forall \gamma \in \Pi(\mu,\nu), \exists (\gamma_{T_n})\ : \
+    \liminf_{n\to +\infty} J(\gamma_{T_n})= K(\gamma)
+  \end{equation*}
+  Hence,
+  \begin{equation*}
+    \inf\{
+    \liminf_{n\to +\infty} J(\gamma_{n}) \ :
+    \ \gamma_n \to \gamma
+    \}\leq K(\gamma) \leq J(\gamma)
+  \end{equation*}
+
+  We can conclude that
+  \begin{equation*}
+    \inf\{
+    \liminf_{n\to +\infty} J(\gamma_{n}) \ :
+    \ \gamma_n \to \gamma
+    \} = K(\gamma)
+  \end{equation*}
+
+\end{prf}

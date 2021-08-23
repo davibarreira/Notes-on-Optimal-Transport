@@ -1,0 +1,12 @@
+\babel@toc {british}{}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces The figure illustrates the original Monge Problem, where all the mass is excavated from location $x$ is transported to a deterministic location $y$. The transport assignment map is represented by the arrow in green.}}{2}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces The figure illustrates the Optimal Transport Problem with the Kantorovich relaxation. The transportation assignment now can split the mass in blue, transporting it to many positions.}}{3}{figure.1.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Example of two Optimal Transport Problems. On the left, there exists an optimal transport plan, while on the right there is no possible solution.}}{7}{figure.1.3}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Example of a function F and it's relaxation.}}{9}{figure.1.4}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Comparison between Wasserstein distance and KL Divergence, based on \citet {montavon2016boltzmann}. On the left, there is a large overlap between the two distributions, but a large geometrical distance for a portion. On the right, there is much less overlap, but the whole distribution is geometrically closer. These two cases clearly highlight how $W_p$ incorporates geometrical information while $KL$ doesn't.}}{35}{figure.1.5}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Illustration of the algorithm for optimally transporting distribution $\mu $ in blue to distribution $\nu $ in red.}}{38}{figure.1.6}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Exemplo de subdiferencial.}}{62}{figure.3.1}%
+\addvspace {10\p@ }
