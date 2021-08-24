@@ -70,22 +70,26 @@
 \contentsline {definition}{\ifthmt@listswap Definition~3.1.2\else \numberline {3.1.2}Definition\fi \thmtformatoptarg {$\lambda $-Convexidade}}{61}{definition.3.1.2}%
 \contentsline {definition}{\ifthmt@listswap Definition~3.1.3\else \numberline {3.1.3}Definition\fi \thmtformatoptarg {$\lambda $-Subdiferencial}}{62}{definition.3.1.3}%
 \contentsline {definition}{\ifthmt@listswap Definition~3.1.4\else \numberline {3.1.4}Definition\fi \thmtformatoptarg {Subdiferencial Generalizado}}{62}{definition.3.1.4}%
-\contentsline {definition}{\ifthmt@listswap Definition~3.1.5\else \numberline {3.1.5}Definition\fi \thmtformatoptarg {Fluxo de Gradiente}}{62}{definition.3.1.5}%
+\contentsline {definition}{\ifthmt@listswap Definition~3.1.5\else \numberline {3.1.5}Definition\fi \thmtformatoptarg {Fluxo de Gradiente}}{63}{definition.3.1.5}%
+\contentsline {lemma}{\ifthmt@listswap Lemma~3.1.1\else \numberline {3.1.1}Lemma\fi }{63}{lemma.3.1.1}%
+\contentsline {theorem}{\ifthmt@listswap Theorem~3.1.1\else \numberline {3.1.1}Theorem\fi }{64}{theorem.3.1.1}%
+\contentsline {theorem}{\ifthmt@listswap Theorem~3.1.2\else \numberline {3.1.2}Theorem\fi }{64}{theorem.3.1.2}%
 \addvspace {10\p@ }
-\contentsline {definition}{\ifthmt@listswap Definition~4.1.1\else \numberline {4.1.1}Definition\fi }{65}{definition.4.1.1}%
-\contentsline {definition}{\ifthmt@listswap Definition~4.1.2\else \numberline {4.1.2}Definition\fi }{65}{definition.4.1.2}%
-\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.1\else \numberline {4.1.1}Theorem\fi }{65}{theorem.4.1.1}%
-\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.2\else \numberline {4.1.2}Theorem\fi }{66}{theorem.4.1.2}%
-\contentsline {corollary}{\ifthmt@listswap Corollary~4.1.1\else \numberline {4.1.1}Corollary\fi }{66}{corollary.4.1.1}%
-\contentsline {proposition}{\ifthmt@listswap Proposition~4.1.1\else \numberline {4.1.1}Proposition\fi }{66}{proposition.4.1.1}%
-\contentsline {definition}{\ifthmt@listswap Definition~4.1.3\else \numberline {4.1.3}Definition\fi }{66}{definition.4.1.3}%
-\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.3\else \numberline {4.1.3}Theorem\fi }{66}{theorem.4.1.3}%
-\contentsline {definition}{\ifthmt@listswap Definition~4.1.4\else \numberline {4.1.4}Definition\fi }{66}{definition.4.1.4}%
-\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.4\else \numberline {4.1.4}Theorem\fi }{67}{theorem.4.1.4}%
-\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.5\else \numberline {4.1.5}Theorem\fi }{67}{theorem.4.1.5}%
-\contentsline {definition}{\ifthmt@listswap Definition~4.1.5\else \numberline {4.1.5}Definition\fi }{67}{definition.4.1.5}%
-\contentsline {definition}{\ifthmt@listswap Definition~4.1.6\else \numberline {4.1.6}Definition\fi }{67}{definition.4.1.6}%
-\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.6\else \numberline {4.1.6}Theorem\fi }{67}{theorem.4.1.6}%
-\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.7\else \numberline {4.1.7}Theorem\fi }{67}{theorem.4.1.7}%
-\contentsline {lemma}{\ifthmt@listswap Lemma~4.2.1\else \numberline {4.2.1}Lemma\fi }{68}{lemma.4.2.1}%
-\contentsline {lemma}{\ifthmt@listswap Lemma~4.2.2\else \numberline {4.2.2}Lemma\fi }{69}{lemma.4.2.2}%
+\contentsline {definition}{\ifthmt@listswap Definition~4.1.1\else \numberline {4.1.1}Definition\fi }{67}{definition.4.1.1}%
+\contentsline {definition}{\ifthmt@listswap Definition~4.1.2\else \numberline {4.1.2}Definition\fi }{67}{definition.4.1.2}%
+\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.1\else \numberline {4.1.1}Theorem\fi }{67}{theorem.4.1.1}%
+\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.2\else \numberline {4.1.2}Theorem\fi }{68}{theorem.4.1.2}%
+\contentsline {corollary}{\ifthmt@listswap Corollary~4.1.1\else \numberline {4.1.1}Corollary\fi }{68}{corollary.4.1.1}%
+\contentsline {proposition}{\ifthmt@listswap Proposition~4.1.1\else \numberline {4.1.1}Proposition\fi }{68}{proposition.4.1.1}%
+\contentsline {definition}{\ifthmt@listswap Definition~4.1.3\else \numberline {4.1.3}Definition\fi }{68}{definition.4.1.3}%
+\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.3\else \numberline {4.1.3}Theorem\fi }{68}{theorem.4.1.3}%
+\contentsline {definition}{\ifthmt@listswap Definition~4.1.4\else \numberline {4.1.4}Definition\fi }{68}{definition.4.1.4}%
+\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.4\else \numberline {4.1.4}Theorem\fi }{69}{theorem.4.1.4}%
+\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.5\else \numberline {4.1.5}Theorem\fi }{69}{theorem.4.1.5}%
+\contentsline {definition}{\ifthmt@listswap Definition~4.1.5\else \numberline {4.1.5}Definition\fi }{69}{definition.4.1.5}%
+\contentsline {definition}{\ifthmt@listswap Definition~4.1.6\else \numberline {4.1.6}Definition\fi }{69}{definition.4.1.6}%
+\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.6\else \numberline {4.1.6}Theorem\fi }{69}{theorem.4.1.6}%
+\contentsline {theorem}{\ifthmt@listswap Theorem~4.1.7\else \numberline {4.1.7}Theorem\fi }{69}{theorem.4.1.7}%
+\contentsline {lemma}{\ifthmt@listswap Lemma~4.2.1\else \numberline {4.2.1}Lemma\fi }{70}{lemma.4.2.1}%
+\contentsline {lemma}{\ifthmt@listswap Lemma~4.2.2\else \numberline {4.2.2}Lemma\fi }{71}{lemma.4.2.2}%
+\contentsline {lemma}{\ifthmt@listswap Lemma~4.2.3\else \numberline {4.2.3}Lemma\fi \thmtformatoptarg {Lemma de Gronwall}}{71}{lemma.4.2.3}%

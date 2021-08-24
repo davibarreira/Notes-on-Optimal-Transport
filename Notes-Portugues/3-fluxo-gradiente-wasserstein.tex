@@ -3,7 +3,9 @@
 
 Neste capítulo mostraremos como EDPs podem ser expressadas como
 fluxos de gradiente em um espaço de Wasserstein
-(i.e. espaço métrico de medidas de probabilidades com distância de Wasserstein). A exposição é
+(i.e. espaço métrico de medidas de probabilidades com distância
+de Wasserstein)\footnote{A principal referência para este capítulo
+é \citet{santambrogio2017euclidean}.}. A exposição é
 focada em apresentar de maneira clara e sucinta o necessário para entendimento
 do assunto, sem provar os resultados mais refinados, o que tornaria o
 texto muito extenso e de difícil
@@ -41,6 +43,8 @@ obtidos nessa área para provar, por exemplo, existência e unicidade.
 
 \section{Introdução ao Fluxo de Gradiente}
 
+\subsection{Definições Iniciais}
+
 Antes de formalizar a ideia de fluxo de gradiente, vamos introduzir alguns
 conceitos de análise convexa que são necessárias para tratar
 do assunto de maneira rigorosa.
@@ -53,9 +57,10 @@ do assunto de maneira rigorosa.
         f(y) \geq f(x) + \langle p, y-x\rangle, \forall y \in \mathbb R^n
         \}.
     \end{equation}
+    Se $p \in \partial f(x)$, então $p$ é um subgradiente de $f$ no ponto $x$.
 \end{definition}
 A intuição por trás da definição
-de subdiferencial (ou subgradiente) é ilustrada na Figura \ref{fig:subdiferencial}.
+de subdiferencial é ilustrada na Figura \ref{fig:subdiferencial}.
 Note que se a função $f$ for convexa e diferenciável, teremos que $\partial f(x) = \{\nabla f(x)\}$.
 Porém, caso a função não seja convexa, não haverá essa garantia. Assim, é comum usar essa ideia de
 subdiferencial somente em funções convexas.
@@ -106,7 +111,9 @@ Podemos generalizar ainda mais essa noção de subdiferencial com a seguinte def
 
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{./Figures/subdiferencial}
-    \caption{Exemplo de subdiferencial.}
+    \caption{Exemplo de subdiferencial. Perceba que considerando
+    o subdiferencial generalizado, teríamos
+    $p_1 \in \partial_G f(0)$ e $p_2 \in \partial_G f(0)$ para as duas imagens.}
     \label{fig:subdiferencial}
 \end{figure}
 
@@ -114,7 +121,7 @@ Agora podemos definir de forma rigorosa o fluxo de gradiente.
 
 \begin{definition}[Fluxo de Gradiente]
     Seja $f:\mathbb R^n \to \mathbb R$.
-    Dizemos que $x:(0,+\infty) \to \text{Dom}(f)$ é um fluxo de gradiente
+    Assim, dizemos que $x:(0,+\infty) \to \text{Dom}(f)$ é um fluxo de gradiente
     de $f$ se $x \in \text{AC}_{\text{loc}}((0,+\infty), \mathbb R^n)$ e
     \begin{equation}
         x'(t) \in - \nabla_G f(x(t)), \quad \text{para } \lambda\text{-a.e } t \in (0,+\infty),
@@ -122,3 +129,97 @@ Agora podemos definir de forma rigorosa o fluxo de gradiente.
     onde $\lambda$ é a medida de Lebesgue. Note que dizemos que $x$ começa em $x_0$ se
     $\lim_{t \to 0^+} x(t) = x_0$.
 \end{definition}
+
+\subsection{Resultados Básicos de Existência e Unicidade}
+
+Uma vez introduzida a ideia de fluxo de gradiente, vamos agora provar alguns
+resultados básicos relacionados ao sistema de equações
+
+\begin{equation}
+    \begin{cases}
+        x'(t) \in -\partial F(x(t)), \ \text{para quase todo } t>0,\\
+        x(0)  = x_0.
+    \end{cases}
+    \label{eq:fluxograd}
+\end{equation}
+
+Veja que agora a função $F$ não é mais necessariamente derivável. Este cenário
+é bem menos restrito que o que apresentamos logo no início do capítulo.
+
+\begin{lemma}
+    Seja $f:\mathbb R^n \to \mathbb R \cup \{+\infty\}$ convexa, $p_1 \in \partial f(x_1)$
+    e $p_2 \partial f(x_2)$. Então
+    \begin{equation}
+        \langle p_1 - p_2, x_1 - x_2 \rangle \geq 0.
+    \end{equation}
+\end{lemma}
+\begin{prf}
+    Pela definição de subdiferencial, temos que
+    \begin{align*}
+        &p_1 \in \partial f(x_1) \implies f(x_2) \geq f(x_1) + \langle p_1, x_2 - x_1\rangle\\
+        &p_2 \in \partial f(x_2) \implies
+        f(x_1) \geq f(x_2) + \langle p_2, x_1 - x_2\rangle.
+    \end{align*}
+    Assim, somando as duas equações, temos que
+    \begin{align*}
+        &f(x_2) + f(x_1) \geq f(x_1) + f(x_2) +
+        \langle p_1, x_2 - x_1\rangle
+        \langle p_2, x_1 - x_2\rangle
+    \end{align*}
+    Rearranjando, obtemos
+    \begin{align*}
+        &0 \geq
+        \langle p_1,x_2 \rangle
+        -\langle p_2,x_1 \rangle
+        \langle p_2,x_1 \rangle
+        -\langle p_2,x_2 \rangle \\
+        &\implies
+        \langle p_1 - p_2 , x_1 - x_2 \rangle \geq 0.
+    \end{align*}
+\end{prf}
+
+\begin{theorem}
+    Seja $F:\mathbb R^n \to \mathbb R$ \textbf{convexa}, $x_0 \in \mathbb R^n$, e
+    $x_1$ e $x_2$ duas soluções de \eqref{eq:fluxograd}.
+    Então,
+    \begin{equation}
+        |x_1(t) - x_2(t)| \leq |x_1(0) - x_2(0)|, \ \forall t >0.
+    \end{equation}
+    Logo, a solução do sistema de equações é única.
+\end{theorem}
+\begin{prf}
+    Primeiro, faça $g(t) = \frac{(x_1(t) - x_2(t))^2}{2}$, e toma a derivada em $t$. Assim
+    \begin{equation*}
+        g'(t) = \langle x_1(t) - x_2(t), x_1'(t) - x_2'(t) \rangle.
+    \end{equation*}
+    Usando o fato que
+    $x_1'(t) \in \partial F(x_1(t))$ e
+    $x_2'(t) \in \partial F(x_2(t))$, temos pelo lemma que acabamos de demonstrar que
+    \begin{equation*}
+        g'(t) = \langle x_1'(t) - x_2'(t) , x_1(t) - x_2(t) \rangle \geq 0.
+    \end{equation*}
+    Além disso, como ambas as soluções começam em $x_0$, temos que $g(0) = 0 \geq g(t)$, já que
+    a derivada de $g(t)$ é sempre menor ou igual a zero. Portanto
+    \begin{align*}
+        g(t) = \frac{(x_1(t) - x_2(t))^2}{2} \leq 0 &\implies
+        |x_1(t) - x_2(t)| \leq |x_1(0) - x_2(0)| = 0 
+        \\
+        &\implies
+        x_1(t) = x_2(t).
+    \end{align*}
+\end{prf}
+
+Podemos estender o resultado do teorema acima para o caso mais geral onde
+$F$ é $\lambda$-convexa. A demonstração é bastante parecida, porém, um pouco mais convoluta.
+Por conta disso optamos por apresentar os dois resultados de forma separada.
+
+\begin{theorem}
+    Seja  $F:\mathbb R^n \to \mathbb R$ \textbf{$\lambda$-convexa}, $x_0 \in \mathbb R^n$.
+    Então o sistema de equações \eqref{eq:fluxograd} tem uma solução única.
+    Além disso, se $\lambda >0$, a taxa de convergência para o mínimo global
+    de $F$ é exponencial, ou seja, para $x^* = \argmin_{x\in \mathbb R^n} F(x)$
+    \begin{equation}
+        |x(t) - x^*| \leq e^{-\lambda t}|x(0)- x^*|,
+    \end{equation}
+    onde $x(t)$ é a solução.
+\end{theorem}

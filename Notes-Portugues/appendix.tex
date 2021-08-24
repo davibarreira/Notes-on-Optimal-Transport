@@ -248,3 +248,15 @@ which is more commonly known in probability.
 	Where $||f||_{L^p(X)}^p = \int_X |f|^p d\mu$.
 	\label{lem:minkowski}
 \end{lemma}
+
+\begin{lemma}[Lemma de Gronwall]
+	Seja $f:I\to \mathbb R$ uma função contínua e não negativa
+	em um intervalo $I\subset \mathbb R$, tal que
+	\begin{equation}
+		f(t) \leq a +\left | \int_u^t b f(s) ds\right|
+	\end{equation}
+	para todo $t\in I$, com $a,b\geq 0$, e $u \in I$ constantes. Então
+	\begin{equation}
+		f(t) \leq a e^{b|t-u|}, \forall t \in I.
+	\end{equation}
+\end{lemma}
