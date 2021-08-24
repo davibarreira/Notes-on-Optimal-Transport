@@ -27,6 +27,19 @@ na direção de menor gradiente, ou seja, a solução é dada
 pelo famoso algoritmo de descida de gradiente. Em outras palavras,
 a solução $x(t)$ caracteriza um fluxo de gradiente\footnote{Essa definição é informal. O conceito
 de fluxo de gradiente será formalizado na seção seguinte.}.
+Um exemplo desse tipo de solução é mostrado na Figura \ref{fig:fluxogradiente}
+
+\begin{figure}[H]
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{./Figures/fluxogradiente}
+\end{center}
+    \caption{Exemplo de fluxo de gradiente onde $F(x,y) = x^2 + 0.2 y^2$,
+    com ponto inicial $(x(0),y(0)) = (1.0,1.0)$. A superfície representa os valores
+    de $F(x,y)$, enquanto que as esferas vermelhas representam a solução do fluxo de gradiente
+    com um \textit{time-step} de $0.1$. Perceba que a ``velocidade'' do fluxo é proporcional ao 
+    gradiente, como pode ser visto pelo espaçamento decrescente entre cada uma das esferas.}
+    \label{fig:fluxogradiente}
+\end{figure}
 
 Esse problema é simples quando estamos em espaços de dimensão finita e com
 funções diferenciáveis, porém, torna-se mais
