@@ -236,3 +236,232 @@ Por conta disso optamos por apresentar os dois resultados de forma separada.
     \end{equation}
     onde $x(t)$ é a solução.
 \end{theorem}
+
+Outra propriedade relevante dos fluxos de gradiente é que eles podem ser
+caracterizados por meio do chamado \textit{Esquema de Minimização de Movimento}.
+A ideia é a seguinte, imagine que queremos resolver o problema de fluxo de gradiente
+descrito em \eqref{eq:fluxograd}. Uma forma de fazer isso seria discretizando
+a variável $t$, e aplicando algum método de descida em relação à $F$,
+já que $x(t)$ tem ``velocidade'' sempre na direção oposta do gradiente de $F$.
+Assim, denotaremos um \textit{time-step} $\tau >0$, e uma sequência $(x_k^\tau)$,
+onde $x_0^\tau = x(0)$, $x_1^\tau = x(\tau)$,..., $x_k^\tau = x(k\tau)$, ou seja,
+cada elementos da sequência representa um ponto da solução $x(t)$ no tempo discretizado.
+
+O \textit{Esquema de Minimização de Movimento} é definido pela seguinte iteração:
+\begin{equation}
+    x_{k+1}^\tau \in \argmin_{x} F(x)+\frac{|x - x_k^\tau|^2}{2\tau}.
+    \label{EMM}
+\end{equation}
+Note que se $F$ for $\lambda$-convexa, o problema acima tem solução única.
+A primeira vista, o esquema de minimização acima pode parecer contra-intuitivo, entretanto,
+supondo que $F$ é derivável, sabemos que a solução de \eqref{EMM} é obtida quando
+$\nabla (F(x)+\frac{|x - x_k^\tau|^2}{2\tau})= 0$, assim,
+\begin{equation}
+    - \nabla F(x_{k+1}^\tau) = \frac{x_{k+1}^\tau - x_k^\tau}{\tau}.
+\end{equation}
+Ou seja, esse esquema de minimização é o famoso esquema implícito de Euler.
+Lembre-se da diferença entre o esquema implícito e o explícito de Euler:
+\begin{flalign}
+    \text{(Euler Implícito)} && x_{k+1}^\tau = x_k^\tau - \tau \nabla F(x_{k+1}^\tau) &&
+\end{flalign}
+\begin{flalign}
+    \text{(Euler Explicito)} && x_{k+1}^\tau = x_k^\tau - \tau \nabla F(x_{k}^\tau) &&
+\end{flalign}
+
+Suponha que queremos achar a solução para o intervalo de tempo $[0,T]$. Assim,
+discretizamos esse intervalo em usando o passo $\tau$.
+Uma vez que obtemos a sequência de pontos $(x_k^\tau)$, o objetivo agora é interpolar
+esses pontos de alguma forma a gerar uma solução aproximada de $x(t)$ para $t \in [0,T]$.
+A maneira mais óbvia seria por meio de uma interpolação linear, que denotaremos por
+$\tilde x^\tau(t)$. Outra seria fazendo $x^\tau(t) = x_{k+1}^\tau$, ou seja, uma função
+escada. Ambos métodos são ilustrados na Figura \ref{fig:eulerinterpolacao}.
+\begin{figure}[H]
+\begin{center}
+    \includegraphics[width=0.6\textwidth]{./Figures/eulerinterpolacao}
+\end{center}
+    \caption{Exemplo de aproximação da solução $x(t)$ por
+    meio de $x^\tau(t)$ usando interpolação linear dos pontos da sequência $(x_k^\tau)$.}
+    \label{fig:eulerinterpolacao}
+\end{figure}
+
+Agora apresentamos o seguinte resultado que caracteriza o
+\textit{Esquema de Movimento de Minimização} \eqref{EMM}
+com a solução do fluxo de gradiente.
+
+\begin{theorem}
+    Sejam $\tilde x^\tau, x^\tau$ construídas como apresentado acima. Suponha que
+    $F(x_0)<+\infty$ e $F(x)>-\infty$ para todo $x$. Então, existe uma subsequência
+    $\tau_i \to 0$, tal que ambas aproximações
+    $\tilde x^\tau$ e $x^\tau$ convergem uniformemente para $x(t)$ em $[0,T]$, onde $x(t)$
+    é Absolutamente Contínua em $[0,T]$ e é $L^2$. Além disso, defina
+    \begin{equation}
+        \bm v^\tau(t) = \frac{x_{k+1}^\tau - x_k^\tau}{\tau}, \ \text{para } t \in (k\tau,(k+1)\tau].
+    \end{equation}
+    Assim, $\bm v^\tau$ converge fracamente em $L^2$ para $\bm v = x'$ e
+    \begin{enumerate}
+        \item Se $F$ é $\lambda$-convexo, então $\bm v(t) \in -\partial F(x(t))$ em quase todo $t$;
+        \item Se $F \in C^1$, então $\bm v(t) = - \nabla F(x(t))$ para quase todo $t$.
+    \end{enumerate}
+\end{theorem}
+
+\section{Fluxo de Gradiente em Espaços Métricos}
+
+Começamos nossa exposição focando em $\mathbb R^n$, porém, espaços de Wasserstein
+são espaços métricos geodésicos onde não está claro, por exemplo, o que seria
+$x'(t)$ onde $x(t) = \mu_t \in \mathcal P(\mathbb R^n)$.
+Assim, vamos estender nossa análise subsequente para o caso de espaços métricos geodésicos.
+
+\subsection{Revisando Geodésicas}
+
+O conceito de geodésicas já foi apresentado no Capítulo anterior. Porém, vamos
+fazer uma breve revisão\footnote{Retirar essa seção na versão final do livro. Está aqui
+somente para que o capítulo seja mais auto-contido.}.
+
+\begin{definition}[Derivada Métrica]
+    Seja $\omega:[0,1] \to X$ uma curva no espaço métrico $(X,d)$. Definimos
+    a sua derivada métrica como
+    \begin{equation}
+        |\omega'|(t) := \lim_{h\to 0}\frac{d(\omega(t+h),\omega(t))}{|h|},
+    \end{equation}
+    caso esse limite exista.
+\end{definition}
+
+\begin{definition}[Curva Absolutamente Contínua]
+    Uma curva $\omega:[0,1] \to \mathbb X$ é dita absolutamente contínua se existir
+    $g \in L^1([0,1])$ tal que $d(\omega(t_0),\omega(t_1)) \leq \int^{t_1}_{t_0} g(s)ds$ para
+    todo $t_0 < t_1$. O conjunto de todas as curvas absolutamente contínuas em $(X,d)$
+    é denotado por $\text{AC}(X)$, onde omitimos o $d$ quando a métrica está clara.
+\end{definition}
+
+\begin{definition}[Comprimento]
+    Seja $\omega:[0,1] \to X$ um curva, defina o comprimento dessa curva como
+    \begin{equation}
+        \text{Len}(\omega):= \sup\left\{
+            \sum^{n-1}_{k=0}d(\omega(t_k),\omega(t_{k+1})): \ n\geq 1,
+            0 = t_0 < t_1,...,t_n=1
+        \right\}.
+    \end{equation}
+\end{definition}
+
+\begin{definition}[Geodésica]
+    Uma curva $\omega:[0,1]\to X$ é uma geodésica entre $x_0$ e $x_1 \in X$ se
+    $\omega(0)=x_0$, $\omega(1)=x_1$ e
+    $\text{Len}(\omega) = \min\{\text{Len}(\tilde \omega): \omega \in \text{AC}(X)
+    , \tilde \omega(1)=x_1\}$.
+    Ou seja, um curva $\omega$ é uma geodésica entre dois pontos caso ela seja a curva
+    de menor distância.
+\end{definition}
+Assim, fica claro que a idéia de geodésica é uma extensão da idéia de retas em espaços
+Euclidianos para espaços mais gerais, como superfícies curvas. 
+
+\begin{definition}[Espaço Geodésico]
+    Um espaço métrico $(X,d)$ é um espaço geodésico se para todo $x,y \in X$,
+    \begin{equation}
+        d(x,y) = \min\{\text{Len}(\omega): \omega \in \text{AC}(X), \omega(0)=x, \omega(1)=y\}.
+    \end{equation}
+    Ou seja, a distância entre dois pontos é dada pela geodésica de menor comprimento.
+    Note que num espaço geodésico, essa geodésica sempre existe.
+\end{definition}
+
+\begin{definition}[Geodésica de Velocidade Constante]
+    Uma geodésica $\omega:[0,1]\to X$ é dita ter velocidade constante se
+    \begin{equation}
+        d(\omega(t), \omega(s)) = \frac{|t-s|}{1 - 0} d(\omega(0),\omega(1)), \forall t,s \in [0,1].
+    \end{equation}
+\end{definition}
+
+O Teorema [\ref{theorem.AC_metric_derivative}] mostra que para curvas $\omega \in \text{AC}(X)$, temos
+que
+\begin{equation}
+    \text{Len}(\omega) = \int_0^1 |\omega '|(t) dt,
+\end{equation}
+ou seja, se $\omega$ for de velocidade constante, temos que $\omega'(t)$ é
+a velocidade de $\omega$ e é uma constante.
+
+Vamos mostrar agora que na verdade toda geodésica pode ser reparametrizada
+para possuir velocidade constante.
+
+\begin{proposition}
+    Seja $(X,d)$ um espaço geodésico. Então, para todo $x_1,x_2 \in X$,
+    existe uma geodésica de velocidade constante $\tilde \omega(t)$ ligando
+    $x_1$ e $x_2$, i.e. $\tilde \omega(0) = x_1$ e $\tilde \omega(1) = x_2$.
+\end{proposition}
+\begin{prf}
+    Seja $\omega(t)$ uma geodésica entre $x_1$ e $x_2 \in X$, teremos então
+    \begin{equation*}
+        d(x_1,x_2) = \text{Len}(\omega) = \int_0^1 |\omega'|(t)dt.
+    \end{equation*}
+    Faça agora $\tilde \omega (s) = \omega(g(s))$, onde
+    \begin{equation*}
+        g(s):= \bar r_s \cdot d(x_1,x_2),
+    \end{equation*}
+    onde
+    \begin{equation*}
+        \bar r_s := \inf \left\{
+            r \in [0,1]: \int^r_0 |\omega'|(t) dt\geq s
+            \right\}
+    \end{equation*}
+    Assim, $\text{Len}(\tilde \omega) = d(x_1,x_2)$ e tem velocidade constante.
+
+    \textbf{Exercício. Conclua demonstrando que de fato essa curva $\tilde \omega$ tem comprimento
+    igual à $\omega$ e tem velocidade constante. Pensei nessa solução, mas não cheguei a verificar
+    se de fato é verdade.}
+\end{prf}
+
+Concluímos essa revisão de geodésicas com uma definição menos comum, chamada de convexidade geodésica.
+
+\begin{definition}[Convexidade Geodésica]
+    Seja $(X,d)$ um espaço geodésico. Assim, a função $F:X \to \mathbb R \cup \{+\infty\}$
+    é \textit{geodesicamente convexa} se para todo $x_0,x_1 \in X$, existe uma geodésica
+    de velocidade constante $x(t)$
+    entre $x_0$ e $x_1$, onde a função $F$ é convexa, ou seja,
+    \begin{equation}
+        F(x(t)) \leq (1-t)F(x(0)) + tF(x(1)).
+    \end{equation}
+    E, similarmente, $F$ é dita \textit{geodesicamente $\lambda$-convexa} se
+    \begin{equation}
+        F(x(t)) \leq (1-t)F(x(0)) + tF(x(1))-\lambda\frac{t(1-t)}{2}d^2(x_0,x_1).
+    \end{equation}
+    Note que essa definição na verdade é mais fraca que convexidade ao longo de toda geodésica,
+    pois, é possível que existam duas geodésicas entre $x_0$ e $x_1$, onde $F$ é convexa
+    em uma, mas não é na outra.
+\end{definition}
+
+
+
+% \begin{theorem}
+% 	\label{thm:acmetricderivative}
+% 	Seja $(X,d)$ um espaço métrico separável e limitado. Então,
+%     para todas as curvas AC $\omega :[0,1] \to X$
+% 	\begin{equation*}
+% 	|\dot{\omega}|(t) := \lim_{h \to 0} \frac{d(\omega(t+h), \omega(t))}{h}.
+% 	\end{equation*}
+% 	existe $L^1([0,1])$-q.p., a função $t \mapsto |\dot{\omega}|(t)$ é integrável e
+%     $|\dot{\omega}|(\cdot)$ é o módulo de integração mínimo de $\omega$, o que implica que
+% 	\begin{equation}
+% 	d(\omega(t),\omega(s)) = \int_s^t |\dot{\omega}|(r)\dd r.
+% 	\end{equation} 
+% \end{theorem}
+
+\subsection{Formulação EDE e EVI}
+
+Considere um espaço métrico $(X,d)$, com $F:X\to \mathbb R\cup{+\infty}$ inferiormente
+semi-continua. Assim, o \textit{Esquema de Minimização de Movimento} pode ser
+reescrito como
+\begin{equation}
+    x_{k+1}^\tau \in \argmin_x F(x) + \frac{d(x,x_k^\tau)^2}{2\tau}.
+    \label{metricEMM}
+\end{equation}
+
+Sendo nosso espaço geodésico, podemos usar novamente a idéia de obter
+uma sequência de pontos $(x_k^\tau)$, e obter $x^\tau(t)$ interpolando com geodésicas.
+Ou seja, para $t \in (k\tau,(k+1)\tau]$, faça $x^\tau(t)$ igual a geodésica
+de velocidade constante $d(x_k^\tau,x_{k+1}^\tau)/\tau$, que sempre existirá se
+nosso espaço for geodésico.
+
+Queremos assim que $x^\tau$ convirja para uma solução $x(t)$ onde
+$x'(t) = -\nabla F(x(t))$. Porém, para um espaço métrico qualquer
+não está claro que nem $x'(t)$ nem $-\nabla F(x(t))$ existem!
+Invés disso podemos usar a noção de derivada métrica que apresentamos e
+que sabemos que de fato existirá.
+

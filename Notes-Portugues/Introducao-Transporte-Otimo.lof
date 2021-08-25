@@ -10,4 +10,5 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Exemplo de fluxo de gradiente onde $F(x,y) = x^2 + 0.2 y^2$, com ponto inicial $(x(0),y(0)) = (1.0,1.0)$. A superfície representa os valores de $F(x,y)$, enquanto que as esferas vermelhas representam a solução do fluxo de gradiente com um \textit {time-step} de $0.1$. Perceba que a ``velocidade'' do fluxo é proporcional ao gradiente, como pode ser visto pelo espaçamento decrescente entre cada uma das esferas.}}{61}{figure.3.1}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Exemplo de subdiferencial. Perceba que considerando o subdiferencial generalizado, teríamos $p_1 \in \partial _G f(0)$ e $p_2 \in \partial _G f(0)$ para as duas imagens.}}{63}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Exemplo de aproximação da solução $x(t)$ por meio de $x^\tau (t)$ usando interpolação linear dos pontos da sequência $(x_k^\tau )$.}}{66}{figure.3.3}%
 \addvspace {10\p@ }

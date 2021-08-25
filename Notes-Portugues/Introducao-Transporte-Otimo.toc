@@ -22,6 +22,9 @@
 \contentsline {section}{\numberline {3.1}Introdução ao Fluxo de Gradiente}{62}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Definições Iniciais}{62}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Resultados Básicos de Existência e Unicidade}{64}{subsection.3.1.2}%
-\contentsline {chapter}{\numberline {4}Appendix}{68}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Auxiliary - Probability and Analysis}{68}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Auxiliary - Inequalities}{71}{section.4.2}%
+\contentsline {section}{\numberline {3.2}Fluxo de Gradiente em Espaços Métricos}{67}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Revisando Geodésicas}{67}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Formulação EDE e EVI}{70}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Appendix}{73}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Auxiliary - Probability and Analysis}{73}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Auxiliary - Inequalities}{76}{section.4.2}%
