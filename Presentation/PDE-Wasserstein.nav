@@ -22,34 +22,18 @@
 \headcommand {\beamer@framepages {7}{7}}
 \headcommand {\slideentry {2}{1}{4}{8/8}{Teoria OT}{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\slideentry {2}{1}{5}{9/9}{Teoria OT}{0}}
+\headcommand {\beamer@subsectionpages {5}{8}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{9}{Distância de Wasserstein}}
+\headcommand {\slideentry {2}{2}{1}{9/9}{Distância de Wasserstein}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\beamer@subsectionpages {5}{9}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{10}{Wasserstein Distance}}
-\headcommand {\slideentry {2}{2}{1}{10/10}{Wasserstein Distance}{0}}
+\headcommand {\slideentry {2}{2}{2}{10/10}{Distância de Wasserstein}{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\slideentry {2}{2}{2}{11/11}{Wasserstein Distance}{0}}
+\headcommand {\slideentry {2}{2}{3}{11/11}{Distância de Wasserstein}{0}}
 \headcommand {\beamer@framepages {11}{11}}
-\headcommand {\slideentry {2}{2}{3}{12/12}{Wasserstein Distance}{0}}
-\headcommand {\beamer@framepages {12}{12}}
-\headcommand {\slideentry {2}{2}{3}{12/13}{Wasserstein Distance}{0}}
-\headcommand {\beamer@framepages {12}{13}}
-\headcommand {\slideentry {2}{2}{3}{12/14}{Wasserstein Distance}{0}}
-\headcommand {\beamer@framepages {12}{14}}
-\headcommand {\slideentry {2}{2}{3}{12/15}{Wasserstein Distance}{0}}
-\headcommand {\beamer@framepages {12}{15}}
-\headcommand {\slideentry {2}{2}{3}{12/16}{Wasserstein Distance}{0}}
-\headcommand {\beamer@framepages {12}{16}}
-\headcommand {\slideentry {2}{2}{3}{12/17}{Wasserstein Distance}{0}}
-\headcommand {\beamer@framepages {12}{17}}
-\headcommand {\slideentry {2}{2}{3}{12/18}{Wasserstein Distance}{0}}
-\headcommand {\beamer@framepages {12}{18}}
-\headcommand {\slideentry {2}{2}{3}{12/19}{Wasserstein Distance}{0}}
-\headcommand {\beamer@framepages {12}{19}}
-\headcommand {\slideentry {2}{2}{3}{12/20}{Wasserstein Distance}{0}}
-\headcommand {\beamer@framepages {12}{20}}
-\headcommand {\beamer@partpages {1}{20}}
-\headcommand {\beamer@subsectionpages {10}{20}}
-\headcommand {\beamer@sectionpages {5}{20}}
-\headcommand {\beamer@documentpages {20}}
-\headcommand {\gdef \inserttotalframenumber {20}}
+\headcommand {\slideentry {2}{2}{3}{11/12}{Distância de Wasserstein}{0}}
+\headcommand {\beamer@framepages {11}{12}}
+\headcommand {\beamer@partpages {1}{12}}
+\headcommand {\beamer@subsectionpages {9}{12}}
+\headcommand {\beamer@sectionpages {5}{12}}
+\headcommand {\beamer@documentpages {12}}
+\headcommand {\gdef \inserttotalframenumber {12}}

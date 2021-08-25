@@ -229,35 +229,14 @@ Funções $\phi, \psi$ são chamdas de \textbf{Potenciais de Kantorovich}.
 
 \end{frame}
 
-\begin{frame}[fragile]{Teoria OT - Problema Dual}
+\subsection{Distância de Wasserstein}
+\begin{frame}[fragile]{Teoria OT - Distância de Wasserstein}
 
-	When the cost function is a distance metric, the Dual Problem can be
-	written in what is known as the Kantorovich-Rubinstein formulation.
+\begin{definition}[Distância de Wasserstein]
 
-\begin{theorem}[Kantorovich-Rubinstein]
-
-  Let $(X,d)$ be a Polish space with metric $d$, and cost function $c(x,y) = d(x,y)$.
-  Then, for $\mu, \nu \in \mathcal P(X)$, the Kantorovich Problem
-  is equivalent to
-  \begin{equation}
-      \sup \left \{
-      \int_X \phi \ d\mu - \int_X \phi \ d\nu \ :
-      \phi \in Lip_1(X)
-      \right \}
-  \end{equation}
-  \label{thm:Kantorovich-Rubinstein}
-\end{theorem}
-
-\end{frame}
-
-\subsection{Wasserstein Distance}
-\begin{frame}[fragile]{Optimal Transport Theory - Wasserstein Distance}
-
-\begin{definition}[Wasserstein Distance]
-
-  Let $(X,d)$ be a Polish metric space, with $c:X \times X \to \mathbb R$ such that $c(x,y)=d(x,y)^p$, and
+  Seja $(X,d)$ um espaço métrico polonês, com $c:X \times X \to \mathbb R$ tal que $c(x,y)=d(x,y)^p$, e
   $p \in [1,+\infty)$.
-  For $\mu,\nu \in \mathcal P_p(X)$, the Wasserstein Distance is given by:
+  Para $\mu,\nu \in \mathcal P_p(X)$, a distância de Wasserstein é dada por:
   \begin{equation}
     W_p(\mu,\nu) :=
     \left(
@@ -268,24 +247,12 @@ Funções $\phi, \psi$ são chamdas de \textbf{Potenciais de Kantorovich}.
   \end{equation}
 \end{definition}
 
-$\mathcal P_p(X)$ is the space of probability measures with finite $p$th moment.
+$\mathcal P_p(X)$ é o espaço de medidas de probabilidade com$p$-ésimo momento.
 
 \end{frame}
 
-\begin{frame}[fragile]{Optimal Transport Theory - Wasserstein Distance}
+\begin{frame}[fragile]{Teoria OT - Distância de Wasserstein}
 
-The Wasserstein distance has many interesting properties which make it useful
-in Machine Learning applications. Two of them that are of utmost interest
-are the fact that it metrizes weak convergence and the
-incorporation of the ground geometry.
-
-\begin{figure}[H]
-  \centering
-  \def\svgscale{0.50}
-  \includesvg[inkscapelatex=false]{Figures/wassersteingeometry.svg}
-	\caption{Comparison between Wasserstein distance and KL Divergence, based on \citet{montavon2016boltzmann}.}
-	\label{fig:wl-kl}
-\end{figure}
 
 \end{frame}
 
