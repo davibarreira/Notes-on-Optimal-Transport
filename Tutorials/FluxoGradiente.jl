@@ -23,6 +23,11 @@ using CairoMakie, AlgebraOfGraphics, PlutoUI
 md"""
 # EDPs via Fluxo de Gradiente em Espaços de Wasserstein
 
+Esse notebook traz um exemplo simples da aplicação da idea de Fluxo de Gradiente
+em Wasserstein para solucionar a equação do calor.
+
+O problem é o seguinte, suponha que você fez uma medição do 
+
 """
 
 # ╔═╡ fd0e02bb-a26b-4378-94e1-e0291dd4a128
@@ -37,15 +42,14 @@ begin
 	T = ot_plan(sqeuclidean, μ, ν) #
 end;
 
-# ╔═╡ 6d93799e-959f-45ef-998f-045561243f97
-ρ(x) = pdf(μ,T(x))
-
 # ╔═╡ c182dc64-5b6e-4830-9a43-63fb6763626d
 begin
 	f = Figure()
 
-	ax = Axis(f[1, 1], xlabel = "x label", ylabel = "y label", title = "Title")
-	bx = Axis(f[1, 2], xlabel = "x label", ylabel = "y label", title = "Title")
+	ax = Axis(f[1, 1], xlabel = "x label", ylabel = "y label",
+		title = "Interpolação Euclidiana")
+	bx = Axis(f[1, 2], xlabel = "x label", ylabel = "y label",
+		title = "Geodésica de Wasserstein")
 	
     x  = collect(0:0.01:1)
     y  = pdf(μ,x)*(1-t)
@@ -66,12 +70,6 @@ end
 
 # ╔═╡ 66493239-c472-4273-ad3d-25d6dfb4fe00
 f
-
-# ╔═╡ 01fb428e-c83e-4be9-a437-1c3f25d27606
-t
-
-# ╔═╡ 6e92d2dd-5986-482d-9089-881a4f1f3b39
-plot
 
 # ╔═╡ 67bef9e2-9351-47c9-b710-d519fa63b234
 
@@ -1297,11 +1295,8 @@ version = "3.5.0+0"
 # ╠═bb149121-e0a6-4108-bec4-36c8888fd0ad
 # ╠═fd0e02bb-a26b-4378-94e1-e0291dd4a128
 # ╠═66493239-c472-4273-ad3d-25d6dfb4fe00
-# ╠═a9e2ebbf-121e-4c79-bf1d-3b6cc0271b53
-# ╠═6d93799e-959f-45ef-998f-045561243f97
+# ╟─a9e2ebbf-121e-4c79-bf1d-3b6cc0271b53
 # ╠═c182dc64-5b6e-4830-9a43-63fb6763626d
-# ╠═01fb428e-c83e-4be9-a437-1c3f25d27606
-# ╠═6e92d2dd-5986-482d-9089-881a4f1f3b39
 # ╠═6bbb55de-cbb4-49d2-a225-f06b501e736d
 # ╠═c440a512-05ad-11ec-3418-f5a6fc6e431c
 # ╠═67bef9e2-9351-47c9-b710-d519fa63b234

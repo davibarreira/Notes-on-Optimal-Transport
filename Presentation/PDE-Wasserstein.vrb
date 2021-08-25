@@ -1,3 +1,14 @@
-\frametitle{Teoria OT - Distância de Wasserstein}
+\frametitle{Esquema de Minimização de Movimento}
 
+	É possível provar que para $\tau \to 0$, podemos interpolar
+	os pontos $(x_k^\tau)$ para obter uma solução que converge
+	para a solução $x(t)$ de \eqref{eq:fluxograd}.
+
+	\begin{figure}[H]
+\begin{center}
+    \includegraphics[width=0.6\textwidth]{../Notes-Portugues/Figures/eulerinterpolacao}
+\end{center}
+    \caption{Exemplo de aproximação da solução $x(t)$.}
+    \label{fig:eulerinterpolacao}
+\end{figure}k
 

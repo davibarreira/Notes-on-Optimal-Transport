@@ -5,3 +5,9 @@
 \beamer@slide {def:KP}{7}
 \beamer@slide {eqt:dualproblem}{8}
 \beamer@slide {def:Wasserstein}{9}
+\beamer@slide {thm:existanceKPpolish}{11}
+\beamer@slide {thm:existanceMonge}{11}
+\beamer@slide {theorem.Benamou-Brenier}{13}
+\beamer@slide {eq:fluxograd}{14}
+\beamer@slide {EMM}{17}
+\beamer@slide {fig:eulerinterpolacao}{19}

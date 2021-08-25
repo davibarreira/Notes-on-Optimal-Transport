@@ -253,6 +253,195 @@ $\mathcal P_p(X)$ é o espaço de medidas de probabilidade com$p$-ésimo momento
 
 \begin{frame}[fragile]{Teoria OT - Distância de Wasserstein}
 
+	É possível mostrar que a distância de Wasserstein $W_p$ é de fato uma métrica
+	no espaço de probabilidade $\mathcal P_p(\Omega)$.
+
+	Além disso, ela metriza a convergência fraca de medidas de probabilidade,
+	i.e., sejam $\mu_n, \mu \in \mathcal P_p(\mathbb R^n)$, então
+	\begin{equation}
+		\mu_n \rightharpoonup \mu \iff W_p(\mu_n, \mu) \to 0.
+	\end{equation}
+
+\end{frame}
+
+\subsection{Existência de Soluções}
+\begin{frame}[fragile]{Teoria OT - Existência de Soluções}
+
+	Outro aspecto que temos que abordar são as condições de existência das soluções.
+	\begin{theorem}[Existência de Planos de Transporte]
+		Sejam $X$ e $Y$ espaços métricos poloneses (complete and separável).
+		Dados $\mu\in \mathcal{P}(X)$, $\nu \in \mathcal P(Y)$ e
+		$c:X\times Y \to[0,+\infty]$, se $c$ for inferiormente semi-continua, então
+		(KP) possui solução.
+		\label{thm:existanceKPpolish}
+	\end{theorem}
+	\begin{theorem}[Existência de Mapas de Transporte]
+		Seja $\Omega \subset \mathbb R^n$ compacto, e 
+		$c(x,y) = h(x-y)$ com $h$ estritamente convexa.
+		Dado $\mu \ll \lambda$, e $\partial \Omega$ negligenciável.
+		Então, existe solução para o problema de transporte de Monge,
+		e além disso
+		\begin{equation}
+			T(x) = x - (\nabla h)^{-1}(\nabla \phi(x)).
+		\end{equation}
+		Onde $\phi(x)$ é o potencial de Kantorovich e $T$ é o
+		mapa de transporte ótimo.
+		\label{thm:existanceMonge}
+	\end{theorem}
+
+\end{frame}
+
+\subsection{Formulação Dinâmica}
+\begin{frame}[fragile]{Teoria OT - Formulação Dinâmica}
+
+	O problema original de Transporte Ótimo é formulado de forma
+	que o transporte ocorre de forma ``instantânea'', porém,
+	é possível partir de premissas mais fundamentais, e
+	encontrar uma formulação dinâmica para o problema,
+	onde a solução não é mais um plano, mas sim uma
+	curva $\gamma:[0,1] \to \mathcal P(\Omega)$, com
+	$\gamma(0)=\mu$ e $\gamma(1) = \nu$.
+
+\end{frame}
+
+\subsection{Formulação Dinâmica}
+\begin{frame}[fragile]{Teoria OT - Formulação Dinâmica}
+
+	Baseado nessa formulação dinâmica, é possível provar o
+	seguinte resultado:
+
+	\begin{theorem}{(Benamou-Brenier Formula)}
+	\label{theorem.Benamou-Brenier}
+	Sejam $\rho_0, \rho_1 \in \mathcal P_p(\Omega)$ para $p>1$.
+	Então, a seguinte caracterização é válida para espaços com a distância p-Wasserstein:
+	\begin{equation*}
+	\frac{1}{p}W^p_p(\rho_0, \rho_1) 
+	= 
+	\inf_{(\rho, v)}
+	\left\{
+	\int_0^1\int_{\Omega}\left|v(t,x)\right|^p d \rho_t(x)d t: \text{Condições B.B}
+	\right\}.
+	\end{equation*}
+	Onde as condições de Benamou-Brenier são
+	\begin{align*}
+	&(\rho_t)_{t \in [0,1]} \text{ Absolutamente Contínua no espaço de Wasserstein}, \\
+	&(\rho_t, v_t)_{t \in [0,1]} \text{é solução fraca de }
+	\partial_t \rho_t + \nabla\cdot\left(\rho_t v_t\right) = 0
+	\\
+	&\rho(0,\cdot) = \rho_0, \ \rho(1, \cdot) = \rho_1 .
+	\end{align*}
+\end{theorem} 
+\end{frame}
+
+\AtBeginSection{}
+\section[Fluxo de Gradiente em Wasserstein]{Fluxo de Gradiente em Wasserstein}
+\subsection{Introdução ao Fluxo de Gradiente}
+\begin{frame}[fragile]{Introdução ao Fluxo de Gradiente}
+
+	Seja uma função $F:\mathbb R^n \to \mathbb R \in C^1$, e $x_0 \in \mathbb R^n$,
+	onde queremos descobrir $x(t)$ que resolve o seguinte sistema de equações:
+	\begin{equation}
+		\begin{cases}
+			x'(t) = -\nabla F(x(t)), \ t>0,\\
+			x(0)  = x_0.
+		\end{cases}
+		\label{eq:fluxograd}
+	\end{equation}
+
+	A solução $x(t)$ do sistema acima será uma curva iniciando em $x_0$ e se movendo
+	na direção de menor gradiente, ou seja, a solução é dada
+	pelo famoso algoritmo de descida de gradiente. Em outras palavras,
+	a solução $x(t)$ caracteriza um fluxo de gradiente.
+
+\end{frame}
+
+\begin{frame}[fragile]{Introdução ao Fluxo de Gradiente}
+
+	Esse problema é simples quando estamos em espaços de dimensão finita e com
+	funções diferenciáveis, porém, torna-se mais
+	interessante e complexo quando começamos a considerar espaços de dimensão infinita
+	como $\mathcal P_2(\mathbb R^n)$. Neste cenário, temos que repensar, por exemplo,
+	a ideia de gradiente, já que não está mais claro que seria o gradiente quando
+	$x(t) = \rho_t \in \mathcal P_2(\mathbb R^n)$. Além disso, $F$ não é mais uma
+	função de $\mathbb R^n$ em $\mathbb R$, mas um funcional atuando em medidas
+	de probabilidade.
+
+\end{frame}
+
+\begin{frame}[fragile]{Introdução ao Fluxo de Gradiente}
+
+	Dadas condições sob $F$, é possível provar, por exemplo, que
+	as soluções são únicas.
+	\begin{theorem}
+    Seja $F:\mathbb R^n \to \mathbb R$ \textbf{convexa}, $x_0 \in \mathbb R^n$, e
+    $x_1$ e $x_2$ duas soluções do fluxo de gradiente.
+    Então,
+    \begin{equation}
+        |x_1(t) - x_2(t)| \leq |x_1(0) - x_2(0)|, \ \forall t >0.
+    \end{equation}
+    Logo, a solução do sistema de equações é única.
+\end{theorem}
+
+É possível obter resultados para condições menos restritivas que convexidade
+em $F$, como, por exemplo, usando $\lambda$-convexidade.
+Além disso, também podemos trocar a condição de $\nabla F$ por $\partial F$ (subdiferencial),
+tendo assim ainda mais generalidade.
+
+\vspace{3mm}
+
+\end{frame}
+
+\subsection{Esquema de Minimização de Movimento}
+\begin{frame}[fragile]{Esquema de Minimização de Movimento}
+Outra propriedade relevante dos fluxos de gradiente é que eles podem ser
+caracterizados por meio do chamado \textit{Esquema de Minimização de Movimento},
+sendo resolvidos por meio de uma discretização temporal.
+
+\vspace{3mm}
+
+O \textit{Esquema de Minimização de Movimento} é definido pela seguinte iteração:
+\begin{equation}
+    x_{k+1}^\tau \in \text{argmin}_{x} F(x)+\frac{|x - x_k^\tau|^2}{2\tau}.
+    \label{EMM}
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile]{Esquema de Minimização de Movimento}
+
+A primeira vista, o esquema de minimização acima pode parecer contra-intuitivo, entretanto,
+supondo que $F$ é derivável, sabemos que a solução de \eqref{EMM} é obtida quando
+$\nabla (F(x)+\frac{|x - x_k^\tau|^2}{2\tau})= 0$, assim,
+\begin{equation}
+    - \nabla F(x_{k+1}^\tau) = \frac{x_{k+1}^\tau - x_k^\tau}{\tau}.
+\end{equation}
+
+
+\vspace{3mm}
+
+Ou seja, esse esquema de minimização é o famoso esquema implícito de Euler.
+Lembre-se da diferença entre o esquema implícito e o explícito de Euler:
+\begin{flalign}
+    \text{(Euler Implícito)} && x_{k+1}^\tau = x_k^\tau - \tau \nabla F(x_{k+1}^\tau) &&
+\end{flalign}
+\begin{flalign}
+    \text{(Euler Explicito)} && x_{k+1}^\tau = x_k^\tau - \tau \nabla F(x_{k}^\tau) &&
+\end{flalign}
+
+\end{frame}
+
+\begin{frame}[fragile]{Esquema de Minimização de Movimento}
+
+	É possível provar que para $\tau \to 0$, podemos interpolar
+	os pontos $(x_k^\tau)$ para obter uma solução que converge
+	para a solução $x(t)$ de \eqref{eq:fluxograd}.
+
+	\begin{figure}[H]
+\begin{center}
+    \includegraphics[width=0.6\textwidth]{../Notes-Portugues/Figures/eulerinterpolacao}
+\end{center}
+    \caption{Exemplo de aproximação da solução $x(t)$.}
+    \label{fig:eulerinterpolacao}
+\end{figure}k
 
 \end{frame}
 
