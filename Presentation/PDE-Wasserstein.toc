@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Ideia Geral e Motivação}{3}{0}{1}
+\beamer@sectionintoc {2}{Teoria de Transporte Ótimo}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Monge \& Kantorovich}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Wasserstein Distance}{10}{0}{2}

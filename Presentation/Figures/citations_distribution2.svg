@@ -1,0 +1,893 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   class="marks"
+   width="636.91553"
+   height="254.65576"
+   viewBox="0 0 636.91553 254.65576"
+   id="svg492"
+   sodipodi:docname="citations_distribution2.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata498">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs496" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview494"
+     showgrid="false"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="3"
+     inkscape:zoom="0.80863039"
+     inkscape:cx="413.47052"
+     inkscape:cy="141.34874"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg492"
+     inkscape:document-rotation="0"
+     lock-margins="true" />
+  <path
+     class="background"
+     aria-hidden="true"
+     d="M 27.488281,20.651109 H 527.48828 v 0 z"
+     id="path4"
+     style="fill:none;stroke-miterlimit:10" />
+  <g
+     class="mark-group role-scope concat_0_group"
+     role="graphics-object"
+     aria-roledescription="group mark container"
+     id="g188"
+     transform="translate(27.488281,20)"
+     style="fill:none;stroke-miterlimit:10">
+    <g
+       id="g186">
+      <path
+         class="background"
+         aria-hidden="true"
+         d="m 0.5,0.5 h 500 v 200 H 0.5 Z"
+         stroke="#dddddd"
+         id="path6" />
+      <g
+         id="g182">
+        <g
+           class="mark-group role-axis"
+           aria-hidden="true"
+           id="g26">
+          <g
+             transform="translate(0.5,0.5)"
+             id="g24">
+            <path
+               class="background"
+               aria-hidden="true"
+               d="M 0,0 Z"
+               pointer-events="none"
+               id="path8" />
+            <g
+               id="g20">
+              <g
+                 class="mark-rule role-axis-grid"
+                 pointer-events="none"
+                 id="g18">
+                <line
+                   transform="translate(0,200)"
+                   x2="500"
+                   y2="0"
+                   stroke="#dddddd"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line10"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(0,144)"
+                   x2="500"
+                   y2="0"
+                   stroke="#dddddd"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line12"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(0,89)"
+                   x2="500"
+                   y2="0"
+                   stroke="#dddddd"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line14"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(0,33)"
+                   x2="500"
+                   y2="0"
+                   stroke="#dddddd"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line16"
+                   x1="0"
+                   y1="0" />
+              </g>
+            </g>
+            <path
+               class="foreground"
+               aria-hidden="true"
+               d=""
+               pointer-events="none"
+               display="none"
+               id="path22" />
+          </g>
+        </g>
+        <g
+           class="mark-group role-axis"
+           role="graphics-symbol"
+           aria-roledescription="axis"
+           aria-label="X-axis titled 'Year' for a discrete scale with 10 values: 2009, 2012, 2013, 2014, 2015, ending with 2020"
+           id="g88">
+          <g
+             transform="translate(0.5,200.5)"
+             id="g86">
+            <path
+               class="background"
+               aria-hidden="true"
+               d="M 0,0 Z"
+               pointer-events="none"
+               id="path28" />
+            <g
+               id="g82">
+              <g
+                 class="mark-rule role-axis-tick"
+                 pointer-events="none"
+                 id="g50">
+                <line
+                   transform="translate(25)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line30"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(75)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line32"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(125)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line34"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(175)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line36"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(225)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line38"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(275)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line40"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(325)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line42"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(375)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line44"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(425)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line46"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(475)"
+                   x2="0"
+                   y2="5"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line48"
+                   x1="0"
+                   y1="0" />
+              </g>
+              <g
+                 class="mark-text role-axis-label"
+                 pointer-events="none"
+                 id="g72">
+                <text
+                   text-anchor="middle"
+                   transform="translate(24.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text52">2009</text>
+                <text
+                   text-anchor="middle"
+                   transform="translate(74.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text54">2012</text>
+                <text
+                   text-anchor="middle"
+                   transform="translate(124.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text56">2013</text>
+                <text
+                   text-anchor="middle"
+                   transform="translate(174.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text58">2014</text>
+                <text
+                   text-anchor="middle"
+                   transform="translate(224.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text60">2015</text>
+                <text
+                   text-anchor="middle"
+                   transform="translate(274.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text62">2016</text>
+                <text
+                   text-anchor="middle"
+                   transform="translate(324.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text64">2017</text>
+                <text
+                   text-anchor="middle"
+                   transform="translate(374.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text66">2018</text>
+                <text
+                   text-anchor="middle"
+                   transform="translate(424.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text68">2019</text>
+                <text
+                   text-anchor="middle"
+                   transform="translate(474.5,16)"
+                   font-family="sans-serif"
+                   font-size="12px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text70">2020</text>
+              </g>
+              <g
+                 class="mark-rule role-axis-domain"
+                 pointer-events="none"
+                 id="g76">
+                <line
+                   x2="500"
+                   y2="0"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line74"
+                   x1="0"
+                   y1="0" />
+              </g>
+              <g
+                 class="mark-text role-axis-title"
+                 pointer-events="none"
+                 id="g80">
+                <text
+                   text-anchor="middle"
+                   transform="translate(250,31)"
+                   font-family="sans-serif"
+                   font-size="11px"
+                   font-weight="bold"
+                   fill="#000000"
+                   opacity="1"
+                   id="text78">Year</text>
+              </g>
+            </g>
+            <path
+               class="foreground"
+               aria-hidden="true"
+               d=""
+               pointer-events="none"
+               display="none"
+               id="path84" />
+          </g>
+        </g>
+        <g
+           class="mark-group role-axis"
+           role="graphics-symbol"
+           aria-roledescription="axis"
+           aria-label="Y-axis for a linear scale with values from 0 to 180"
+           id="g122">
+          <g
+             transform="translate(0.5,0.5)"
+             id="g120">
+            <path
+               class="background"
+               aria-hidden="true"
+               d="M 0,0 Z"
+               pointer-events="none"
+               id="path90" />
+            <g
+               id="g116">
+              <g
+                 class="mark-rule role-axis-tick"
+                 pointer-events="none"
+                 id="g100">
+                <line
+                   transform="translate(0,200)"
+                   x2="-5"
+                   y2="0"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line92"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(0,144)"
+                   x2="-5"
+                   y2="0"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line94"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(0,89)"
+                   x2="-5"
+                   y2="0"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line96"
+                   x1="0"
+                   y1="0" />
+                <line
+                   transform="translate(0,33)"
+                   x2="-5"
+                   y2="0"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line98"
+                   x1="0"
+                   y1="0" />
+              </g>
+              <g
+                 class="mark-text role-axis-label"
+                 pointer-events="none"
+                 id="g110">
+                <text
+                   text-anchor="end"
+                   transform="translate(-7,203)"
+                   font-family="sans-serif"
+                   font-size="10px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text102">0</text>
+                <text
+                   text-anchor="end"
+                   transform="translate(-7,147.44444)"
+                   font-family="sans-serif"
+                   font-size="10px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text104">50</text>
+                <text
+                   text-anchor="end"
+                   transform="translate(-7,91.888889)"
+                   font-family="sans-serif"
+                   font-size="10px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text106">100</text>
+                <text
+                   text-anchor="end"
+                   transform="translate(-7,36.333333)"
+                   font-family="sans-serif"
+                   font-size="10px"
+                   fill="#000000"
+                   opacity="1"
+                   id="text108">150</text>
+              </g>
+              <g
+                 class="mark-rule role-axis-domain"
+                 pointer-events="none"
+                 id="g114">
+                <line
+                   transform="translate(0,200)"
+                   x2="0"
+                   y2="-200"
+                   stroke="#888888"
+                   stroke-width="1"
+                   opacity="1"
+                   id="line112"
+                   x1="0"
+                   y1="0" />
+              </g>
+            </g>
+            <path
+               class="foreground"
+               aria-hidden="true"
+               d=""
+               pointer-events="none"
+               display="none"
+               id="path118" />
+          </g>
+        </g>
+        <g
+           class="mark-rect role-mark concat_0_layer_0_marks"
+           role="graphics-object"
+           aria-roledescription="rect mark container"
+           id="g144">
+          <path
+             aria-label="Year: 2019; Count of Records: 148; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 425,35.555556 h 10 V 200 h -10 z"
+             fill="#6baed6"
+             id="path124" />
+          <path
+             aria-label="Year: 2017; Count of Records: 30; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 325,166.66667 h 10 V 200 h -10 z"
+             fill="#6baed6"
+             id="path126" />
+          <path
+             aria-label="Year: 2018; Count of Records: 61; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 375,132.22222 h 10 V 200 h -10 z"
+             fill="#6baed6"
+             id="path128" />
+          <path
+             aria-label="Year: 2014; Count of Records: 4; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 175,195.55556 h 10 V 200 h -10 z"
+             fill="#6baed6"
+             id="path130" />
+          <path
+             aria-label="Year: 2020; Count of Records: 167; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 475,14.444444 h 10 V 200 h -10 z"
+             fill="#6baed6"
+             id="path132" />
+          <path
+             aria-label="Year: 2016; Count of Records: 10; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 275,188.88889 h 10 V 200 h -10 z"
+             fill="#6baed6"
+             id="path134" />
+          <path
+             aria-label="Year: 2015; Count of Records: 8; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 225,191.11111 h 10 V 200 h -10 z"
+             fill="#6baed6"
+             id="path136" />
+          <path
+             aria-label="Year: 2009; Count of Records: 1; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="M 25,198.88889 H 35 V 200 H 25 Z"
+             fill="#6baed6"
+             id="path138" />
+          <path
+             aria-label="Year: 2012; Count of Records: 1; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="M 75,198.88889 H 85 V 200 H 75 Z"
+             fill="#6baed6"
+             id="path140" />
+          <path
+             aria-label="Year: 2013; Count of Records: 2; Labels: All"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 125,197.77778 h 10 V 200 h -10 z"
+             fill="#6baed6"
+             id="path142" />
+        </g>
+        <g
+           class="mark-rect role-mark concat_0_layer_1_marks"
+           role="graphics-object"
+           aria-roledescription="rect mark container"
+           id="g166">
+          <path
+             aria-label="Year: 2019; Count of Records: 125; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 415,61.111111 h 10 V 200 h -10 z"
+             fill="#4c78a8"
+             id="path146" />
+          <path
+             aria-label="Year: 2017; Count of Records: 30; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 315,166.66667 h 10 V 200 h -10 z"
+             fill="#4c78a8"
+             id="path148" />
+          <path
+             aria-label="Year: 2018; Count of Records: 59; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 365,134.44444 h 10 V 200 h -10 z"
+             fill="#4c78a8"
+             id="path150" />
+          <path
+             aria-label="Year: 2014; Count of Records: 4; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 165,195.55556 h 10 V 200 h -10 z"
+             fill="#4c78a8"
+             id="path152" />
+          <path
+             aria-label="Year: 2020; Count of Records: 96; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 465,93.333333 h 10 V 200 h -10 z"
+             fill="#4c78a8"
+             id="path154" />
+          <path
+             aria-label="Year: 2016; Count of Records: 10; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 265,188.88889 h 10 V 200 h -10 z"
+             fill="#4c78a8"
+             id="path156" />
+          <path
+             aria-label="Year: 2015; Count of Records: 8; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 215,191.11111 h 10 V 200 h -10 z"
+             fill="#4c78a8"
+             id="path158" />
+          <path
+             aria-label="Year: 2009; Count of Records: 1; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="M 15,198.88889 H 25 V 200 H 15 Z"
+             fill="#4c78a8"
+             id="path160" />
+          <path
+             aria-label="Year: 2012; Count of Records: 1; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="M 65,198.88889 H 75 V 200 H 65 Z"
+             fill="#4c78a8"
+             id="path162" />
+          <path
+             aria-label="Year: 2013; Count of Records: 2; Labels: Citations &gt; 0"
+             role="graphics-symbol"
+             aria-roledescription="bar"
+             d="m 115,197.77778 h 10 V 200 h -10 z"
+             fill="#4c78a8"
+             id="path164" />
+        </g>
+        <g
+           class="mark-group role-title"
+           id="g180">
+          <g
+             transform="translate(250,-17)"
+             id="g178">
+            <path
+               class="background"
+               aria-hidden="true"
+               d="M 0,0 Z"
+               pointer-events="none"
+               id="path168" />
+            <g
+               id="g174">
+              <g
+                 class="mark-text role-title-text"
+                 role="graphics-symbol"
+                 aria-roledescription="title"
+                 aria-label="Title text 'Publications per Year'"
+                 pointer-events="none"
+                 id="g172">
+                <text
+                   text-anchor="middle"
+                   transform="translate(0,10)"
+                   font-family="sans-serif"
+                   font-size="13px"
+                   font-weight="bold"
+                   fill="#000000"
+                   opacity="1"
+                   id="text170">Publications per Year</text>
+              </g>
+            </g>
+            <path
+               class="foreground"
+               aria-hidden="true"
+               d=""
+               pointer-events="none"
+               display="none"
+               id="path176" />
+          </g>
+        </g>
+      </g>
+      <path
+         class="foreground"
+         aria-hidden="true"
+         d=""
+         display="none"
+         id="path184" />
+    </g>
+  </g>
+  <g
+     class="mark-group role-legend"
+     role="graphics-symbol"
+     aria-roledescription="legend"
+     aria-label="Symbol legend titled 'Labels' for fill color with 2 values: All, Citations &gt; 0"
+     id="g480"
+     transform="translate(31.915517,18.733628)"
+     style="fill:none;stroke-miterlimit:10">
+    <g
+       transform="translate(520)"
+       id="g478">
+      <path
+         class="background"
+         aria-hidden="true"
+         d="M 0,0 H 82 V 40 H 0 Z"
+         pointer-events="none"
+         id="path424" />
+      <g
+         id="g474">
+        <g
+           class="mark-group role-legend-entry"
+           id="g468">
+          <g
+             transform="translate(0,16)"
+             id="g466">
+            <path
+               class="background"
+               aria-hidden="true"
+               d="M 0,0 Z"
+               pointer-events="none"
+               id="path426" />
+            <g
+               id="g462">
+              <g
+                 class="mark-group role-scope"
+                 role="graphics-object"
+                 aria-roledescription="group mark container"
+                 id="g460">
+                <g
+                   id="g442">
+                  <path
+                     class="background"
+                     aria-hidden="true"
+                     d="M 0,0 H 81.222221 V 11 H 0 Z"
+                     pointer-events="none"
+                     opacity="1"
+                     id="path428" />
+                  <g
+                     id="g438">
+                    <g
+                       class="mark-symbol role-legend-symbol"
+                       pointer-events="none"
+                       id="g432">
+                      <path
+                         transform="translate(6,6)"
+                         d="M -5,-5 H 5 V 5 H -5 Z"
+                         fill="#6baed6"
+                         stroke-width="1.5"
+                         opacity="1"
+                         id="path430" />
+                    </g>
+                    <g
+                       class="mark-text role-legend-label"
+                       pointer-events="none"
+                       id="g436">
+                      <text
+                         text-anchor="start"
+                         transform="translate(16,9)"
+                         font-family="sans-serif"
+                         font-size="10px"
+                         fill="#000000"
+                         opacity="1"
+                         id="text434">All</text>
+                    </g>
+                  </g>
+                  <path
+                     class="foreground"
+                     aria-hidden="true"
+                     d=""
+                     pointer-events="none"
+                     display="none"
+                     id="path440" />
+                </g>
+                <g
+                   transform="translate(0,13)"
+                   id="g458">
+                  <path
+                     class="background"
+                     aria-hidden="true"
+                     d="M 0,0 H 81.222221 V 11 H 0 Z"
+                     pointer-events="none"
+                     opacity="1"
+                     id="path444" />
+                  <g
+                     id="g454">
+                    <g
+                       class="mark-symbol role-legend-symbol"
+                       pointer-events="none"
+                       id="g448">
+                      <path
+                         transform="translate(6,6)"
+                         d="M -5,-5 H 5 V 5 H -5 Z"
+                         fill="#4c78a8"
+                         stroke-width="1.5"
+                         opacity="1"
+                         id="path446" />
+                    </g>
+                    <g
+                       class="mark-text role-legend-label"
+                       pointer-events="none"
+                       id="g452">
+                      <text
+                         text-anchor="start"
+                         transform="translate(16,9)"
+                         font-family="sans-serif"
+                         font-size="10px"
+                         fill="#000000"
+                         opacity="1"
+                         id="text450">Citations &gt; 0</text>
+                    </g>
+                  </g>
+                  <path
+                     class="foreground"
+                     aria-hidden="true"
+                     d=""
+                     pointer-events="none"
+                     display="none"
+                     id="path456" />
+                </g>
+              </g>
+            </g>
+            <path
+               class="foreground"
+               aria-hidden="true"
+               d=""
+               pointer-events="none"
+               display="none"
+               id="path464" />
+          </g>
+        </g>
+        <g
+           class="mark-text role-legend-title"
+           pointer-events="none"
+           id="g472">
+          <text
+             text-anchor="start"
+             transform="translate(0,9)"
+             font-family="sans-serif"
+             font-size="11px"
+             font-weight="bold"
+             fill="#000000"
+             opacity="1"
+             id="text470">Labels</text>
+        </g>
+      </g>
+      <path
+         class="foreground"
+         aria-hidden="true"
+         d=""
+         pointer-events="none"
+         display="none"
+         id="path476" />
+    </g>
+  </g>
+  <path
+     class="foreground"
+     aria-hidden="true"
+     d=""
+     display="none"
+     id="path484"
+     style="fill:none;stroke-miterlimit:10" />
+</svg>

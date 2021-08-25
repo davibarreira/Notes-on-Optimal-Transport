@@ -1,0 +1,305 @@
+\documentclass[10pt]{beamer}
+
+% \usepackage[table,xcdraw]{xcolor}
+\usepackage[square,numbers]{natbib}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+% \usetheme[progressbar=frametitle]{metropolis}
+\usecolortheme{Imperial}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\usepackage{amsfonts, amsmath, amsthm, amssymb}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage[ruled,vlined]{algorithm2e}
+\newlength{\commentWidth}
+\setlength{\commentWidth}{7cm}
+\newcommand{\atcp}[1]{\tcp*[r]{\makebox[\commentWidth]{#1\hfill}}}
+\usepackage{setspace}
+\usepackage[utf8]{inputenc}
+
+\newcommand*{\QEDA}{\hfill\ensuremath{\blacksquare}}%
+\newcommand*{\QEDB}{\hfill\ensuremath{\square}}%
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{forest}
+\usetikzlibrary{trees} % this is to allow the fork right path
+
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\usefonttheme[onlymath]{serif}
+
+
+\title{\textbf{EDPs via Fluxo de Gradiente em \\Espaços de Wasserstein}}
+\subtitle{}
+% \date{\today}
+\date{}
+\author{\textbf{Autor:} Davi Sales Barreira \\\hfill\\}
+\institute{\includegraphics[height=0.55cm]{emaplogo.png}}
+\titlegraphic{\includegraphics[height=0.35cm]{emaplogo-neg.png}}
+
+
+\usepackage{caption}
+\captionsetup[figure]{font=footnotesize}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Sumário}
+  \setbeamertemplate{section in toc}[sections numbered]
+	\setbeamertemplate{subsection in toc}[subsections numbered]
+	% \setbeamerfont{section in toc}{size=\normal}
+	\setbeamerfont{subsection in toc}{size=\small}
+  % \tableofcontents[hideallsubsections]
+  \tableofcontents[sectionstyle=show, subsectionstyle=show]
+\end{frame}
+
+\AtBeginSection{}
+\section[Ideia Geral]{Ideia Geral e Motivação}
+\begin{frame}[fragile]{Ideia Geral}
+
+O espaço de Wasserstein se trata de um espaço métrico de medidas
+de probabilidade embutido com a métrica de Wasserstein.
+\vspace{3mm}
+
+Um Fluxo de Gradiente é um sistema de equações onde a evolução do sistema se
+dá através da descida de gradiente.
+\vspace{3mm}
+
+A ideia geral dessa apresentação é mostrar como algumas EDPs
+podem ser reformuladas em termos de um Fluxo de Gradiente
+em um espaço de Wasserstein. Apresentaremos como reformular a equação de calor, porém,
+esse método é mais geral, sendo aplicável para muitas outras EDPs.
+
+\end{frame}
+
+\begin{frame}[fragile]{Motivação}
+
+Por que interpretar EDPs como Fluxo de Gradiente em Wasserstein?
+\vspace{3mm}
+\begin{enumerate}
+	\item Estética. Veremos que é uma bela interpretação que permite
+	entender as EDPs de outro ponto de vista;
+	\item Reformulação permite utilizar outros ferramentais
+	para demonstrar, por exemplo, taxas de convergência,
+	existência e unicidade;
+	\item Esquema de discretização de fluxos de gradiente
+	como algoritmo para aproximar soluções fracas
+	para as EDPs.
+\end{enumerate}
+
+\end{frame}
+
+\AtBeginSection{}
+\section[Teoria de Transporte Ótimo]{Teoria de Transporte Ótimo}
+\subsection[Teoria OT]{Monge \& Kantorovich}
+\begin{frame}[fragile]{Teoria OT - Monge \& Kantorovich}
+
+\textbf{Problema de Monge} -
+Qual a maneira ótima de transporta massa de uma configuração
+para outra?
+\vspace{3mm}
+
+\begin{figure}[H]
+  \centering
+  \def\svgscale{0.4}
+  \includesvg[inkscapelatex=false]{Figures/mongeproblem.svg}
+  \caption{Massa não pode ser separada.}
+  \label{fig:mongeproblem}
+\end{figure}
+
+\textbf{Kantorovich Problem} -
+Relaxação do problema original de Monge.
+\vspace{3mm}
+
+\begin{figure}[H]
+  \centering
+  \def\svgscale{0.4}
+  \includesvg[inkscapelatex=false]{Figures/kantorovichproblem.svg}
+  \caption{Massa pode ser separada.}
+  \label{fig:kantorovichproblem}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Teoria OT - Monge \& Kantorovich}
+	
+\begin{definition}[Problema de Monge]
+	Dadas duas medidas de probabilidade $\mu \in \mathcal P(X)$,
+  $\nu \in \mathcal{P}(Y)$ e uma função de custo
+  $c:X\times Y \to[0,+\infty]$, resolva:
+  \begin{flalign}
+    (MP) &&
+    \inf
+    \left\{
+    \int_{X} c(x,T(x))d\mu \quad : \quad
+    T_\# \mu = \nu
+    \right\}&&
+  \end{flalign}
+
+\end{definition}
+
+\begin{figure}[H]
+  \centering
+  \def\svgscale{0.45}
+  \includesvg[inkscapelatex=false]{Figures/monge_map_example.svg}
+  \caption{Exemplo de dois problemas de Transporte Ótimo.}
+  \label{fig:monge_map_example}
+\end{figure}
+	 
+\end{frame}
+
+\begin{frame}[fragile]{Teoria OT - Monge \& Kantorovich}
+
+\begin{definition}[Acoplamento]
+	Sejam $(X,\mu)$ e $(Y,\nu)$ espaços de probabilidade. Para
+  $\gamma \in \mathcal{P}(X\times Y)$, dizemos que $\gamma$
+  é um acoplamento de $(\mu,\nu)$ se $(\pi_X)_\# \gamma = \mu$
+  e $(\pi_Y)_\# \gamma = \nu$. Chamamos $\Pi(\mu,\nu)$
+  do conjunto de \textbf{Planos de Transporte}:
+  \begin{equation}
+    \Pi(\mu,\nu) :=
+    \left \{
+    \gamma \in \mathcal{P}(X \times Y) \ :
+    \ (\pi_X)_\# \gamma = \mu \quad
+    \text{and} \quad
+    (\pi_Y)_\# \gamma = \nu
+    \right \}
+  \end{equation}
+\end{definition}
+
+	
+\begin{definition}[Problema de Kantorovich]
+  Dadas duas medidas de probabilidade $\mu \in \mathcal P(X)$,
+  $\nu \in \mathcal{P}(Y)$ e a função de custo
+  $c:X\times Y \to[0,+\infty]$, resolva:
+  \begin{flalign}
+    (KP) &&
+    \inf
+    \left\{
+    \int_{X \times Y} c(x,y)d\gamma \ : \
+    \gamma \in \Pi(\mu,\nu)
+    \right\}&&
+    \label{eq:KP2}
+  \end{flalign}
+  \label{def:KP}
+\end{definition}
+
+\end{frame}
+
+\begin{frame}[fragile]{Teoria OT - Problema Dual}
+
+	O Problema de Kantorovich tem uma formulação dual, que
+	para certas condições de regularidade possui a mesma
+	solução ótima que o problema primal (dualidade forte).
+
+\begin{definition}[Problema Dual]
+  Dadas $\mu \in \mathcal P(X)$, $\nu \in \mathcal P (Y)$ e
+  custo $c:X \times Y \to \mathbb R_+$. O
+  Problema Dual é
+\begin{flalign}
+  \mathrm{(DP)} &&
+  \sup \left \{
+  \int_X \phi \ d\mu + \int_Y \psi \ d\nu \ :
+  \phi \in C_b(X) \ , \psi \in C_b(Y) \ ,
+  \ \phi \oplus \psi \leq c
+  \right \}
+  &&
+  \label{eqt:dualproblem}
+\end{flalign}
+\end{definition}
+
+Funções $\phi, \psi$ são chamdas de \textbf{Potenciais de Kantorovich}.
+
+\end{frame}
+
+\begin{frame}[fragile]{Teoria OT - Problema Dual}
+
+	When the cost function is a distance metric, the Dual Problem can be
+	written in what is known as the Kantorovich-Rubinstein formulation.
+
+\begin{theorem}[Kantorovich-Rubinstein]
+
+  Let $(X,d)$ be a Polish space with metric $d$, and cost function $c(x,y) = d(x,y)$.
+  Then, for $\mu, \nu \in \mathcal P(X)$, the Kantorovich Problem
+  is equivalent to
+  \begin{equation}
+      \sup \left \{
+      \int_X \phi \ d\mu - \int_X \phi \ d\nu \ :
+      \phi \in Lip_1(X)
+      \right \}
+  \end{equation}
+  \label{thm:Kantorovich-Rubinstein}
+\end{theorem}
+
+\end{frame}
+
+\subsection{Wasserstein Distance}
+\begin{frame}[fragile]{Optimal Transport Theory - Wasserstein Distance}
+
+\begin{definition}[Wasserstein Distance]
+
+  Let $(X,d)$ be a Polish metric space, with $c:X \times X \to \mathbb R$ such that $c(x,y)=d(x,y)^p$, and
+  $p \in [1,+\infty)$.
+  For $\mu,\nu \in \mathcal P_p(X)$, the Wasserstein Distance is given by:
+  \begin{equation}
+    W_p(\mu,\nu) :=
+    \left(
+    \inf_{\gamma \in \Pi(\mu,\nu)}
+    \int_{X \times X} d(x,y)^p \ d\gamma
+    \right)^{1/p}
+    \label{def:Wasserstein}
+  \end{equation}
+\end{definition}
+
+$\mathcal P_p(X)$ is the space of probability measures with finite $p$th moment.
+
+\end{frame}
+
+\begin{frame}[fragile]{Optimal Transport Theory - Wasserstein Distance}
+
+The Wasserstein distance has many interesting properties which make it useful
+in Machine Learning applications. Two of them that are of utmost interest
+are the fact that it metrizes weak convergence and the
+incorporation of the ground geometry.
+
+\begin{figure}[H]
+  \centering
+  \def\svgscale{0.50}
+  \includesvg[inkscapelatex=false]{Figures/wassersteingeometry.svg}
+	\caption{Comparison between Wasserstein distance and KL Divergence, based on \citet{montavon2016boltzmann}.}
+	\label{fig:wl-kl}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+	\nocite{*}
+
+% \renewcommand{\bibsection}{\section{}}
+  \renewcommand{\section}[2]{}%
+\tiny{\bibliography{ref}}
+\bibliographystyle{plainnat}
+  % \bibliographystyle{plain}
+  % \bibliographystyle{abbrv}
+  % \bibliographystyle{apa}
+\end{frame}
+
+
+\end{document}
