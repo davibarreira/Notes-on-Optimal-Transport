@@ -1,0 +1,8 @@
+\beamer@sectionintoc {1}{Introdução}{3}{0}{1}
+\beamer@sectionintoc {2}{Teoria de Transporte Ótimo}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{Monge \& Kantorovich}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{Distância de Wasserstein}{10}{0}{2}
+\beamer@subsectionintoc {2}{3}{Distância de Wasserstein}{11}{0}{2}
+\beamer@subsectionintoc {2}{4}{Variações da Distância de Wasserstein}{12}{0}{2}
+\beamer@sectionintoc {3}{Aplicações de OT em Redes Neurais}{13}{0}{3}
+\beamer@subsectionintoc {3}{1}{Wasserstein GAN}{13}{0}{3}

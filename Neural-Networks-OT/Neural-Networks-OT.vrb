@@ -1,0 +1,10 @@
+\frametitle{Generative Neural Netorks}
+
+	\begin{figure}[H]
+		\centering
+		\def\svgscale{0.4}
+		\includesvg[inkscapelatex=false]{Figures/wgan.svg}
+		\caption{Massa pode ser separada.}
+		\label{fig:kantorovichproblem}
+	\end{figure}
+

@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.15.1
+# v0.16.1
 
 using Markdown
 using InteractiveUtils
@@ -26,7 +26,12 @@ md"""
 Esse notebook traz um exemplo simples da aplicação da idea de Fluxo de Gradiente
 em Wasserstein para solucionar a equação do calor.
 
-O problem é o seguinte, suponha que você fez uma medição do 
+O problem é o seguinte, suponha que você fez uma medição de uma barra, e obteve
+o perfil de calor. Depois de algum tempo, fez uma nova medição. Como então
+obter o comportamente desse perfil de calor no meio tempo? Ou seja, qual
+a maneira correta de interpolar que condiz com a equação de calor?
+
+A resposta para isso está no Fluxo de Gradiente de Wasserstein. Veja o exemplo abaixo.
 
 """
 
@@ -676,9 +681,9 @@ uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
 [[MKL_jll]]
 deps = ["Artifacts", "IntelOpenMP_jll", "JLLWrappers", "LazyArtifacts", "Libdl", "Pkg"]
-git-tree-sha1 = "c253236b0ed414624b083e6b72bfe891fbd2c7af"
+git-tree-sha1 = "5455aef09b40e5020e1520f551fa3135040d4ed0"
 uuid = "856f044c-d86e-5d09-b602-aeab76dc8ba7"
-version = "2021.1.1+1"
+version = "2021.1.1+2"
 
 [[Makie]]
 deps = ["Animations", "Base64", "ColorBrewer", "ColorSchemes", "ColorTypes", "Colors", "Contour", "Distributions", "DocStringExtensions", "FFMPEG", "FileIO", "FixedPointNumbers", "Formatting", "FreeType", "FreeTypeAbstraction", "GeometryBasics", "GridLayoutBase", "ImageIO", "IntervalSets", "Isoband", "KernelDensity", "LaTeXStrings", "LinearAlgebra", "MakieCore", "Markdown", "Match", "MathTeXEngine", "Observables", "Packing", "PlotUtils", "PolygonOps", "Printf", "Random", "RelocatableFolders", "Serialization", "Showoff", "SignedDistanceFields", "SparseArrays", "StaticArrays", "Statistics", "StatsBase", "StatsFuns", "StructArrays", "UnicodeFun"]
@@ -1292,11 +1297,11 @@ version = "3.5.0+0"
 """
 
 # ╔═╡ Cell order:
-# ╠═bb149121-e0a6-4108-bec4-36c8888fd0ad
-# ╠═fd0e02bb-a26b-4378-94e1-e0291dd4a128
+# ╟─bb149121-e0a6-4108-bec4-36c8888fd0ad
+# ╟─fd0e02bb-a26b-4378-94e1-e0291dd4a128
 # ╠═66493239-c472-4273-ad3d-25d6dfb4fe00
-# ╟─a9e2ebbf-121e-4c79-bf1d-3b6cc0271b53
-# ╠═c182dc64-5b6e-4830-9a43-63fb6763626d
+# ╠═a9e2ebbf-121e-4c79-bf1d-3b6cc0271b53
+# ╟─c182dc64-5b6e-4830-9a43-63fb6763626d
 # ╠═6bbb55de-cbb4-49d2-a225-f06b501e736d
 # ╠═c440a512-05ad-11ec-3418-f5a6fc6e431c
 # ╠═67bef9e2-9351-47c9-b710-d519fa63b234

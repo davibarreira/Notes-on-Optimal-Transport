@@ -304,7 +304,6 @@ $\mathcal P_p(X)$ é o espaço de medidas de probabilidade com$p$-ésimo momento
 
 \end{frame}
 
-\subsection{Formulação Dinâmica}
 \begin{frame}[fragile]{Teoria OT - Formulação Dinâmica}
 
 	Baseado nessa formulação dinâmica, é possível provar o
@@ -441,7 +440,121 @@ Lembre-se da diferença entre o esquema implícito e o explícito de Euler:
 \end{center}
     \caption{Exemplo de aproximação da solução $x(t)$.}
     \label{fig:eulerinterpolacao}
-\end{figure}k
+\end{figure}
+
+\end{frame}
+
+\subsection{Fluxo de Gradiente em Wasserstein}
+\begin{frame}[fragile]{Fluxo de Gradiente em Wasserstein}
+
+	Queremos agora estender essa ideia do fluxo de gradiente
+	para espaços os espaços de 2-Wasserstein, e vamos assumir também
+	que nossas medidas de probabilidade são absolutamente contínuas em relação a Lebesgue.
+	Vamos assim
+	alterar nosso Esquema de Minimização de Movimento para
+	\begin{equation}
+		\rho_{k+1}^\tau \in \text{argmin}_{\rho} F(\rho)+\frac{W_2^2(\rho,\rho_k^\tau)}{2\tau},
+		\label{EMMW}
+	\end{equation}
+	Onde $F$ agora não é mais uma função de $\mathbb R^n \to \mathbb R$, mas sim
+	um funcional $F: \mathbb \mathcal P_2(\Omega) \to \mathbb R$, e.g.
+	$F(\rho) = \int_\Omega f(\rho(x))dx$.
+
+\end{frame}
+
+\begin{frame}[fragile]{Fluxo de Gradiente em Wasserstein}
+
+	\begin{equation}
+		\rho_{k+1}^\tau \in \text{argmin}_{\rho} F(\rho)+\frac{W_2^2(\rho,\rho_k^\tau)}{2\tau}
+	\end{equation}
+	O problem de minimização acima é em um espaço de funções, onde buscamos a medida de
+	probabilidade $\rho$ que minimiza. Assim, utilizaremos a ideia de \textbf{primeira variação}
+	proveniente do Cálculo de Variações.
+
+	Seja $G: \mathcal P(\Omega) \to \mathbb R$ um funcional, chamaremos
+	$\frac{\delta G}{\delta \rho}(\rho)$ a primeira variação de $G$, caso
+	exista uma função única (a menos de uma constante), tal que
+	\begin{equation}
+		\frac{d}{d\varepsilon} G(\rho + \varepsilon \chi)|_{\varepsilon =0} =
+		\int \frac{\delta G}{\delta \rho}(\rho) d\chi,
+	\end{equation}
+	para toda perturbação $\chi$. Note a perturbação deve satisfazer $\int d\chi = 0$
+	e além disso, deve existir pelo menos $\varepsilon \in [0,\varepsilon_0]$, tal
+	que $\rho + \varepsilon \chi \in \mathcal P(\Omega)$.
+
+\end{frame}
+
+\begin{frame}[fragile]{Fluxo de Gradiente em Wasserstein}
+
+	Análogamente ao caso em $\mathbb R$,
+	se $\frac{\delta G}{\delta}(\rho^*) = 0$(ou constante), temos assim
+	uma possível solução para o problema de otimização. Se provamos,
+	por exemplo, que nosso funcional é contínuo
+	em algum sentido, como em convergência fraca de probabilidade, e que
+	é convexo. Teremos então existência e unicidade para esse problema de otimização,
+	com $\rho^*$ sendo a função que minimiza.
+
+\end{frame}
+
+\begin{frame}[fragile]{Fluxo de Gradiente em Wasserstein}
+
+	Se nosso funcional é $F(\rho)=\int_\Omega f(\rho(x))dx$, onde $f:\mathbb R \to \mathbb R$
+	é convexa e superlinear, teremos que
+	\begin{equation}
+		\frac{\delta F}{\delta \rho}(\rho) = f'(\rho)
+	\end{equation}.
+
+	Além disso, podemos provar que para o funcional $\rho \mapsto W_2(\rho, \nu)$, temos que
+	\begin{equation}
+		\frac{\delta W_2(\cdot,\nu)}{\delta \rho}(\rho_0) = \phi.
+	\end{equation}
+
+\end{frame}
+
+\begin{frame}[fragile]{Fluxo de Gradiente em Wasserstein}
+
+	Lembrando que queremos minimiza a equação abaixo
+	\begin{equation}
+		\rho_{k+1}^\tau \in \text{argmin}_{\rho} F(\rho)+\frac{W_2^2(\rho,\rho_k^\tau)}{2\tau}.
+	\end{equation}
+
+	Temos então que no ponto de mínimo
+	\begin{equation}
+		\frac{\delta F}{\delta \rho}(\rho_{k+1}^\tau) + \frac{\phi}{\tau} = \text{const}.
+	\end{equation}.
+
+	Para $\mu\ll \lambda$, com $\Omega$ compacto, temos que nosso espaço 2-Wasserstein
+	tem sempre um mapa $T(x) = x - \nabla \phi(x)$ (apresentamos na sessão de existência). Logo
+	\begin{equation}
+		-\bm{v}(x):= \frac{T(x)-x}{\tau} = -\frac{\phi(x)}{\tau} =
+		\nabla (\frac{\delta F}{\delta \rho}(\rho))(x).
+	\end{equation}
+	Pela Equação de Benamou-Brenier, temos então que
+	\begin{equation}
+		\partial_t \rho - \nabla \cdot (\rho \nabla (\frac{\delta F}{\delta \rho}(\rho))(x) = 0.
+	\end{equation}
+
+\end{frame}
+
+\begin{frame}[fragile]{Fluxo de Gradiente em Wasserstein}
+
+	Finalmente, chegamos onde queríamos desde o começo.
+
+	Se nosso funcional é $F(\rho)=\int_\Omega f(\rho(x))dx$, onde $f:\mathbb R \to \mathbb R$
+	é convexa e superlinear, teremos que
+	\begin{equation}
+		\frac{\delta F}{\delta \rho}(\rho) = f'(\rho)
+	\end{equation}.
+
+	Mais ainda, se $f(t) = t \log t $ , temos que $f'(t) = 1+ \log t$ e que
+	$\nabla(f'(\rho))=\frac{\nabla \rho}{\rho}$.
+
+	E assim, chegamos na equação do calor:
+	\begin{equation}
+		\partial_t \rho - \nabla \cdot (\rho \nabla (\frac{\delta F}{\delta \rho}(\rho))(x) =
+	\partial_t \rho - \Delta \rho -0.
+	\end{equation}
+
 
 \end{frame}
 

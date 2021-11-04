@@ -4,7 +4,7 @@
 \beamer@subsectionintoc {2}{2}{Distância de Wasserstein}{9}{0}{2}
 \beamer@subsectionintoc {2}{3}{Existência de Soluções}{11}{0}{2}
 \beamer@subsectionintoc {2}{4}{Formulação Dinâmica}{12}{0}{2}
-\beamer@subsectionintoc {2}{5}{Formulação Dinâmica}{13}{0}{2}
 \beamer@sectionintoc {3}{Fluxo de Gradiente em Wasserstein}{14}{0}{3}
 \beamer@subsectionintoc {3}{1}{Introdução ao Fluxo de Gradiente}{14}{0}{3}
 \beamer@subsectionintoc {3}{2}{Esquema de Minimização de Movimento}{17}{0}{3}
+\beamer@subsectionintoc {3}{3}{Fluxo de Gradiente em Wasserstein}{20}{0}{3}

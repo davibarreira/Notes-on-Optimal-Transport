@@ -1,14 +1,20 @@
-\frametitle{Esquema de Minimização de Movimento}
+\frametitle{Fluxo de Gradiente em Wasserstein}
 
-	É possível provar que para $\tau \to 0$, podemos interpolar
-	os pontos $(x_k^\tau)$ para obter uma solução que converge
-	para a solução $x(t)$ de \eqref{eq:fluxograd}.
+	Finalmente, chegamos onde queríamos desde o começo.
 
-	\begin{figure}[H]
-\begin{center}
-    \includegraphics[width=0.6\textwidth]{../Notes-Portugues/Figures/eulerinterpolacao}
-\end{center}
-    \caption{Exemplo de aproximação da solução $x(t)$.}
-    \label{fig:eulerinterpolacao}
-\end{figure}k
+	Se nosso funcional é $F(\rho)=\int_\Omega f(\rho(x))dx$, onde $f:\mathbb R \to \mathbb R$
+	é convexa e superlinear, teremos que
+	\begin{equation}
+		\frac{\delta F}{\delta \rho}(\rho) = f'(\rho)
+	\end{equation}.
+
+	Mais ainda, se $f(t) = t \log t $ , temos que $f'(t) = 1+ \log t$ e que
+	$\nabla(f'(\rho))=\frac{\nabla \rho}{\rho}$.
+
+	E assim, chegamos na equação do calor:
+	\begin{equation}
+		\partial_t \rho - \nabla \cdot (\rho \nabla (\frac{\delta F}{\delta \rho}(\rho))(x) =
+	\partial_t \rho - \Delta \rho -0.
+	\end{equation}
+
 

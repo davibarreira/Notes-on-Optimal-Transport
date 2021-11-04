@@ -36,12 +36,10 @@
 \headcommand {\beamer@subsectionentry {0}{2}{4}{12}{Formulação Dinâmica}}
 \headcommand {\slideentry {2}{4}{1}{12/12}{Formulação Dinâmica}{0}}
 \headcommand {\beamer@framepages {12}{12}}
-\headcommand {\beamer@subsectionpages {12}{12}}
-\headcommand {\beamer@subsectionentry {0}{2}{5}{13}{Formulação Dinâmica}}
-\headcommand {\slideentry {2}{5}{1}{13/13}{Formulação Dinâmica}{0}}
+\headcommand {\slideentry {2}{4}{2}{13/13}{Formulação Dinâmica}{0}}
 \headcommand {\beamer@framepages {13}{13}}
 \headcommand {\beamer@sectionpages {5}{13}}
-\headcommand {\beamer@subsectionpages {13}{13}}
+\headcommand {\beamer@subsectionpages {12}{13}}
 \headcommand {\sectionentry {3}{Fluxo de Gradiente em Wasserstein}{14}{Fluxo de Gradiente em Wasserstein}{0}}
 \headcommand {\beamer@subsectionpages {14}{13}}
 \headcommand {\beamer@subsectionentry {0}{3}{1}{14}{Introdução ao Fluxo de Gradiente}}
@@ -59,12 +57,26 @@
 \headcommand {\beamer@framepages {18}{18}}
 \headcommand {\slideentry {3}{2}{3}{19/19}{Esquema de Minimização de Movimento}{0}}
 \headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {3}{2}{4}{20/20}{Esquema de Minimização de Movimento}{0}}
+\headcommand {\beamer@subsectionpages {17}{19}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{20}{Fluxo de Gradiente em Wasserstein}}
+\headcommand {\slideentry {3}{3}{1}{20/20}{Fluxo de Gradiente em Wasserstein}{0}}
 \headcommand {\beamer@framepages {20}{20}}
-\headcommand {\slideentry {3}{2}{4}{20/21}{Esquema de Minimização de Movimento}{0}}
-\headcommand {\beamer@framepages {20}{21}}
-\headcommand {\beamer@partpages {1}{21}}
-\headcommand {\beamer@subsectionpages {17}{21}}
-\headcommand {\beamer@sectionpages {14}{21}}
-\headcommand {\beamer@documentpages {21}}
-\headcommand {\gdef \inserttotalframenumber {21}}
+\headcommand {\slideentry {3}{3}{2}{21/21}{Fluxo de Gradiente em Wasserstein}{0}}
+\headcommand {\beamer@framepages {21}{21}}
+\headcommand {\slideentry {3}{3}{3}{22/22}{Fluxo de Gradiente em Wasserstein}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\slideentry {3}{3}{4}{23/23}{Fluxo de Gradiente em Wasserstein}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\slideentry {3}{3}{5}{24/24}{Fluxo de Gradiente em Wasserstein}{0}}
+\headcommand {\beamer@framepages {24}{24}}
+\headcommand {\slideentry {3}{3}{6}{25/25}{Fluxo de Gradiente em Wasserstein}{0}}
+\headcommand {\beamer@framepages {25}{25}}
+\headcommand {\slideentry {3}{3}{7}{26/26}{Fluxo de Gradiente em Wasserstein}{0}}
+\headcommand {\beamer@framepages {26}{26}}
+\headcommand {\slideentry {3}{3}{7}{26/27}{Fluxo de Gradiente em Wasserstein}{0}}
+\headcommand {\beamer@framepages {26}{27}}
+\headcommand {\beamer@partpages {1}{27}}
+\headcommand {\beamer@subsectionpages {20}{27}}
+\headcommand {\beamer@sectionpages {14}{27}}
+\headcommand {\beamer@documentpages {27}}
+\headcommand {\gdef \inserttotalframenumber {27}}
