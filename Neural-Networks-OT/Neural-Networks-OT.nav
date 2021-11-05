@@ -45,10 +45,12 @@
 \headcommand {\beamer@framepages {13}{13}}
 \headcommand {\slideentry {3}{1}{2}{14/14}{WGAN}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\slideentry {3}{1}{2}{14/15}{WGAN}{0}}
-\headcommand {\beamer@framepages {14}{15}}
-\headcommand {\beamer@partpages {1}{15}}
-\headcommand {\beamer@subsectionpages {13}{15}}
-\headcommand {\beamer@sectionpages {13}{15}}
-\headcommand {\beamer@documentpages {15}}
-\headcommand {\gdef \inserttotalframenumber {15}}
+\headcommand {\slideentry {3}{1}{3}{15/15}{WGAN}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\slideentry {3}{1}{3}{15/16}{WGAN}{0}}
+\headcommand {\beamer@framepages {15}{16}}
+\headcommand {\beamer@partpages {1}{16}}
+\headcommand {\beamer@subsectionpages {13}{16}}
+\headcommand {\beamer@sectionpages {13}{16}}
+\headcommand {\beamer@documentpages {16}}
+\headcommand {\gdef \inserttotalframenumber {16}}
