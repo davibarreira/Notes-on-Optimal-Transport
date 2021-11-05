@@ -5,5 +5,6 @@
 \beamer@subsectionintoc {2}{3}{Distância de Wasserstein}{12}{0}{2}
 \beamer@subsectionintoc {2}{4}{Distância de Wasserstein}{13}{0}{2}
 \beamer@subsectionintoc {2}{5}{Variações da Distância de Wasserstein}{14}{0}{2}
-\beamer@sectionintoc {3}{Aplicações de OT em Redes Neurais}{15}{0}{3}
-\beamer@subsectionintoc {3}{1}{Wasserstein GAN}{15}{0}{3}
+\beamer@subsectionintoc {2}{6}{Variações da Distância de Wasserstein}{15}{0}{2}
+\beamer@sectionintoc {3}{Aplicações de OT em Redes Neurais}{16}{0}{3}
+\beamer@subsectionintoc {3}{1}{Wasserstein GAN}{16}{0}{3}

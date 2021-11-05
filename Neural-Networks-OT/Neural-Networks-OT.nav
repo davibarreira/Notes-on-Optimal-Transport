@@ -42,21 +42,35 @@
 \headcommand {\beamer@subsectionentry {0}{2}{5}{14}{Variações da Distância de Wasserstein}}
 \headcommand {\slideentry {2}{5}{1}{14/14}{Variações da Distância de Wasserstein}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\beamer@sectionpages {6}{14}}
 \headcommand {\beamer@subsectionpages {14}{14}}
-\headcommand {\sectionentry {3}{Aplicações OT}{15}{Aplicações de OT em Redes Neurais}{0}}
-\headcommand {\beamer@subsectionpages {15}{14}}
-\headcommand {\beamer@subsectionentry {0}{3}{1}{15}{WGAN}}
-\headcommand {\slideentry {3}{1}{1}{15/15}{WGAN}{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{6}{15}{Variações da Distância de Wasserstein}}
+\headcommand {\slideentry {2}{6}{1}{15/15}{Variações da Distância de Wasserstein}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\slideentry {3}{1}{2}{16/16}{WGAN}{0}}
+\headcommand {\beamer@sectionpages {6}{15}}
+\headcommand {\beamer@subsectionpages {15}{15}}
+\headcommand {\sectionentry {3}{Aplicações OT}{16}{Aplicações de OT em Redes Neurais}{0}}
+\headcommand {\beamer@subsectionpages {16}{15}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{16}{WGAN}}
+\headcommand {\slideentry {3}{1}{1}{16/16}{WGAN}{0}}
 \headcommand {\beamer@framepages {16}{16}}
-\headcommand {\slideentry {3}{1}{3}{17/17}{WGAN}{0}}
+\headcommand {\slideentry {3}{1}{2}{17/17}{WGAN}{0}}
 \headcommand {\beamer@framepages {17}{17}}
-\headcommand {\slideentry {3}{1}{3}{17/18}{WGAN}{0}}
-\headcommand {\beamer@framepages {17}{18}}
-\headcommand {\beamer@partpages {1}{18}}
-\headcommand {\beamer@subsectionpages {15}{18}}
-\headcommand {\beamer@sectionpages {15}{18}}
-\headcommand {\beamer@documentpages {18}}
-\headcommand {\gdef \inserttotalframenumber {18}}
+\headcommand {\slideentry {3}{1}{3}{18/18}{WGAN}{0}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\slideentry {3}{1}{4}{19/19}{WGAN}{0}}
+\headcommand {\beamer@framepages {19}{19}}
+\headcommand {\slideentry {3}{1}{5}{20/20}{WGAN}{0}}
+\headcommand {\beamer@framepages {20}{20}}
+\headcommand {\slideentry {3}{1}{6}{21/21}{WGAN}{0}}
+\headcommand {\beamer@framepages {21}{21}}
+\headcommand {\slideentry {3}{1}{7}{22/22}{WGAN}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\slideentry {3}{1}{8}{23/23}{WGAN}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\slideentry {3}{1}{8}{23/24}{WGAN}{0}}
+\headcommand {\beamer@framepages {23}{24}}
+\headcommand {\beamer@partpages {1}{24}}
+\headcommand {\beamer@subsectionpages {16}{24}}
+\headcommand {\beamer@sectionpages {16}{24}}
+\headcommand {\beamer@documentpages {24}}
+\headcommand {\gdef \inserttotalframenumber {24}}

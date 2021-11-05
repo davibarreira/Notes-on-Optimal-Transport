@@ -7,4 +7,6 @@
 \beamer@slide {eqt:dualproblem}{10}
 \beamer@slide {def:Wasserstein}{11}
 \beamer@slide {fig:pub}{12}
-\beamer@slide {fig:pub}{14}
+\beamer@slide {fig:entropicot}{14}
+\beamer@slide {fig:pub}{15}
+\beamer@slide {eq:wgan}{20}

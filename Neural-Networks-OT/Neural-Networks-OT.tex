@@ -302,21 +302,38 @@
 	como então computamos a distância de Wasserstein
 	entre elas?
 
+	\vspace{3mm}
+	Sabemos resolver para alguns casos!
+	\begin{enumerate}
+		\item Distribuições em 1D (continuas e discretas);
+		\item Distribuições Gaussianas em $n$ dimensões;
+		\item Distribuições discretas finitas em $n$ dimensões.
+	\end{enumerate}
+
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{Figures/ot-1d-discrete.pdf}
+		\end{center}
+		\caption{Algoritmo para caso 1D com medida finita discreta.}
+	\end{figure}
+
 \end{frame}
 
 \subsection{Variações da Distância de Wasserstein}
 \begin{frame}[fragile]{Teoria OT - Variações da Distância de Wasserstein}
 
 	Calcular a distância de Wasserstein em espaços de alta dimensão (e.g. imagens)
-	é bastante custoso.
+	é bastante custoso, pois precisamos resolver um problema de Programação Linear.
 
 	\vspace{3mm}
 	Assim, variações da distância
-	de Wasserstein foram desenvolvidas, como por exemplo:
-	\begin{enumerate}
-		\item Entropic Wasserstein;
-		\item Sliced Wasserstein.
-	\end{enumerate}
+	de Wasserstein foram desenvolvidas. A variação mais famosa é a chamada
+	distância de \textbf{Wasserstein Entrópica}.
+
+	\begin{displaymath}
+		\overline{OT}_{c,\varepsilon}(\mu,\nu):=
+		\inf_{\gamma \in \Pi(\mu,\nu)} \int_{X \times Y} c(x,y) \ d\gamma + \varepsilon \text{KL}(\gamma | \mu \otimes \nu)
+	\end{displaymath}
 
 	\begin{figure}[H]
 		\centering
@@ -324,6 +341,32 @@
 		\includesvg[inkscapelatex=false]{Figures/entropic_ot.svg}
 		\caption{
 			Exemplo de solução de OT com regularização entrópica
+			\citep{sales2021optimal}.}
+		\label{fig:entropicot}
+	\end{figure}
+
+\end{frame}
+
+\subsection{Variações da Distância de Wasserstein}
+\begin{frame}[fragile]{Teoria OT - Variações da Distância de Wasserstein}
+
+
+	Outra variação também bastante utilizada em Machine Learning
+	é a chamada \textbf{Sliced Wasserstein}.
+
+	\begin{displaymath}
+		SW_p(\mu,\nu) =
+		\left(
+		\int_{\mathbb S^{d-1}} [W_p(P_{\theta \#}\mu,P_{\theta \#} \nu)]^p d\theta
+		\right)^\frac{1}{p}
+	\end{displaymath}
+
+	\begin{figure}[H]
+		\centering
+		\def\svgscale{0.12}
+		\includesvg[inkscapelatex=false]{Figures/sliced-w.svg}
+		\caption{
+			Desenho esquemático da Sliced Wasserstein
 			\citep{sales2021optimal}.}
 		\label{fig:pub}
 	\end{figure}
@@ -333,7 +376,7 @@
 \AtBeginSection{}
 \section[Aplicações OT]{Aplicações de OT em Redes Neurais}
 \subsection[WGAN]{Wasserstein GAN}
-\begin{frame}[fragile]{Wasserstein Generative Neural Netorks}
+\begin{frame}[fragile]{Introduzindo GANs}
 
 	\textbf{Generative Adversarial Networks} (GAN)
 	foram originalmente introduzidas por \citet{goodfellow2014}.
@@ -343,13 +386,12 @@
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=8cm]{Figures/gans-faces.png}
-		\caption{Faces geradas por GANs
-			\footnote{Faces geradas por \citet{karras2018}}.}
+		\caption{Faces geradas por GANs \citep{karras2018}.}
 	\end{figure}
 
 \end{frame}
 
-\begin{frame}[fragile]{Wasserstein Generative Neural Netorks}
+\begin{frame}[fragile]{Intrdouzindo GANs}
 
 	A ideia geral por trás das GANs é utilizar duas redes neurais
 	competindo uma com a outra, sendo uma rede responsável por
@@ -367,6 +409,129 @@
 \end{frame}
 
 
+\begin{frame}[fragile]{Treinando GANs}
+
+	A GAN original busca resolver o seguinte problema de otimização mini-max:
+	\begin{equation*}
+		\min_{G} \max_D V(D,G) =
+		\mathbb{E}_{P_{data}(\bm x)}\left[\log{(D(\bm x))}\right]+
+		\mathbb{E}_{P_z(\bm z)}\left[\log(1-D(G(\bm z))\right],
+	\end{equation*}
+
+	Treinamos o discriminador $D$ buscando maximizar
+	a capacidade de discernir dados de $P_{data}$ de $P_g$.
+	Em um segundo momento, treinamos $G$ buscando minimizar
+	a distância entre $P_g$ e $P_{data}$.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=8cm]{Figures/gan-algorithmscheme.png}
+		\caption{De (a) até (d), o desenho ilustra a evolução do
+			algoritmo ao ser treinado. A linha azul representa a
+			distrbuição do descriminador, a linha verde representa
+			a $P_g$, e os pontos pretos representam $P_{data}$
+			\citep{goodfellow2014}.}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Problemas Típicos em GANs}
+
+	GANs tradicionais possuem falhas comuns que tem sido foco
+	de pesquisas.
+	\small
+
+	\begin{itemize}
+		\item \textbf{Dissipação de gradientes:} Na prática, ao treinar
+		      o descriminador até seu estado ótimo ($\frac{p_{data}}
+			      {p_{data} + p_g}$), os gradientes tendem a se dissipar
+		      no treinamento do gerador. Além disso, quando as distribuições
+		      não compartilham o suporte, o gradiente se torna nulo.
+
+		\item  \textbf{``Mode Collapse"}: Normalmente, você deseja que sua GAN
+		      produza uma ampla variedade de saídas. No entanto, se um gerador produz
+		      uma saída especialmente plausível, ele pode aprender a produzir apenas
+		      essa saída.
+
+		\item \textbf{Falha de Converêgncia}: GANs podem apresentar instabilidade
+		      na atualização dos gradientes do gerador, levando a falhas de
+		      convergência.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Wasserstein GAN}
+
+	\citet{arjovsky2017wasserstein} propuseram a Wasserstein GAN,
+	onde se usa $W_1(P_g, P_{data})$ invés de $KL(P_g, P_{data})$ (ou variações).
+
+	\vspace{3mm}
+	Usando formulação dual da distância de Wasserstein, o problema de otimização
+	da WGAN se torna:
+	\begin{displaymath}
+		\min_{G} W_1(P_{\text{data}},P_g) = \min_{G}
+		\max_{D \in Lip_1}\mathbb E_{P_{\text{data}}}[D(x)]
+		-\mathbb E_{P_{g}}[D(x)]
+		\label{eq:wgan}
+	\end{displaymath}
+
+	\vspace{3mm}
+	Mas como se computa o gradiente de $W_1(\cdot, \cdot)$?
+
+\end{frame}
+
+\begin{frame}[fragile]{Wasserstein GAN}
+
+	\citet{arjovsky2017wasserstein} mostrou que o gradiente pode então ser calculado
+	por
+	\begin{displaymath}
+		\nabla_{\theta_g} W_1(P_{\text{data}},P_g) = - \mathbb E_{P_{\text{data}}}[\nabla_{\theta_g} D(G(\mathbf z))].
+	\end{displaymath}
+	onde $\theta_g$ são os parâmetros do gerador.
+
+	Para forçar que $D \in Lip_1$,
+	os autores propuseram \textit{clippar} os parâmetros de $D$
+	entre $[-a,a], a \in \mathbb R_+$.
+
+\end{frame}
+
+\begin{frame}[fragile]{Wasserstein GAN}
+
+	% \footnotesize
+	% \begin{algorithm}[H]
+	% 	\SetAlgoLined
+	% 	\For{número de iterações de treino}{
+	% 		\For{k passos}{
+	% 			Amostre $m$ valores $\{\bm z^{(1)},...,\bm z^{(m)} \}$
+	% 			da priori $p_z(\bm z)$;
+
+	% 			Amostre $m$ exemplos $\{\bm x^{(1)},...,\bm x^{(m)} \}$
+	% 			da fução dos dados $p_{data}(\bm x)$;
+
+	% 			Atualize o \textit{discriminator} utilizando
+	% 			\textit{stochastic gradient descent}:
+	% 			$$
+	% 				\nabla_{\theta_d}\frac{1}{m}\sum^{m}_{i=1}
+	% 				\left[
+	% 					log D(\bm x^{(i)}) + log(1-D(G(\bm z^{(i)})))
+	% 					\right]
+	% 			$$
+	% 		}
+
+	% 		Amostre $m$ valores $\{\bm z^{(1)},...,\bm z^{(m)} \}$
+	% 		da priori $p_z(\bm z)$;
+
+	% 		Atualize o \textit{generator} utilizando
+	% 		\textit{stochastic gradient descent}:
+	% 		$$
+	% 			\nabla_{\theta_d}\frac{1}{m}\sum^{m}_{i=1}
+	% 			log(1-D(G(\bm z^{(i)})))
+	% 		$$
+	% 	}
+	% 	\caption{GAN descrita em \citet{goodfellow2014}}
+	% \end{algorithm}
+
+\end{frame}
 
 \begin{frame}[allowframebreaks]{References}
 	\nocite{*}
