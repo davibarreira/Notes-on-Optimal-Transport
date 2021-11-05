@@ -1,15 +1,25 @@
-\frametitle{Wasserstein Generative Neural Netorks}
+\frametitle{Teoria OT - Monge \& Kantorovich}
 
-	A ideia geral por trás das GANs é utilizar duas redes neurais
-	competindo uma com a outra, sendo uma rede responsável por
-	gerar amostras parecidas com os dados reais (\textit{gerador}) , enquanto a outra
-	busca identificar quando o dado é real ou sintético
-	(\textit{descriminador}).
+	\begin{definition}[Problema de Monge]
+		Dadas duas medidas de probabilidade $\mu \in \mathcal P(X)$,
+		$\nu \in \mathcal{P}(Y)$ e uma função de custo
+		$c:X\times Y \to[0,+\infty]$, resolva:
+		\begin{flalign}
+			(MP)     &  &
+			\inf
+			\left\{
+			\int_{X} c(x,T(x))d\mu \quad : \quad
+			T_\# \mu = \nu
+			\right\} &  &
+		\end{flalign}
+
+	\end{definition}
 
 	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=1.0\textwidth]{Figures/wgan.pdf}
-		\end{center}
-		\caption{Generative Adversarial Network \citep{sales2021optimal}.}
+		\centering
+		\def\svgscale{0.45}
+		\includesvg[inkscapelatex=false]{Figures/monge_map_example.svg}
+		\caption{Exemplo de dois problemas de Transporte Ótimo.}
+		\label{fig:monge_map_example}
 	\end{figure}
 

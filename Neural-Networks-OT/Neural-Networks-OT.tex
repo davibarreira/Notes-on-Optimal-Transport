@@ -95,7 +95,7 @@
 		\def\svgscale{0.7}
 		\includesvg[inkscapelatex=false]{Figures/citations_distribution2}
 		\caption{
-			Gráficos com a evolução do número de publiações ao
+			Gráficos com a evolução do número de publiações
 			relacionadas a Transporte Ótimo com Machine Learning
 			\citep{sales2021optimal}.}
 		\label{fig:pub}
@@ -115,12 +115,10 @@
 	existem aplicações como Transfer Learning que utlilizam
 	os mapas ótimos \citep{sales2021optimal}.
 
-	Nesta apresentação vamos focar em duas aplicações:
-
-	\begin{enumerate}
-		\item Wasserstein Generative Neural Networks \citep{arjovsky2017wasserstein};
-		\item DeepJDOT para Transfer Learning \citep{damodaran2018deepjdot}.
-	\end{enumerate}
+	\vspace{3mm}
+	Nesta apresentação vamos focar na aplicação mais celebrada
+	de OT em redes neurais, as chamadas
+	\textbf{Wasserstein Generative Neural Networks} \citep{arjovsky2017wasserstein}.
 
 \end{frame}
 
@@ -186,7 +184,7 @@
 
 \begin{frame}[fragile]{Teoria OT - Monge \& Kantorovich}
 
-	\begin{definition}[Acoplamento]
+	\begin{definition}[Acoplamento (\textif{Coupling})]
 		Sejam $(X,\mu)$ e $(Y,\nu)$ espaços de probabilidade. Para
 		$\gamma \in \mathcal{P}(X\times Y)$, dizemos que $\gamma$
 		é um acoplamento de $(\mu,\nu)$ se $(\pi_X)_\# \gamma = \mu$
@@ -202,6 +200,17 @@
 			\right \}
 		\end{equation}
 	\end{definition}
+
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{Figures/coupling.pdf}
+		\end{center}
+		\caption{Exemplos de acomplamentos.}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Teoria OT - Monge \& Kantorovich}
 
 	\begin{definition}[Problema de Kantorovich]
 		Dadas duas medidas de probabilidade $\mu \in \mathcal P(X)$,
@@ -282,6 +291,15 @@
 		\caption{Comparação entre a distância de Wasserstein e Jensen-Shannon.}
 		\label{fig:pub}
 	\end{figure}
+
+\end{frame}
+
+\subsection{Distância de Wasserstein}
+\begin{frame}[fragile]{Teoria OT - Distância de Wasserstein}
+
+	Dadas duas medidas de probabilidade $\mu$ e $\nu$,
+	como então computamos a distância de Wasserstein
+	entre elas?
 
 \end{frame}
 
