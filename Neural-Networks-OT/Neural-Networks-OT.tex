@@ -279,7 +279,6 @@
 
 \end{frame}
 
-\subsection{Distância de Wasserstein}
 \begin{frame}[fragile]{Teoria OT - Distância de Wasserstein}
 
 	A distância de Wasserstein preserva a geometria do espaço
@@ -295,7 +294,6 @@
 
 \end{frame}
 
-\subsection{Distância de Wasserstein}
 \begin{frame}[fragile]{Teoria OT - Distância de Wasserstein}
 
 	Dadas duas medidas de probabilidade $\mu$ e $\nu$,
@@ -347,9 +345,7 @@
 
 \end{frame}
 
-\subsection{Variações da Distância de Wasserstein}
 \begin{frame}[fragile]{Teoria OT - Variações da Distância de Wasserstein}
-
 
 	Outra variação também bastante utilizada em Machine Learning
 	é a chamada \textbf{Sliced Wasserstein}.
@@ -374,8 +370,8 @@
 \end{frame}
 
 \AtBeginSection{}
-\section[Aplicações OT]{Aplicações de OT em Redes Neurais}
-\subsection[WGAN]{Wasserstein GAN}
+\section[Aplicações OT]{OT \& Redes Neurais}
+\subsection[WGAN]{Introduzindo Generative Adversarial Networks}
 \begin{frame}[fragile]{Introduzindo GANs}
 
 	\textbf{Generative Adversarial Networks} (GAN)
@@ -435,6 +431,7 @@
 
 \end{frame}
 
+\subsection{Problemas em GANs}
 \begin{frame}[fragile]{Problemas Típicos em GANs}
 
 	GANs tradicionais possuem falhas comuns que tem sido foco
@@ -460,6 +457,7 @@
 
 \end{frame}
 
+\subsection{Wasserstein GAN}
 \begin{frame}[fragile]{Wasserstein GAN}
 
 	\citet{arjovsky2017wasserstein} propuseram a Wasserstein GAN,
@@ -495,6 +493,7 @@
 
 \end{frame}
 
+\subsection{Variações das Wasserstein GAN}
 \begin{frame}[fragile]{Wasserstein GAN}
 
 	WGANs não são perfeitas!
@@ -503,12 +502,41 @@
 		\item Hiperparâmetro de clipping para tunar, além de tornar $D$ esparsa e instável;
 	\end{enumerate}
 
-	Várias modificações sugeridas na literatura:
+	Várias modificações sugeridas na literatura, por exemplo:
 	\begin{enumerate}
 		\item \citet{gulrajani2017improved} - Trocar clipping por penalização no gradiente;
 		\item \citet{genevay2018learning} - Utilizar Entropic Wasserstein;
 		\item \citet{deshpande2018generative} - Utilizar Sliced-Wasserstein.
 	\end{enumerate}
+
+\end{frame}
+
+\subsection{Outras Aplicações}
+\begin{frame}[fragile]{Outras Aplicações}
+
+	Além de GANs, Transporte Ótimo tem sido usado
+	em diversas outras aplicações.
+
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=0.8\textwidth]{Figures/categories_papers_2}
+		\end{center}
+		\caption{Distribuição por categoria dos 200 papers mais citados de OT com ML\citep{sales2021optimal}.}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Outras Aplicações}
+
+	Modelo DeepJDOT de Transfer Learning em Redes Neurais \citep{damodaran2018deepjdot}.
+
+	\vspace{3mm}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=0.8\textwidth]{Figures/deepjdot.png}
+		\end{center}
+		\caption{Imagem de \citet{damodaran2018deepjdot}.}
+	\end{figure}
 
 \end{frame}
 

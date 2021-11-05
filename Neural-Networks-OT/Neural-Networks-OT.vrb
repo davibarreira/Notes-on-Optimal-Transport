@@ -1,15 +1,12 @@
-\frametitle{Wasserstein GAN}
+\frametitle{Outras Aplicações}
 
-	WGANs não são perfeitas!
-	\begin{enumerate}
-		\item Dificuldade de treinar;
-		\item Hiperparâmetro de clipping para tunar, além de tornar $D$ esparsa e instável;
-	\end{enumerate}
+	Modelo DeepJDOT de Transfer Learning em Redes Neurais \citep{damodaran2018deepjdot}.
 
-	Várias modificações sugeridas na literatura:
-	\begin{enumerate}
-		\item \citet{gulrajani2017improved} - Trocar clipping por penalização no gradiente;
-		\item \citet{genevay2018learning} - Utilizar Entropic Wasserstein;
-		\item \citet{deshpande2018generative} - Utilizar Sliced-Wasserstein.
-	\end{enumerate}
+	\vspace{3mm}
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=0.8\textwidth]{Figures/deepjdot.png}
+		\end{center}
+		\caption{Imagem de \citet{damodaran2018deepjdot}.}
+	\end{figure}
 
