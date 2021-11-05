@@ -497,39 +497,18 @@
 
 \begin{frame}[fragile]{Wasserstein GAN}
 
-	% \footnotesize
-	% \begin{algorithm}[H]
-	% 	\SetAlgoLined
-	% 	\For{número de iterações de treino}{
-	% 		\For{k passos}{
-	% 			Amostre $m$ valores $\{\bm z^{(1)},...,\bm z^{(m)} \}$
-	% 			da priori $p_z(\bm z)$;
+	WGANs não são perfeitas!
+	\begin{enumerate}
+		\item Dificuldade de treinar;
+		\item Hiperparâmetro de clipping para tunar, além de tornar $D$ esparsa e instável;
+	\end{enumerate}
 
-	% 			Amostre $m$ exemplos $\{\bm x^{(1)},...,\bm x^{(m)} \}$
-	% 			da fução dos dados $p_{data}(\bm x)$;
-
-	% 			Atualize o \textit{discriminator} utilizando
-	% 			\textit{stochastic gradient descent}:
-	% 			$$
-	% 				\nabla_{\theta_d}\frac{1}{m}\sum^{m}_{i=1}
-	% 				\left[
-	% 					log D(\bm x^{(i)}) + log(1-D(G(\bm z^{(i)})))
-	% 					\right]
-	% 			$$
-	% 		}
-
-	% 		Amostre $m$ valores $\{\bm z^{(1)},...,\bm z^{(m)} \}$
-	% 		da priori $p_z(\bm z)$;
-
-	% 		Atualize o \textit{generator} utilizando
-	% 		\textit{stochastic gradient descent}:
-	% 		$$
-	% 			\nabla_{\theta_d}\frac{1}{m}\sum^{m}_{i=1}
-	% 			log(1-D(G(\bm z^{(i)})))
-	% 		$$
-	% 	}
-	% 	\caption{GAN descrita em \citet{goodfellow2014}}
-	% \end{algorithm}
+	Várias modificações sugeridas na literatura:
+	\begin{enumerate}
+		\item \citet{gulrajani2017improved} - Trocar clipping por penalização no gradiente;
+		\item \citet{genevay2018learning} - Utilizar Entropic Wasserstein;
+		\item \citet{deshpande2018generative} - Utilizar Sliced-Wasserstein.
+	\end{enumerate}
 
 \end{frame}
 
